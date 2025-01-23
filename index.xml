@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Wordlists</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/Wordlists</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/Wordlists</guid>
-    <description>Default Wordlist Directory: /usr/share/wordlist Tree External List 1. Seclist.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>TCP</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</guid>
+    <description>Transmission Control Protocol (TCP) is a Transport Layer Protocol that is widely used to ensure reliable and ordered delivery of data over a network. Unlike UDP, TCP is a connection-oriented protocol that establishes a connection between the sender and receiver before data transmission.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>http codes</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</guid>
-    <description>1. 200 – Successful Meaning: The request was successful, and the server returned the requested resource. Common Use Cases: Successful loading of a web page.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>Transport Layer Protocol</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</guid>
+    <description>Transport Layer is the 4th Layer of OSI Model and 3rd Layer of TCP IP Model. It is responsible for ensuring packets are sent reliably and any missing packets are resent.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>ssh</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/ssh</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/ssh</guid>
-    <description>Secure shell.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>UDP</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</guid>
+    <description>User Datagram Protocol (UDP) is a Transport Layer Protocol which is used transferring data over networks. UDP packets each have their own header and payload.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>EscapeTwo</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Machines/EscapeTwo</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Machines/EscapeTwo</guid>
-    <description>Machine Info: - Easy - Windows - IP: 10.129.240.7 - Incomplete Steps 1. Reconnainsce Nmap Scan Command nmap -sV -oA EasyTwo-nmap 10.129.240.7 --open Result PORT STATE SERVICE VERSION 53/tcp open domain Simple DNS Plus 88/tcp open kerberos-sec Microsoft Windows Kerberos (server time: 2025-01-12 08:20:02Z) 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds? 464/tcp open kpasswd5? 593/tcp open ncacn_http Microsoft Windows RPC over HTTP 1.0 636/tcp open ssl/ldap Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name) 1433/tcp open ms-sql-s Microsoft SQL Server 2019 15.00.2000 3269/tcp open ssl/globalcatLDAPssl? Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>URI, URN and URL</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</guid>
+    <description>Web resources and web services such as RESTful APIs are identified using a Uniform Resource Identifier (URI). A URI is a string of characters that identifies a specific network resource.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>Nibbles</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Machines/Nibbles</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Machines/Nibbles</guid>
-    <description>This is a retired machine, part of Getting Started Module of Hack The Box Steps Taken Reconnaissance Nmap Scan Command nmap -sV -oA 01-04-2025-11-44-Nibbles-nmap 10.129.207.130 ...</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>C2</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/C2</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/C2</guid>
+    <description>Command and Control (C2) Infrastructure are a set of programs used to communicate with a victim machine. This is comparable to a Reverse Shell, but is generally more advanced and often communicate via common network protocols, like HTTP, HTTPS and DNS.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>ARP</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/ARP</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/ARP</guid>
-    <description>Address Resolution Protocol (ARP) is used to get Mac Address of a host from using its IPV4 Address. How ARP Works When a host needs to find Mac Address of destination device in same network, following steps are followed by the host.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>Fast Flux</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Fast-Flux</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Fast-Flux</guid>
+    <description>Fast Flux is a DNS technique used by botnets to hide phishing, web proxying, malware delivery, and malware communication activities behind compromised hosts acting as proxies ...</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>Bandwidth vs Throughput</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Bandwidth-vs-Throughput</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Bandwidth-vs-Throughput</guid>
-    <description>Bandwidth It is the total capacity of a network to transfer data over an interval of time. It is measured in kbps, mbps, gbps. Throughput It is also the capacity of network to transfer data but also considers latency and other factors.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>Hash</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Hash</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Hash</guid>
+    <description>A hash value is a numeric value of a fixed length that uniquely identifies data. It is the result of a hashing algorithm. Common Hash Types MD5 (Message Digest, defined by RFC 1321 MD5 is a widely used cryptographic hash function with a 128-bit hash value.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>DHCP</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/DHCP</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/DHCP</guid>
-    <description>Dynamic Host Configuration Protocol (DHCP) is a protocol to dynamically assign IP address to a host is generally the preferred method of assigning IPv4 addresses to hosts on large ...</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>Pyramid of Pain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</guid>
+    <description>Pyramid of Pain is a concept which is used to determine the level of difficulty it will cause for an adversary to change the indicators associated with them, and their campaign ...</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>DNS</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/DNS</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/DNS</guid>
-    <description>abbr. Domain Name System Manual Lookup &gt; nslookup google.com Server: dns.google Address: 8.8.8.8 Non-authoritative answer: Name: google.com Addresses: 2404:6800:4002:826::200e 142.250.195.14.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>SOC</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</guid>
+    <description>Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within a company’s ...</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item><item>
-    <title>Ethernet Protocol</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Ethernet-Protocol</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Ethernet-Protocol</guid>
-    <description>Ethernet Frame Ethernet frame are a part of Data Link Layer of OSI Model. Data to be transported between one NIC to other NIC in the same network is transported through the Ethernet Protocol.</description>
-    <pubDate>Thu, 23 Jan 2025 09:05:35 GMT</pubDate>
+    <title>Welcome</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
+    <description>Hey there! 👋 This is my personal cybersecurity knowledge base, where I document my journey, notes, and learnings in the world of cybersecurity. Whether you’re here to explore Hack The Box (HTB) write-ups, dive into networking concepts, or just learn alongside me, you’re in the right place! What’s Here? Hack The Box (HTB): Notes, write-ups, and methodologies from HTB machines and challenges.</description>
+    <pubDate>Thu, 23 Jan 2025 17:34:43 GMT</pubDate>
   </item>
     </channel>
   </rss>

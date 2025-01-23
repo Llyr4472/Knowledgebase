@@ -10,61 +10,61 @@
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/Socket</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Socket</guid>
     <description>The combination of the source IP address and source Port number, or the destination IP address and destination Port number is known as a socket. Sockets enable multiple processes, running on a client, to distinguish themselves from each other, and multiple connections to a server process to be distinguished from each other.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>TCP IP Model</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-Model</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-Model</guid>
     <description>TCP/IP protocol is responsible for guaranteeing reliable delivery of a packet. TCP/IP protocol has 4 layers: Application Layer Represents data to the user, encoding and dialog control Transport Layer Supports communication between various devices across network Internet Layer Determines best path through the network Network Access Layer Controls the devices and media that make up the network The difference between TCP IP Model and OSI Model are given in TCP IP vs OSI Model.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>TCP IP vs OSI Model</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-vs-OSI-Model</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-vs-OSI-Model</guid>
     <description>While TCP/IP and OSI both are meant to standardize communication in a network, they have some key similarities and differences. TCP/IP model does not describe general functions that are necessary for all networking communications.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>TCP</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</guid>
     <description>Transmission Control Protocol (TCP) is a Transport Layer Protocol that is widely used to ensure reliable and ordered delivery of data over a network. Unlike UDP, TCP is a connection-oriented protocol that establishes a connection between the sender and receiver before data transmission.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>Transport Layer Protocol</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</guid>
     <description>Transport Layer is the 4th Layer of OSI Model and 3rd Layer of TCP IP Model. It is responsible for ensuring packets are sent reliably and any missing packets are resent.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>UDP</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</guid>
     <description>User Datagram Protocol (UDP) is a Transport Layer Protocol which is used transferring data over networks. UDP packets each have their own header and payload.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>URI, URN and URL</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</guid>
     <description>Web resources and web services such as RESTful APIs are identified using a Uniform Resource Identifier (URI). A URI is a string of characters that identifies a specific network resource.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
     <title>Welcome</title>
     <link>https://knowledgebase.prashantgiri360.com.np/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
     <description>Hey there! 👋 This is my personal cybersecurity knowledge base, where I document my journey, notes, and learnings in the world of cybersecurity. Whether you’re here to explore Hack The Box (HTB) write-ups, dive into networking concepts, or just learn alongside me, you’re in the right place! What’s Here? Hack The Box (HTB): Notes, write-ups, and methodologies from HTB machines and challenges.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
-    <title>Wordlists</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/Wordlists</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/Wordlists</guid>
-    <description>Default Wordlist Directory: /usr/share/wordlist Tree External List 1. Seclist.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <title>Privilege Escalation</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/Privilege-Escalation</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/Privilege-Escalation</guid>
+    <description>1. Enumeration Scripts PEAS LinPEAS curl -L github.com/peass-ng/PEASS-ng/releases/latest/download/linpeas.sh | sh - WinPEAS # 2. SUDO The `sudo` command can be used to run command to escalate privilege.</description>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item><item>
-    <title>http codes</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</guid>
-    <description>1. 200 – Successful Meaning: The request was successful, and the server returned the requested resource. Common Use Cases: Successful loading of a web page.</description>
-    <pubDate>Tue, 21 Jan 2025 12:06:53 GMT</pubDate>
+    <title>Remote Shells</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/Remote-Shells</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/Remote-Shells</guid>
+    <description>Types of Remote Shell 1. Reverse Shell Connects back to our system and gives us control through a reverse connection. 2. Bind Shell Waits for us to connect to it and gives us control once we do.</description>
+    <pubDate>Thu, 23 Jan 2025 09:03:25 GMT</pubDate>
   </item>
     </channel>
   </rss>

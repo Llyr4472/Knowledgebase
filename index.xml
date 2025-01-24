@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Hash</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Hash</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Hash</guid>
-    <description>A hash value is a numeric value of a fixed length that uniquely identifies data. It is the result of a hashing algorithm. Common Hash Types MD5 (Message Digest, defined by RFC 1321 MD5 is a widely used cryptographic hash function with a 128-bit hash value.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
-  </item><item>
-    <title>Pyramid of Pain</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</guid>
-    <description>Pyramid of Pain is a concept which is used to determine the level of difficulty it will cause for an adversary to change the indicators associated with them, and their campaign ...</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
-  </item><item>
-    <title>SOC</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</guid>
-    <description>Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within a company’s ...</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
-  </item><item>
     <title>Welcome to my Knowledgebase</title>
     <link>https://knowledgebase.prashantgiri360.com.np/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
     <description>Hey there! 👋 This is my personal knowledge base, where I document my journey, notes, and learnings in the world of cybersecurity. Here you can explore my write-ups, dive into networking concepts, or just learn alongside me.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>http codes</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/http-codes</guid>
-    <description>1. 200 – Successful Meaning: The request was successful, and the server returned the requested resource. Common Use Cases: Successful loading of a web page.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>OSI Model</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/OSI-Model</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/OSI-Model</guid>
+    <description>Abbr: Open Systems Interconnection It has 7 layers: Physical Layer Describes the mechanical/electrical and other means to activate, maintain and deactivate physical connection ...</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>ssh</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/ssh</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/ssh</guid>
-    <description>Secure shell.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>Port</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Port</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Port</guid>
+    <description>A port is a numeric identifier within each segment that is used to keep track of specific conversations between a client and server. Ports are assigned and managed by an organization known as the Internet Corporation for Assigned Names and Numbers (ICANN).</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>EscapeTwo</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Machines/EscapeTwo</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Machines/EscapeTwo</guid>
-    <description>Machine Info: - Easy - Windows - IP: 10.129.240.7 - Incomplete Steps 1. Reconnainsce Nmap Scan Command nmap -sV -oA EasyTwo-nmap 10.129.240.7 --open Result PORT STATE SERVICE VERSION 53/tcp open domain Simple DNS Plus 88/tcp open kerberos-sec Microsoft Windows Kerberos (server time: 2025-01-12 08:20:02Z) 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds? 464/tcp open kpasswd5? 593/tcp open ncacn_http Microsoft Windows RPC over HTTP 1.0 636/tcp open ssl/ldap Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name) 1433/tcp open ms-sql-s Microsoft SQL Server 2019 15.00.2000 3269/tcp open ssl/globalcatLDAPssl? Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>Socket</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Socket</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Socket</guid>
+    <description>The combination of the source IP address and source Port number, or the destination IP address and destination Port number is known as a socket. Sockets enable multiple processes, running on a client, to distinguish themselves from each other, and multiple connections to a server process to be distinguished from each other.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>Nibbles</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Machines/Nibbles</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Machines/Nibbles</guid>
-    <description>This is a retired machine, part of Getting Started Module of Hack The Box Steps Taken Reconnaissance Nmap Scan Command nmap -sV -oA 01-04-2025-11-44-Nibbles-nmap 10.129.207.130 ...</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>TCP IP Model</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-Model</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-Model</guid>
+    <description>TCP/IP protocol is responsible for guaranteeing reliable delivery of a packet. TCP/IP protocol has 4 layers: Application Layer Represents data to the user, encoding and dialog control Transport Layer Supports communication between various devices across network Internet Layer Determines best path through the network Network Access Layer Controls the devices and media that make up the network The difference between TCP IP Model and OSI Model are given in TCP IP vs OSI Model.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>ARP</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/ARP</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/ARP</guid>
-    <description>Address Resolution Protocol (ARP) is used to get Mac Address of a host from using its IPV4 Address. How ARP Works When a host needs to find Mac Address of destination device in same network, following steps are followed by the host.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>TCP IP vs OSI Model</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-vs-OSI-Model</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP-IP-vs-OSI-Model</guid>
+    <description>While TCP/IP and OSI both are meant to standardize communication in a network, they have some key similarities and differences. TCP/IP model does not describe general functions that are necessary for all networking communications.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item><item>
-    <title>Bandwidth vs Throughput</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Bandwidth-vs-Throughput</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Bandwidth-vs-Throughput</guid>
-    <description>Bandwidth It is the total capacity of a network to transfer data over an interval of time. It is measured in kbps, mbps, gbps. Throughput It is also the capacity of network to transfer data but also considers latency and other factors.</description>
-    <pubDate>Thu, 23 Jan 2025 17:57:16 GMT</pubDate>
+    <title>TCP</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/TCP</guid>
+    <description>Transmission Control Protocol (TCP) is a Transport Layer Protocol that is widely used to ensure reliable and ordered delivery of data over a network. Unlike UDP, TCP is a connection-oriented protocol that establishes a connection between the sender and receiver before data transmission.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
+  </item><item>
+    <title>Transport Layer Protocol</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/Transport-Layer-Protocol</guid>
+    <description>Transport Layer is the 4th Layer of OSI Model and 3rd Layer of TCP IP Model. It is responsible for ensuring packets are sent reliably and any missing packets are resent.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
+  </item><item>
+    <title>UDP</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/UDP</guid>
+    <description>User Datagram Protocol (UDP) is a Transport Layer Protocol which is used transferring data over networks. UDP packets each have their own header and payload.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
+  </item><item>
+    <title>URI, URN and URL</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Networking/URI,-URN-and-URL</guid>
+    <description>Web resources and web services such as RESTful APIs are identified using a Uniform Resource Identifier (URI). A URI is a string of characters that identifies a specific network resource.</description>
+    <pubDate>Fri, 24 Jan 2025 09:23:52 GMT</pubDate>
   </item>
     </channel>
   </rss>

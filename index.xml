@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>C2</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/C2</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/C2</guid>
+    <description>Command and Control (C2) Infrastructure are a set of programs used to communicate with a victim machine. This is comparable to a Reverse Shell, but is generally more advanced and often communicate via common network protocols, like HTTP, HTTPS and DNS.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Cyber Kill Chain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Cyber-Kill-Chain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Cyber-Kill-Chain</guid>
+    <description>The Cyber Kill Chain framework is designed for identification and prevention of the network intrusions. The term kill chain is used in military to refer to the steps taken by an adversary to reach its ultimate goal.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Email Harvesting</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Harvesting</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Harvesting</guid>
+    <description>Email harvesting is the process of obtaining email addresses from public, paid, or free services. A tool used for email harvesting is: theHarvester.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Fast Flux</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</guid>
+    <description>Fast Flux is a DNS technique used by botnets to hide Phishing, web proxying, malware delivery, and malware communication activities behind compromised hosts acting as proxies ...</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Gaining Initial Foothold</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</guid>
+    <description> 1. Reconnaissance Reconnaissance is the first step and it provides adversary with all the info needed for getting into a system. It is described in more detail in Reconnaissance page.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Hash</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</guid>
+    <description>A hash value is a numeric value of a fixed length that uniquely identifies data. It is the result of a hashing algorithm. Common Hash Types MD5 (Message Digest, defined by RFC 1321 MD5 is a widely used cryptographic hash function with a 128-bit hash value.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Masquerading</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</guid>
+    <description>Masquerading occurs when the name or location of an object, legitimate or malicious, is manipulated or abused for the sake of evading defenses and observation ...</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
+    <title>Network Propagation</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Network-Propagation</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Network-Propagation</guid>
+    <description>After a device is exploited in a network, the adversary spreads its access through the network. Exploiting more devices in the same network becomes a lot more easier because usually: Credentials to other devices may be insecurely stored on host Host might have exclusive access to other devices such as printers and storages, not open to public Hence, the attacker would set up a base on one of the systems to act as their pivot point and use it to gather information about the internal network.</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
+  </item><item>
     <title>OSINT</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/OSINT</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/OSINT</guid>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/OSINT</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/OSINT</guid>
     <description>Open source intelligence (OSINT) is the act of gathering and analyzing publicly available data for intelligence purposes.</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
   </item><item>
     <title>Pass the Hash Attack</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pass-the-Hash-Attack</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pass-the-Hash-Attack</guid>
-    <description>A Pass-the-Hash (PtH) attack is a technique where an attacker captures a password hash (as opposed to the password characters) and then passes it through for authentication and lateral ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Phishing</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Phishing</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Phishing</guid>
-    <description>Phishing is a form of social engineering and a scam where attackers deceive people into revealing sensitive information or installing malware such as viruses, worms, adware, or ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Punycode</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Punycode</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Punycode</guid>
-    <description>What is Punycode? As per Wandera, “Punycode is a way of converting words that cannot be written in ASCII, into a Unicode ASCII encoding.” A Punycode attack used by the attackers to redirect ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Pyramid of Pain</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Pyramid-of-Pain</guid>
-    <description>Pyramid of Pain is a conceptual model which organizes IOCs(Indicators Of Compromise) with the level of difficulty it will cause for an adversary to change the indicators associated ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Reconnaissance</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Reconnaissance</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Reconnaissance</guid>
-    <description>Reconnaissance (MITRE Tactic TA0043) is discovering and collecting information on the system and the victim. The reconnaissance phase is the planning phase for the adversaries.</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>SOC</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/SOC</guid>
-    <description>Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within a company’s ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Timestomping</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Timestomping</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Timestomping</guid>
-    <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Unified Kill Chain</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Unified-Kill-Chain</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Unified-Kill-Chain</guid>
-    <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
-  </item><item>
-    <title>Watering Hole</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Watering-Hole</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC-Level-1/Watering-Hole</guid>
-    <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
-    <pubDate>Thu, 06 Feb 2025 15:13:15 GMT</pubDate>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</guid>
+    <description>A Pass-the-Hash (PtH) attack is a technique where an attacker captures a password Hash (as opposed to the password characters) and then passes it through for authentication and lateral ...</description>
+    <pubDate>Sun, 09 Feb 2025 08:41:59 GMT</pubDate>
   </item>
     </channel>
   </rss>

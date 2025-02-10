@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"3615abe21d3eb100","type":"text","text":"# [[SOC]]","x":-125,"y":-260,"width":365,"height":60},
+		{"id":"2ff4304a424e630f","type":"text","text":"# [[Pyramid of Pain]]","x":-125,"y":-160,"width":365,"height":60},
+		{"id":"320a98b744fc7e5a","type":"text","text":"# [[Cyber Kill Chain]]","x":-125,"y":-60,"width":365,"height":60},
+		{"id":"b61311f3067a8b4c","type":"text","text":"# [[Unified Kill Chain]]","x":-125,"y":40,"width":365,"height":60},
+		{"id":"c0645506aef0c89a","type":"text","text":"# [[MITRE ATT&CK Framework]]","x":-125,"y":140,"width":365,"height":60},
+		{"id":"dfec7729a108b560","type":"text","text":"# [[Phishing]]","x":-125,"y":240,"width":365,"height":60},
+		{"id":"e848e7337dca318d","x":-540,"y":187,"width":286,"height":50,"type":"text","text":"## [[MITRE ATT&CK Tactics]]"},
+		{"id":"d7a63fcd0a0d20a6","x":-540,"y":115,"width":286,"height":50,"type":"text","text":"## [[MITRE ATT&CK Matrix]]"},
+		{"id":"95e281c5f5892537","type":"text","text":"## [[Gaining Initial Foothold]]","x":380,"y":-25,"width":300,"height":50},
+		{"id":"47e1476468a7b3db","type":"text","text":"## [[Network Propagation]]","x":380,"y":45,"width":300,"height":50},
+		{"id":"e74b9961c82183a5","type":"text","text":"## [[Adversary's Objectives]]","x":380,"y":115,"width":300,"height":50}
+	],
+	"edges":[
+		{"id":"80d0f44b105d66bb","fromNode":"3615abe21d3eb100","fromSide":"bottom","toNode":"2ff4304a424e630f","toSide":"top"},
+		{"id":"e8bc5b0bd37a8f0f","fromNode":"2ff4304a424e630f","fromSide":"bottom","toNode":"320a98b744fc7e5a","toSide":"top"},
+		{"id":"904f73323194979e","fromNode":"320a98b744fc7e5a","fromSide":"bottom","toNode":"b61311f3067a8b4c","toSide":"top"},
+		{"id":"a33ccbcdf599093d","fromNode":"b61311f3067a8b4c","fromSide":"bottom","toNode":"c0645506aef0c89a","toSide":"top"},
+		{"id":"0ba2e281d27b6be3","fromNode":"c0645506aef0c89a","fromSide":"bottom","toNode":"dfec7729a108b560","toSide":"top"},
+		{"id":"f1238f4b4553c765","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"95e281c5f5892537","toSide":"left"},
+		{"id":"9674d36ec1778b93","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"47e1476468a7b3db","toSide":"left"},
+		{"id":"49cbfbe6689f1acf","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"e74b9961c82183a5","toSide":"left"},
+		{"id":"4268f0cf4c86cb53","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"d7a63fcd0a0d20a6","toSide":"right"},
+		{"id":"3540997f4de6d8e1","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"e848e7337dca318d","toSide":"right"}
+	]
+}

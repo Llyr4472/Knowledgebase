@@ -10,61 +10,61 @@
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</guid>
     <description>Reconnaissance (MITRE Tactic TA0043) is discovering and collecting information on the system and the victim. The reconnaissance phase is the planning phase for the adversaries.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>SIEM</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</guid>
     <description>What is SIEM? SIEM is a security solution that combines security information and event management, which involves real-time logging of events in an environment ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>SOAR</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</guid>
     <description>SOAR (Security Orchestration Automation and Response) SOAR stands for Security Orchestration Automation and Response. It enables security products and tools in an environment to work together, streamlining the tasks of SOC team members.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
+  </item><item>
+    <title>SOC Learning Pathway</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC-Learning-Pathway</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC-Learning-Pathway</guid>
+    <description>1. SOC 2. Pyramid of Pain 3. Cyber Kill Chain 4. Unified Kill Chain 5. MITRE ATT&amp;CK Framework 6. Phishing.</description>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>SOC</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</guid>
     <description>What is SOC? Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>Timestomping</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</guid>
     <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>Unified Kill Chain</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</guid>
     <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from Reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>Watering Hole</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
     <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>Wireshark</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</guid>
     <description>Tool used to analyze network traffic. The GOAT.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item><item>
     <title>fuzzy hashing</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
     <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
-  </item><item>
-    <title>Welcome to my Knowledgebase</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
-    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Mon, 10 Feb 2025 17:11:10 GMT</pubDate>
+    <pubDate>Mon, 10 Feb 2025 17:20:57 GMT</pubDate>
   </item>
     </channel>
   </rss>

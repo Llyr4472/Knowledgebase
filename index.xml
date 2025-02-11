@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Email Harvesting</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Harvesting</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Harvesting</guid>
-    <description>Email harvesting is the process of obtaining email addresses from public, paid, or free services. A tool used for email harvesting is: theHarvester.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Static Email Analysis</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</guid>
+    <description>Many people find plain text boring, which is why email programs offer HTML support, allowing us to create emails that are more likely to grab the user’s attention ...</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Email Header Analysis</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header-Analysis</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header-Analysis</guid>
-    <description>Here are the key questions we need to answer when checking headings during a Phishing analysis: Was the email sent from the correct SMTP server? Are the data “From” and “Return-Path ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Timestomping</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</guid>
+    <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Email Header</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header</guid>
-    <description>What is an Email Header? The header is a section of the email containing information such as sender, recipient, and date. There are also components such as ‘Return-Path’, ‘Reply-To’, and ‘Received’.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Unified Kill Chain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</guid>
+    <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from Reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Fast Flux</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</guid>
-    <description>Fast Flux is a DNS technique used by botnets to hide Phishing, web proxying, malware delivery, and malware communication activities behind compromised hosts acting as proxies ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Watering Hole</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
+    <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Gaining Initial Foothold</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</guid>
-    <description> 1. Reconnaissance Reconnaissance is the first step and it provides adversary with all the info needed for getting into a system. It is described in more detail in Reconnaissance page.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Wireshark</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</guid>
+    <description>Tool used to analyze network traffic. The GOAT.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Hash</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</guid>
-    <description>A hash value is a numeric value of a fixed length that uniquely identifies data. It is the result of a hashing algorithm. Common Hash Types MD5 (Message Digest, defined by RFC 1321 MD5 is a widely used cryptographic hash function with a 128-bit hash value.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>fuzzy hashing</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
+    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Framework</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Framework</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Framework</guid>
-    <description>...</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Welcome to my Knowledgebase</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
+    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Matrix</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</guid>
-    <description>What is ATT&amp;CK Matrix? 🤔 MITRE ATT&amp;CK Matrix is a visualization method used to classify and see attack methods of cyber attackers. Matrices can be customized for almost any subject and turned into useful visuals.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>C2</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/C2</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/C2</guid>
+    <description>Command and Control (C2) Infrastructure are a set of programs used to communicate with a victim machine. This is comparable to a Reverse Shell, but is generally more advanced and often communicate via common network protocols, like HTTP, HTTPS and DNS.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Tactics</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</guid>
-    <description>What is Tactic? Tactic expresses the purpose of the cyber attacker and the reason for his action. Tactics are one of the most important MITRE ATT&amp;CK Framework components used to group cyber attacker behaviors and see the attack steps.</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Cyber Kill Chain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Cyber-Kill-Chain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Cyber-Kill-Chain</guid>
+    <description>The Cyber Kill Chain framework is designed for identification and prevention of the network intrusions. The term kill chain is used in military to refer to the steps taken by an adversary to reach its ultimate goal.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item><item>
-    <title>Masquerading</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</guid>
-    <description>Masquerading occurs when the name or location of an object, legitimate or malicious, is manipulated or abused for the sake of evading defenses and observation ...</description>
-    <pubDate>Mon, 10 Feb 2025 17:35:07 GMT</pubDate>
+    <title>Dynamic Email Analysis</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</guid>
+    <description>URLs and files in an email need to be checked to make sure they are safe. The websites and files in the mail should be run in sandbox environments and the changes made to the system should be examined to see if they are harmful or not and in no circumstance should they be run in local host in our network.</description>
+    <pubDate>Tue, 11 Feb 2025 18:21:35 GMT</pubDate>
   </item>
     </channel>
   </rss>

@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>fuzzy hashing</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
-    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Punycode</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</guid>
+    <description>What is Punycode? As per Wandera, “Punycode is a way of converting words that cannot be written in ASCII, into a Unicode ASCII encoding.” A Punycode attack used by the attackers to redirect ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>Welcome to my Knowledgebase</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
-    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Pyramid of Pain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</guid>
+    <description>Pyramid of Pain is a conceptual model which organizes IOCs(Indicators Of Compromise) with the level of difficulty it will cause for an adversary to change the indicators associated ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>Email Header</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Email-Header</guid>
-    <description>What is an Email Header? The header is a section of the email containing information such as sender, recipient, and date. There are also components such as ‘Return-Path’, ‘Reply-To’, and ‘Received’.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Reconnaissance</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</guid>
+    <description>Reconnaissance (MITRE Tactic TA0043) is discovering and collecting information on the system and the victim. The reconnaissance phase is the planning phase for the adversaries.</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>Fast Flux</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Fast-Flux</guid>
-    <description>Fast Flux is a DNS technique used by botnets to hide Phishing, web proxying, malware delivery, and malware communication activities behind compromised hosts acting as proxies ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>SIEM</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</guid>
+    <description>What is SIEM? SIEM is a security solution that combines security information and event management, which involves real-time logging of events in an environment ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>Gaining Initial Foothold</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Gaining-Initial-Foothold</guid>
-    <description> 1. Reconnaissance Reconnaissance is the first step and it provides adversary with all the info needed for getting into a system. It is described in more detail in Reconnaissance page.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>SOAR</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</guid>
+    <description>SOAR (Security Orchestration Automation and Response) SOAR stands for Security Orchestration Automation and Response. It enables security products and tools in an environment to work together, streamlining the tasks of SOC team members.</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>Hash</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Hash</guid>
-    <description>A hash value is a numeric value of a fixed length that uniquely identifies data. It is the result of a hashing algorithm. Common Hash Types MD5 (Message Digest, defined by RFC 1321 MD5 is a widely used cryptographic hash function with a 128-bit hash value.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>SOC</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</guid>
+    <description>What is SOC? Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Framework</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Framework</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Framework</guid>
-    <description>...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Static Email Analysis</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</guid>
+    <description>Many people find plain text boring, which is why email programs offer HTML support, allowing us to create emails that are more likely to grab the user’s attention ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Matrix</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</guid>
-    <description>What is ATT&amp;CK Matrix? 🤔 MITRE ATT&amp;CK Matrix is a visualization method used to classify and see attack methods of cyber attackers. Matrices can be customized for almost any subject and turned into useful visuals.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Timestomping</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</guid>
+    <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Mitigations</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Mitigations</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Mitigations</guid>
-    <description>What are Mitigations? Mitigations refers to the measures and actions that can be taken in response to the techniques in the MITRE ATT&amp;CK matrix. Each mitigation has a unique ID, name and description that provides clear understanding about them.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Unified Kill Chain</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</guid>
+    <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from Reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item><item>
-    <title>MITRE ATT&amp;CK Tactics</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</guid>
-    <description>What is Tactic? Tactic expresses the purpose of the cyber attacker and the reason for his action. Tactics are one of the most important MITRE ATT&amp;CK Framework components used to group cyber attacker behaviors and see the attack steps.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:14 GMT</pubDate>
+    <title>Watering Hole</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
+    <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
   </item>
     </channel>
   </rss>

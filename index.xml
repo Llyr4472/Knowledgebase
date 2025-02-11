@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Punycode</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</guid>
-    <description>What is Punycode? As per Wandera, “Punycode is a way of converting words that cannot be written in ASCII, into a Unicode ASCII encoding.” A Punycode attack used by the attackers to redirect ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
-  </item><item>
-    <title>Pyramid of Pain</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</guid>
-    <description>Pyramid of Pain is a conceptual model which organizes IOCs(Indicators Of Compromise) with the level of difficulty it will cause for an adversary to change the indicators associated ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
-  </item><item>
-    <title>Reconnaissance</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</guid>
-    <description>Reconnaissance (MITRE Tactic TA0043) is discovering and collecting information on the system and the victim. The reconnaissance phase is the planning phase for the adversaries.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
-  </item><item>
-    <title>SIEM</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</guid>
-    <description>What is SIEM? SIEM is a security solution that combines security information and event management, which involves real-time logging of events in an environment ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
-  </item><item>
-    <title>SOAR</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</guid>
-    <description>SOAR (Security Orchestration Automation and Response) SOAR stands for Security Orchestration Automation and Response. It enables security products and tools in an environment to work together, streamlining the tasks of SOC team members.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
-  </item><item>
     <title>SOC</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</guid>
     <description>What is SOC? Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
   </item><item>
     <title>Static Email Analysis</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</guid>
     <description>Many people find plain text boring, which is why email programs offer HTML support, allowing us to create emails that are more likely to grab the user’s attention ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
   </item><item>
     <title>Timestomping</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</guid>
     <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
   </item><item>
     <title>Unified Kill Chain</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</guid>
     <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from Reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
   </item><item>
     <title>Watering Hole</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
     <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:15:31 GMT</pubDate>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+  </item><item>
+    <title>Wireshark</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</guid>
+    <description>Tool used to analyze network traffic. The GOAT.</description>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+  </item><item>
+    <title>fuzzy hashing</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
+    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+  </item><item>
+    <title>Welcome to my Knowledgebase</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
+    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+  </item><item>
+    <title>Detecting Web Attacks</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Detecting-Web-Attacks</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Detecting-Web-Attacks</guid>
+    <description>What are Web attacks? Because web applications serve as the interface to the internet for many organizations, they can be exploited by attackers to gain access to devices, steal personal ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+  </item><item>
+    <title>Dynamic Email Analysis</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</guid>
+    <description>URLs and files in an email need to be checked to make sure they are safe. The websites and files in the mail should be run in sandbox environments and the changes made to the system should be examined to see if they are harmful or not and in no circumstance should they be run in local host in our network.</description>
+    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
   </item>
     </channel>
   </rss>

@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>SOC</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</guid>
-    <description>What is SOC? Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>MITRE ATT&amp;CK Matrix</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Matrix</guid>
+    <description>What is ATT&amp;CK Matrix? 🤔 MITRE ATT&amp;CK Matrix is a visualization method used to classify and see attack methods of cyber attackers. Matrices can be customized for almost any subject and turned into useful visuals.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Static Email Analysis</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Static-Email-Analysis</guid>
-    <description>Many people find plain text boring, which is why email programs offer HTML support, allowing us to create emails that are more likely to grab the user’s attention ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>MITRE ATT&amp;CK Mitigations</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Mitigations</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Mitigations</guid>
+    <description>What are Mitigations? Mitigations refers to the measures and actions that can be taken in response to the techniques in the MITRE ATT&amp;CK matrix. Each mitigation has a unique ID, name and description that provides clear understanding about them.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Timestomping</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Timestomping</guid>
-    <description>Timestomping is a technique that modifies the timestamps of a file (the modify, access, create, and change times), often to mimic files that are in the same folder and blend malicious ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>MITRE ATT&amp;CK Tactics</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Tactics</guid>
+    <description>What is Tactic? Tactic expresses the purpose of the cyber attacker and the reason for his action. Tactics are one of the most important MITRE ATT&amp;CK Framework components used to group cyber attacker behaviors and see the attack steps.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Unified Kill Chain</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Unified-Kill-Chain</guid>
-    <description>The unified kill chain aims to complement (not compete with) other cybersecurity kill chain frameworks, such as The Cyber Kill Chain. It states that there are 18 phases to an attack: Everything from Reconnaissance to data exfiltration and understanding an attacker’s motive.</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>MITRE ATT&amp;CK Technics &amp; Sub-Techniques</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Technics--and--Sub-Techniques</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/MITRE-ATT-and-CK-Technics--and--Sub-Techniques</guid>
+    <description>What are Techniques and Sub-Techniques? The tactics within the matrix only show what the attackers aim and do not contain detailed information about the attacker’s attack method ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Watering Hole</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
-    <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>Masquerading</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Masquerading</guid>
+    <description>Masquerading occurs when the name or location of an object, legitimate or malicious, is manipulated or abused for the sake of evading defenses and observation ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Wireshark</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</guid>
-    <description>Tool used to analyze network traffic. The GOAT.</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>Network Propagation</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Network-Propagation</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Network-Propagation</guid>
+    <description>After a device is exploited in a network, the adversary spreads its access through the network. Exploiting more devices in the same network becomes a lot more easier because usually: Credentials to other devices may be insecurely stored on host Host might have exclusive access to other devices such as printers and storages, not open to public Hence, the attacker would set up a base on one of the systems to act as their pivot point and use it to gather information about the internal network.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>fuzzy hashing</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
-    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>OSINT</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/OSINT</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/OSINT</guid>
+    <description>Open source intelligence (OSINT) is the act of gathering and analyzing publicly available data for intelligence purposes.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Welcome to my Knowledgebase</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
-    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>OWASP</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/OWASP</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/OWASP</guid>
+    <description>The Open Web Application Security Project (OWASP) is a non-profit foundation dedicated to improving software security. Without a doubt, OWASP is one of the best resources for information on web application security.</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Detecting Web Attacks</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Detecting-Web-Attacks</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Detecting-Web-Attacks</guid>
-    <description>What are Web attacks? Because web applications serve as the interface to the internet for many organizations, they can be exploited by attackers to gain access to devices, steal personal ...</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>Pass the Hash Attack</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</guid>
+    <description>A Pass-the-Hash (PtH) attack is a technique where an attacker captures a password Hash (as opposed to the password characters) and then passes it through for authentication and lateral ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item><item>
-    <title>Dynamic Email Analysis</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Dynamic-Email-Analysis</guid>
-    <description>URLs and files in an email need to be checked to make sure they are safe. The websites and files in the mail should be run in sandbox environments and the changes made to the system should be examined to see if they are harmful or not and in no circumstance should they be run in local host in our network.</description>
-    <pubDate>Tue, 11 Feb 2025 20:20:49 GMT</pubDate>
+    <title>Phishing</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Phishing</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Phishing</guid>
+    <description>Phishing is a form of social engineering and a scam where attackers deceive people into revealing sensitive information or installing malware such as viruses, worms, adware, or ...</description>
+    <pubDate>Tue, 11 Feb 2025 20:23:27 GMT</pubDate>
   </item>
     </channel>
   </rss>

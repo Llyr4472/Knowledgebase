@@ -17,7 +17,7 @@
 		{"id":"95e281c5f5892537","type":"text","text":"## [[Gaining Initial Foothold]]","x":382,"y":46,"width":300,"height":50},
 		{"id":"47e1476468a7b3db","type":"text","text":"## [[Network Propagation]]","x":382,"y":116,"width":300,"height":50},
 		{"id":"e74b9961c82183a5","type":"text","text":"## [[Adversary's Objectives]]","x":382,"y":186,"width":300,"height":50},
-		{"id":"309e1789e5708978","x":-125,"y":478,"width":365,"height":60,"type":"text","text":"# [[Detecting Web Attacks]]"}
+		{"id":"309e1789e5708978","x":-125,"y":478,"width":365,"height":60,"type":"text","text":"# [[Web Attacks]]"}
 	],
 	"edges":[
 		{"id":"80d0f44b105d66bb","fromNode":"3615abe21d3eb100","fromSide":"bottom","toNode":"2ff4304a424e630f","toSide":"top"},

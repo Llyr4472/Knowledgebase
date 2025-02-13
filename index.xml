@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>Watering Hole</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Watering-Hole</guid>
+    <description>A watering hole attack is a targeted attack designed to aim at a specific group of people by compromising the website they are usually visiting and then redirecting them to the malicious ...</description>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
+  </item><item>
+    <title>Web Attacks</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Web-Attacks</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Web-Attacks</guid>
+    <description>What are Web attacks? Because web applications serve as the interface to the internet for many organizations, they can be exploited by attackers to gain access to devices, steal personal ...</description>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
+  </item><item>
+    <title>Wireshark</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Wireshark</guid>
+    <description>Tool used to analyze network traffic. The GOAT.</description>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
+  </item><item>
     <title>XSS Attack</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/XSS-Attack</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/XSS-Attack</guid>
     <description>What is Cross-Site Scripting (XSS)? Cross-site scripting (XSS) is a type of injection-based web security vulnerability that can be incorporated into legitimate web applications, ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
   </item><item>
     <title>fuzzy hashing</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
     <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
   </item><item>
     <title>Welcome to my Knowledgebase</title>
     <link>https://knowledgebase.prashantgiri360.com.np/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
     <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
+  </item><item>
+    <title>Pass the Hash Attack</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pass-the-Hash-Attack</guid>
+    <description>A Pass-the-Hash (PtH) attack is a technique where an attacker captures a password Hash (as opposed to the password characters) and then passes it through for authentication and lateral ...</description>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
+  </item><item>
+    <title>Phishing</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Phishing</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Phishing</guid>
+    <description>Phishing is a form of social engineering and a scam where attackers deceive people into revealing sensitive information or installing malware such as viruses, worms, adware, or ...</description>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
   </item><item>
     <title>Punycode</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Punycode</guid>
     <description>What is Punycode? As per Wandera, “Punycode is a way of converting words that cannot be written in ASCII, into a Unicode ASCII encoding.” A Punycode attack used by the attackers to redirect ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
   </item><item>
     <title>Pyramid of Pain</title>
     <link>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Pyramid-of-Pain</guid>
     <description>Pyramid of Pain is a conceptual model which organizes IOCs(Indicators Of Compromise) with the level of difficulty it will cause for an adversary to change the indicators associated ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
-  </item><item>
-    <title>Reconnaissance</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/Reconnaissance</guid>
-    <description>Reconnaissance (MITRE Tactic TA0043) is discovering and collecting information on the system and the victim. The reconnaissance phase is the planning phase for the adversaries.</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
-  </item><item>
-    <title>SIEM</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SIEM</guid>
-    <description>What is SIEM? SIEM is a security solution that combines security information and event management, which involves real-time logging of events in an environment ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
-  </item><item>
-    <title>SOAR</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOAR</guid>
-    <description>SOAR (Security Orchestration Automation and Response) SOAR stands for Security Orchestration Automation and Response. It enables security products and tools in an environment to work together, streamlining the tasks of SOC team members.</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
-  </item><item>
-    <title>SOC</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SOC</guid>
-    <description>What is SOC? Security Operations Center (SOC) is a team of IT security professionals tasked with monitoring, preventing , detecting , investigating, and responding to threats within ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
-  </item><item>
-    <title>SQL Injection</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/SQL-Injection</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/SQL-Injection</guid>
-    <description>What is SQL Injection (SQLi)? SQL Injections are critical attack vectors in which a web application directly includes un-sanitized user-provided data in SQL queries ...</description>
-    <pubDate>Wed, 12 Feb 2025 12:47:05 GMT</pubDate>
+    <pubDate>Thu, 13 Feb 2025 17:00:31 GMT</pubDate>
   </item>
     </channel>
   </rss>

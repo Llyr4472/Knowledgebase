@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Welcome to my Knowledgebase</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
-    <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <title>fuzzy hashing</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
+    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
+  </item><item>
+    <title>Tools</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Tools</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Tools</guid>
+    <description>...</description>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
+  </item><item>
+    <title>EscapeTwo</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/EscapeTwo</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/EscapeTwo</guid>
+    <description>Machine Info: - Easy - Windows - IP: 10.129.240.7 - Incomplete Steps 1. Reconnainsce Nmap Scan Command nmap -sV -oA EasyTwo-nmap 10.129.240.7 --open Result PORT STATE SERVICE VERSION 53/tcp open domain Simple DNS Plus 88/tcp open kerberos-sec Microsoft Windows Kerberos (server time: 2025-01-12 08:20:02Z) 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds? 464/tcp open kpasswd5? 593/tcp open ncacn_http Microsoft Windows RPC over HTTP 1.0 636/tcp open ssl/ldap Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name) 1433/tcp open ms-sql-s Microsoft SQL Server 2019 15.00.2000 3269/tcp open ssl/globalcatLDAPssl? Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows.</description>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
+  </item><item>
+    <title>Nibbles</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/Nibbles</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/Nibbles</guid>
+    <description>This is a retired machine, part of Getting Started Module of Hack The Box Steps Taken Reconnaissance Nmap Scan Command nmap -sV -oA 01-04-2025-11-44-Nibbles-nmap 10.129.207.130 ...</description>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>Phishing Email</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/Challenges/Phishing-Email</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/Challenges/Phishing-Email</guid>
     <description>About Your email address has been leaked and you receive an email from Paypal in German. Try to analyze the suspicious email. File location: C:\Users\LetsDefend\Desktop\Files\PhishingChallenge.zip Password: infected This challenge prepared by @Fuuji Walkthroughs: DFIR Challenge - Phishing Email Phishing Email Challenge &amp; Step-by-Step SOC Alert Investigations Phishing Email Challenge by LetsDefend E-mail Analysis - A LetsDefend Challenge Questions What is the return path of the email? → bounce@rjttznyzjjzydnillquh.designclub.uk.com What is the domain name of the url in this mail? → storage.googleapis.com Is the domain mentioned in the previous question suspicious? → yes What is the body SHA-256 of the domain? → 13945ecc33afee74ac7f72e1d5bb73050894356c4bf63d02a1a53e76830567f5 Is this email a phishing email? → Yes Analysis The file contained the copy of email which was sent to us.</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>SOC104 1</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-1</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-1</guid>
     <description>Alert EventID: 36 Event Time: Dec, 01, 2020, 10:23 AM Rule: SOC104 - Malware Detected Level: Security Analyst Source Address: 10.15.15.18 Source Hostname: AdamPRD File Name: Invoice.exe ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>SOC104</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104</guid>
     <description>ALERT EventID: 14 Event Time: Sep, 15, 2020, 09:02 PM Rule: SOC104 - Malware Detected Level: Security Analyst Source Address: 172.16.17.82 Source Hostname: JohnComputer File Name: ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>SOC109</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC109</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC109</guid>
     <description>Alert EventID: 85 Event Time: Mar, 22, 2021, 09:06 PM Rule: SOC109 - Emotet Malware Detected Level: Security Analyst Source Address: 172.16.17.45 Source Hostname: RichardPRD File ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>SOC114</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC114</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC114</guid>
     <description>Alert EventID : 45 Event Time : Jan, 31, 2021, 03:48 PM Rule : SOC114 - Malicious Attachment Detected - Phishing Alert Level : Security Analyst SMTP Address : 49.234.43.39 Source Address ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item><item>
     <title>SOC119</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC119</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC119</guid>
     <description>Alert EventID: 83 Event Time: Mar, 21, 2021, 01:02 PM Rule: SOC119 - Proxy - Malicious Executable File Detected Level: Security Analyst Source Address: 172.16.17.5 Source Hostname: ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
-  </item><item>
-    <title>SOC120</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC120</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC120</guid>
-    <description>Alert EventID : 52 Event Time : Feb, 07, 2021, 04:24 AM Rule : SOC120 - Phishing Mail Detected - Internal to Internal Level : Security Analyst SMTP Address : 172.16.20.3 Source Address ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
-  </item><item>
-    <title>SOC138 - TODO</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC138---TODO</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC138---TODO</guid>
-    <description>Alert EventID: 77 Event Time: Mar, 13, 2021, 08:20 PM Rule: SOC138 - Detected Suspicious Xls File Level: Security Analyst Source Address: 172.16.17.56 Source Hostname: Sofia File ...</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
-  </item><item>
-    <title>SOC146</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC146</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC146</guid>
-    <description>Alert ⭐ This alert was generated from a real phishing attack. EventID : 93 Event Time : Jun, 13, 2021, 02:13 PM Rule : SOC146 - Phishing Mail Detected - Excel 4.0 Macros Level : Security Analyst SMTP Address : 24.213.228.54 Source Address : trenton@tritowncomputers.com Destination Address : lars@letsdefend.io E-mail Subject : RE: Meeting Notes Device Action : Allowed Attachment : 11f44531fb088d31307d87b01e8eabff Password: infected Analysis Virustotal Results: Attachment: 32/66 Domain: 0/94 IP Address: 0/94 Email Delivered: True Attachment Opened: False Report A malicious zip file was sent to lars@letsdefend.io by trenton@tritowncomputers.com on June 13 2021.</description>
-    <pubDate>Sat, 22 Feb 2025 04:08:35 GMT</pubDate>
+    <pubDate>Sat, 22 Feb 2025 05:17:56 GMT</pubDate>
   </item>
     </channel>
   </rss>

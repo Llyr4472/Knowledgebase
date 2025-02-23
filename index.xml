@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>SOC146</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC146</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC146</guid>
-    <description>Alert ⭐ This alert was generated from a real phishing attack. EventID : 93 Event Time : Jun, 13, 2021, 02:13 PM Rule : SOC146 - Phishing Mail Detected - Excel 4.0 Macros Level : Security Analyst SMTP Address : 24.213.228.54 Source Address : trenton@tritowncomputers.com Destination Address : lars@letsdefend.io E-mail Subject : RE: Meeting Notes Device Action : Allowed Attachment : 11f44531fb088d31307d87b01e8eabff Password: infected Analysis Virustotal Results: Attachment: 32/66 Domain: 0/94 IP Address: 0/94 Email Delivered: True Attachment Opened: False Report A malicious zip file was sent to lars@letsdefend.io by trenton@tritowncomputers.com on June 13 2021.</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
-  </item><item>
-    <title>SOC165</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC165</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC165</guid>
-    <description>Alert EventID : 115 Event Time : Feb, 25, 2022, 11:34 AM Rule : SOC165 - Possible SQL Injection Payload Detected Level : Security Analyst Hostname : WebServer1001 Destination IP Address ...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
-  </item><item>
-    <title>SOC166</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC166</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC166</guid>
-    <description>Alert EventID : 116 Event Time : Feb, 26, 2022, 06:56 PM Rule : SOC166 - Javascript Code Detected in Requested URL Level : Security Analyst Hostname : WebServer1002 Destination IP Address ...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
-  </item><item>
-    <title>SOC167</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC167</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC167</guid>
-    <description>Alert EventID: 117 Event Time: Feb 27, 2022, 12:36 AM Rule: SOC167 - LS Command Detected in Requested URL Level: Security Analyst Hostname: EliotPRD Destination IP Address: 188.114.96.15 ...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
-  </item><item>
-    <title>SOC168</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC168</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC168</guid>
-    <description>Alert EventID: 118 Event Time: Feb 28, 2022, 04:12 AM Rule: SOC168 - Whoami Command Detected in Request Body Level: Security Analyst Hostname: WebServer1004 Destination IP Address: ...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
-  </item><item>
     <title>SOC169</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC169</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC169</guid>
     <description>Alert EventID : 119 Event Time : Feb, 28, 2022, 10:48 PM Rule : SOC169 - Possible IDOR Attack Detected Level : Security Analyst Hostname : WebServer1005 Destination IP Address : 172.16.17.15 ...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
   </item><item>
     <title>Welcome to my Knowledgebase</title>
     <link>https://knowledgebase.prashantgiri360.com.np/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/</guid>
     <description>👋 Hi there! Welcome to my digital knowledge base—a curated collection of my learning journey in cybersecurity, networking, AI, and more. This is where I document my notes, methodologies, and experiments as I explore the world of technology.</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
   </item><item>
-    <title>fuzzy hashing</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/SOC/fuzzy-hashing</guid>
-    <description>Fuzzy hashing helps us to perform similarity analysis - match two files with minor differences based on the fuzzy hash values. One of the examples of fuzzy hashing is the usage of SSDeep.</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
+    <title>SOC104 1</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-1</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-1</guid>
+    <description>Alert EventID: 36 Event Time: Dec, 01, 2020, 10:23 AM Rule: SOC104 - Malware Detected Level: Security Analyst Source Address: 10.15.15.18 Source Hostname: AdamPRD File Name: Invoice.exe ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
   </item><item>
-    <title>Tools</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Tools</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Tools</guid>
-    <description>...</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
+    <title>SOC104 2</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-2</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104-2</guid>
+    <description>Alert EventID: 84 Event Time: Mar, 21, 2021, 01:04 PM Rule: SOC104 - Malware Detected Level: Security Analyst Source Address: 172.16.17.5 Source Hostname: SusieHost File Name: ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
   </item><item>
-    <title>EscapeTwo</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/EscapeTwo</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/CTF/EscapeTwo</guid>
-    <description>Machine Info: - Easy - Windows - IP: 10.129.240.7 - Incomplete Steps 1. Reconnainsce Nmap Scan Command nmap -sV -oA EasyTwo-nmap 10.129.240.7 --open Result PORT STATE SERVICE VERSION 53/tcp open domain Simple DNS Plus 88/tcp open kerberos-sec Microsoft Windows Kerberos (server time: 2025-01-12 08:20:02Z) 135/tcp open msrpc Microsoft Windows RPC 139/tcp open netbios-ssn Microsoft Windows netbios-ssn 445/tcp open microsoft-ds? 464/tcp open kpasswd5? 593/tcp open ncacn_http Microsoft Windows RPC over HTTP 1.0 636/tcp open ssl/ldap Microsoft Windows Active Directory LDAP (Domain: sequel.htb0., Site: Default-First-Site-Name) 1433/tcp open ms-sql-s Microsoft SQL Server 2019 15.00.2000 3269/tcp open ssl/globalcatLDAPssl? Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows.</description>
-    <pubDate>Sun, 23 Feb 2025 12:32:54 GMT</pubDate>
+    <title>SOC104</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC104</guid>
+    <description>ALERT EventID: 14 Event Time: Sep, 15, 2020, 09:02 PM Rule: SOC104 - Malware Detected Level: Security Analyst Source Address: 172.16.17.82 Source Hostname: JohnComputer File Name: ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
+  </item><item>
+    <title>SOC109</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC109</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC109</guid>
+    <description>Alert EventID: 85 Event Time: Mar, 22, 2021, 09:06 PM Rule: SOC109 - Emotet Malware Detected Level: Security Analyst Source Address: 172.16.17.45 Source Hostname: RichardPRD File ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
+  </item><item>
+    <title>SOC114</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC114</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC114</guid>
+    <description>Alert EventID : 45 Event Time : Jan, 31, 2021, 03:48 PM Rule : SOC114 - Malicious Attachment Detected - Phishing Alert Level : Security Analyst SMTP Address : 49.234.43.39 Source Address ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
+  </item><item>
+    <title>SOC119</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC119</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC119</guid>
+    <description>Alert EventID: 83 Event Time: Mar, 21, 2021, 01:02 PM Rule: SOC119 - Proxy - Malicious Executable File Detected Level: Security Analyst Source Address: 172.16.17.5 Source Hostname: ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
+  </item><item>
+    <title>SOC120</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC120</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC120</guid>
+    <description>Alert EventID : 52 Event Time : Feb, 07, 2021, 04:24 AM Rule : SOC120 - Phishing Mail Detected - Internal to Internal Level : Security Analyst SMTP Address : 172.16.20.3 Source Address ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
+  </item><item>
+    <title>SOC138</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC138</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Writeups/SOC-Alerts/SOC138</guid>
+    <description>Alert EventID: 77 Event Time: Mar, 13, 2021, 08:20 PM Rule: SOC138 - Detected Suspicious Xls File Level: Security Analyst Source Address: 172.16.17.56 Source Hostname: Sofia File ...</description>
+    <pubDate>Sun, 23 Feb 2025 14:01:49 GMT</pubDate>
   </item>
     </channel>
   </rss>

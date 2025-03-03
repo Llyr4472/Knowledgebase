@@ -1,6 +1,6 @@
 {
 	"nodes":[
-		{"id":"3615abe21d3eb100","type":"text","text":"# [[SOC]]","x":-125,"y":-260,"width":365,"height":73},
+		{"id":"3615abe21d3eb100","type":"text","text":"# [[What is SOC]]","x":-125,"y":-260,"width":365,"height":73},
 		{"id":"2ff4304a424e630f","type":"text","text":"# [[Pyramid of Pain]]","x":-125,"y":-139,"width":365,"height":73},
 		{"id":"320a98b744fc7e5a","type":"text","text":"# [[Cyber Kill Chain]]","x":-125,"y":-17,"width":365,"height":73},
 		{"id":"b61311f3067a8b4c","type":"text","text":"# [[Unified Kill Chain]]","x":-125,"y":104,"width":365,"height":73},

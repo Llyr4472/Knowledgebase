@@ -128,20 +128,17 @@ pre:hover > .expand-button {
 <h2 id="content-type">Content-Type<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#content-type" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
 <p>Web applications can check the <code>Content-Type</code> header of an uploaded file to validate its type.</p>
 <p>An error message like <code>Only images are allowed</code> that persists even after changing file extensions (<code>shell.jpg.phtml</code>, <code>shell.php.jpg</code>) suggests the application is testing the file content, not just the extension.</p>
-<p>A PHP web application might validate the <code>Content-Type</code> header like this:```php
-<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mord mathnormal">p</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span></span></span></span>_FILES[‘uploadFile’][‘type’];</p>
-<p>if (!in_array($type, array(‘image/jpg’, ‘image/jpeg’, ‘image/png’, ‘image/gif’))) {
-echo “Only images are allowed”;
-die();
-}</p>
-<pre><code>
-The browser automatically sets the `Content-Type` header, which is derived from the file extension. Since this is a client-side operation, it can be manipulated to bypass the filter.
-
-One can fuzz the `Content-Type` header to see which types are allowed. For example, to find all image types from a wordlist:
-```bash
-wget https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt
-cat web-all-content-types.txt | grep 'image/' > image-content-types.txt
-</code></pre>
+<p>A PHP web application might validate the <code>Content-Type</code> header like this:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="php" data-theme="github-light github-dark"><code data-language="php" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$type </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> $_FILES[</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'uploadFile'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">][</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'type'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">];</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">if</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> (</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">!</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">in_array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">($type, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">array</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">(</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'image/jpg'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'image/jpeg'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'image/png'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">'image/gif'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">))) {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    echo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Only images are allowed&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    die</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">();</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<p>The browser automatically sets the <code>Content-Type</code> header, which is derived from the file extension. Since this is a client-side operation, it can be manipulated to bypass the filter.</p>
+<p>One can fuzz the <code>Content-Type</code> header to see which types are allowed. For example, to find all image types from a wordlist:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">wget</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://raw.githubusercontent.com/danielmiessler/SecLists/refs/heads/master/Discovery/Web-Content/web-all-content-types.txt</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">cat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> web-all-content-types.txt</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> |</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;"> grep</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> 'image/'</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;"> ></span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> image-content-types.txt</span></span></code></pre></figure>
 <p>To bypass this filter, intercept the upload request (e.g., with Burp Suite) and change the <code>Content-Type</code> header to an allowed type, like <code>image/jpg</code>, even if the file is a PHP script.</p>
 <blockquote class="callout note" data-callout="note">
 <div class="callout-title">

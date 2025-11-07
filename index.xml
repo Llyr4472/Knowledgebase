@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>Other Upload Attacks</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Upload-Attack/Other-Upload-Attacks</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Upload-Attack/Other-Upload-Attacks</guid>
+    <description><![CDATA[ Other Upload Attacks In addition to arbitrary file uploads and limited file upload attacks, there are a few other techniques and attacks worth mentioning, as they may become handy in some web penetration tests or bug bounty tests. ]]></description>
+    <pubDate>Fri, 07 Nov 2025 16:37:00 GMT</pubDate>
+  </item><item>
+    <title>Limited File Uploads</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Upload-Attack/Limited-File-Uploads</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Upload-Attack/Limited-File-Uploads</guid>
+    <description><![CDATA[ Limited File Uploads Even if a file upload form has secure filters that prevent arbitrary file uploads, limited uploads (allowing only specific file types) can still be exploited to perform attacks on the web application. ]]></description>
+    <pubDate>Fri, 07 Nov 2025 16:17:00 GMT</pubDate>
+  </item><item>
     <title>SIEM Installation Planning -2</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
-  </item><item>
-    <title>index</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</guid>
-    <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
-  </item><item>
-    <title>index</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</guid>
-    <description><![CDATA[  ]]></description>
-    <pubDate>Fri, 07 Nov 2025 09:19:16 GMT</pubDate>
+    <pubDate>Fri, 07 Nov 2025 12:39:03 GMT</pubDate>
   </item>
     </channel>
   </rss>

@@ -168,7 +168,7 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -588,31 +588,31 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</loc>
-    <lastmod>2025-11-07T12:39:03.000Z</lastmod>
+    <lastmod>2025-11-09T16:43:59.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Web-Attack-Detection</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -751,6 +751,15 @@
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/SQLi/Writing-Files-using-SQLi</loc>
     <lastmod>2025-10-30T20:39:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSRF/Blind-SSRF</loc>
+    <lastmod>2025-11-09T21:36:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSRF/Exploiting-SSRF</loc>
+    <lastmod>2025-11-07T19:40:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/Untitled</loc>
+    <lastmod>2025-11-09T21:52:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Fuzzing/API-Fuzzing</loc>
     <lastmod>2025-10-28T15:36:00.000Z</lastmod>

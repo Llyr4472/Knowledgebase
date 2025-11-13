@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Exploiting XSLT Injection</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/XLST/Exploiting-XSLT-Injection</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/XLST/Exploiting-XSLT-Injection</guid>
-    <description><![CDATA[ Exploiting XSLT Injection After discussing some basics and use cases for XSLT, let us dive into exploiting XSLT injection vulnerabilities. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 19:39:00 GMT</pubDate>
+    <title>Custom Wordlists Generation</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Custom-Wordlists-Generation</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Custom-Wordlists-Generation</guid>
+    <description><![CDATA[ Custom Wordlists While pre-made wordlists like rockyou or SecLists provide an extensive repository of potential passwords and usernames, they operate on a broad spectrum, casting a wide net in the hopes of catching the right combination. ]]></description>
+    <pubDate>Thu, 13 Nov 2025 11:59:00 GMT</pubDate>
   </item><item>
-    <title>Intro to XMLT Injection</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/XLST/Intro-to-XMLT-Injection</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/XLST/Intro-to-XMLT-Injection</guid>
-    <description><![CDATA[ Intro to XSLT Injection eXtensible Stylesheet Language Transformation (XSLT) is a language enabling the transformation of XML documents. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 19:37:00 GMT</pubDate>
+    <title>Medusa</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Medusa</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Medusa</guid>
+    <description><![CDATA[ Medusa Medusa, a prominent tool in the cybersecurity arsenal, is designed to be a fast, massively parallel, and modular login brute-forcer. ]]></description>
+    <pubDate>Thu, 13 Nov 2025 11:39:00 GMT</pubDate>
   </item><item>
-    <title>Exploiting SSI Injection</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSII/Exploiting-SSI-Injection</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSII/Exploiting-SSI-Injection</guid>
-    <description><![CDATA[ Exploiting SSI Injection Now that we have discussed how SSI works in the previous section, let us discuss how to exploit SSI injection. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 19:32:00 GMT</pubDate>
+    <title>Brute Forcing Cheat Sheet</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Brute-Forcing-Cheat-Sheet</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Brute-Forcing-Cheat-Sheet</guid>
+    <description><![CDATA[ Login Brute Forcing Cheat Sheet What is Brute Forcing? A trial-and-error method used to crack passwords, login credentials, or encryption keys by systematically trying every possible combination of characters. ]]></description>
+    <pubDate>Thu, 13 Nov 2025 11:19:00 GMT</pubDate>
   </item><item>
-    <title>Introduction to SSI Injection</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSII/Introduction-to-SSI-Injection</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSII/Introduction-to-SSI-Injection</guid>
-    <description><![CDATA[ Introduction to SSI Injection Server-Side Includes (SSI) is a technology web applications use to create dynamic content on HTML pages. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 19:31:00 GMT</pubDate>
-  </item><item>
-    <title>SSTI Tools</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/SSTI-Tools</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/SSTI-Tools</guid>
-    <description><![CDATA[ SSTI Tools of the Trade &amp; Preventing SSTI This section will showcase tools that can help us identify and exploit SSTI vulnerabilities. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 18:28:00 GMT</pubDate>
-  </item><item>
-    <title>Exploiting SSTI - Twig</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/Exploiting-SSTI---Twig</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/Exploiting-SSTI---Twig</guid>
-    <description><![CDATA[ Exploiting SSTI - Twig In this section, we will explore another example of SSTI exploitation. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 18:25:00 GMT</pubDate>
-  </item><item>
-    <title>Server-Side Attacks Cheatsheet</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/Server-Side-Attacks-Cheatsheet</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/Server-Side-Attacks-Cheatsheet</guid>
-    <description><![CDATA[ SERVER-SIDE ATTACKS CHEAT SHEET SSRF Exploitation internal portscan by accessing ports on localhost accessing restricted endpoints Protocols http://127.0.0.1/ file:///etc/passwd gopher://dateserver.htb:80/_POST%20/admin.php%20HTTP%2F1.1%0D%0AHost:%20dateserver.htb%0D%0AContent-Length:%2013%0D%0ACont... ]]></description>
-    <pubDate>Wed, 12 Nov 2025 18:21:00 GMT</pubDate>
-  </item><item>
-    <title>Exploiting SSTI - Jinja2</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/Exploiting-SSTI---Jinja2</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/SSTI/Exploiting-SSTI---Jinja2</guid>
-    <description><![CDATA[ Exploiting SSTI - Jinja2 Now that we have seen how to identify the template engine used by a web application vulnerable to SSTI, we will move on to the exploitation of SSTI. ]]></description>
-    <pubDate>Wed, 12 Nov 2025 18:15:00 GMT</pubDate>
+    <title>Hydra</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Hydra</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Bruteforcing/Hydra</guid>
+    <description><![CDATA[ Hydra Hydra is a fast network login cracker that supports numerous attack protocols. ]]></description>
+    <pubDate>Thu, 13 Nov 2025 11:19:00 GMT</pubDate>
   </item><item>
     <title>SIEM Installation Planning -2</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Wed, 12 Nov 2025 14:49:58 GMT</pubDate>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</link>
     <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</guid>
     <description><![CDATA[  ]]></description>
-    <pubDate>Wed, 12 Nov 2025 14:49:58 GMT</pubDate>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
+  </item><item>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Thu, 13 Nov 2025 07:36:50 GMT</pubDate>
   </item>
     </channel>
   </rss>

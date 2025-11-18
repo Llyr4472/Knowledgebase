@@ -168,7 +168,7 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -588,31 +588,31 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</loc>
-    <lastmod>2025-11-16T06:32:54.000Z</lastmod>
+    <lastmod>2025-11-18T10:03:56.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Web-Attack-Detection</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -803,20 +803,26 @@
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Server-Side-Attacks/XLST/Intro-to-XMLT-Injection</loc>
     <lastmod>2025-11-12T19:37:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/HTTP-Verb-Tampering---Bypassing-Filters</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/HTTP-Verb-Tamering/HTTP-Verb-Tampering---Bypassing-Filters</loc>
     <lastmod>2025-11-15T17:20:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/HTTP-Verb-Tampering</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/HTTP-Verb-Tamering/HTTP-Verb-Tampering</loc>
     <lastmod>2025-11-15T17:09:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/Identifying-IDORs</loc>
-    <lastmod>2025-11-15T21:02:00.000Z</lastmod>
-  </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/Verb-Tampering-Prevention</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/HTTP-Verb-Tamering/Verb-Tampering-Prevention</loc>
     <lastmod>2025-11-15T19:30:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/IDOR/IODR-Prevention</loc>
+    <lastmod>2025-11-17T10:37:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/IDOR/Identifying-IDORs</loc>
+    <lastmod>2025-11-15T21:02:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/Web-Attacks-Cheatsheet</loc>
     <lastmod>2025-11-15T16:39:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/XXE/Intro-to-XXE</loc>
+    <lastmod>2025-11-17T10:40:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Fuzzing/API-Fuzzing</loc>
     <lastmod>2025-10-28T15:36:00.000Z</lastmod>

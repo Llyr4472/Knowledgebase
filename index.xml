@@ -6,65 +6,65 @@
       <description>Last 10 notes on Knowledgebase</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>GraphQL - Tools of Trade</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Tools-of-Trade</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Tools-of-Trade</guid>
-    <description><![CDATA[ Tools of the Trade Overview Beyond enumeration tools like graphw00f and graphql-voyager, specific tools exist to assist in auditing and attacking GraphQL APIs directly. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 20:07:00 GMT</pubDate>
+    <title>SIEM Installation Planning -2</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - Mutations</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Mutations</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Mutations</guid>
-    <description><![CDATA[ GraphQL Mutations Concept Mutations are GraphQL queries that modify server data. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 20:01:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - DoS &amp; Batching Attacks</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---DoS--and--Batching-Attacks</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---DoS--and--Batching-Attacks</guid>
-    <description><![CDATA[ Denial-of-Service (DoS) &amp; Batching Attacks Concept Depending on the GraphQL API’s configuration, we can create queries that result in exponentially large responses and require significant resources to process. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 19:56:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - Injection Attacks</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Injection-Attacks</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Injection-Attacks</guid>
-    <description><![CDATA[ Injection Attacks Overview One of the most common web vulnerabilities are injection attacks such as SQL Injection, Cross-Site Scripting (XSS), and Command Injection. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 19:22:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - Cheat Sheet</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Cheat-Sheet</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Cheat-Sheet</guid>
-    <description><![CDATA[ Attacking GraphQL Cheat Sheet Overview This cheat sheet covers basic GraphQL requests, introspection techniques to map the schema, batching attacks, and mutation examples. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 19:09:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - IDOR</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---IDOR</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---IDOR</guid>
-    <description><![CDATA[ Insecure Direct Object Reference (IDOR) Concept Like REST APIs, broken authorization, particularly Insecure Direct Object Reference (IDOR) vulnerabilities, are common security issues in GraphQL. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 19:08:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - Information Disclosure</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Information-Disclosure</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Information-Disclosure</guid>
-    <description><![CDATA[ Information Disclosure Concept Exploiting any service requires thorough enumeration and reconnaissance to identify all possible attack vectors. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 18:38:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>GraphQL - Introduction</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Introduction</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/GraphQL-Attacks/GraphQL---Introduction</guid>
-    <description><![CDATA[ Introduction to GraphQL Concept GraphQL is a query language typically used by web APIs as an alternative to REST. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 18:33:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>XXE Blind Data Exfiltration</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/XXE/XXE-Blind-Data-Exfiltration</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/XXE/XXE-Blind-Data-Exfiltration</guid>
-    <description><![CDATA[ Blind Data Exfiltration In scenarios known as Blind XXE, the web application does not output any of the XML input entities, nor does it display PHP runtime errors. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 17:15:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item><item>
-    <title>Advanced File Disclosure using XXE</title>
-    <link>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/XXE/Advanced-File-Disclosure-using-XXE</link>
-    <guid>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Web-Attacks/XXE/Advanced-File-Disclosure-using-XXE</guid>
-    <description><![CDATA[ Advanced File Disclosure Not all XXE vulnerabilities may be straightforward to exploit. ]]></description>
-    <pubDate>Sun, 23 Nov 2025 16:34:00 GMT</pubDate>
+    <title>index</title>
+    <link>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</link>
+    <guid>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Wed, 26 Nov 2025 15:44:13 GMT</pubDate>
   </item>
     </channel>
   </rss>

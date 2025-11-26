@@ -168,7 +168,7 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning--2</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Cysa+-Prep/SIEM-Basics,-Installation-and-Configuration/SIEM-Installation-Planning</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -588,31 +588,31 @@
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Advanced-Web-Attack/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Insecure-Deserialization-Vulnerabilities/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Detecting-Log4Shell-Attack/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/F5-BIG-IP-iControl-REST-RCE-Detection/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Hacked-Web-Server-Analysis/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/JWT-Attacks-and-Detection/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/SAML-Vulnerability-and-Detection/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Spring4Shell/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Text4Shell/</loc>
-    <lastmod>2025-11-23T15:00:41.000Z</lastmod>
+    <lastmod>2025-11-26T15:44:13.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/Blue-Teaming/Web-Attack-Detection/Web-Attack-Detection</loc>
     <lastmod>2025-07-31T10:30:00.000Z</lastmod>
@@ -692,17 +692,35 @@
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Command-Injection/Filter-Evasion-Tools</loc>
     <lastmod>2025-11-02T23:05:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/File-Disclosure/Bypassing-LFI-Filters</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Common-Applicatios/Application-Discovery--and--Enumeration</loc>
+    <lastmod>2025-11-25T22:07:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/Bypassing-LFI-Filters</loc>
     <lastmod>2025-10-26T07:29:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/File-Disclosure/LFI</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/File-Inclusion-Cheat-Sheet</loc>
+    <lastmod>2025-11-24T16:36:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/LFI---Automated-Scanning</loc>
+    <lastmod>2025-11-25T15:43:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/LFI-Techniques</loc>
+    <lastmod>2025-11-25T15:16:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/LFI</loc>
     <lastmod>2025-10-26T07:25:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/File-Disclosure/PHP-Wrappers-and-Filters-in-LFI</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/Log-Poisoning</loc>
+    <lastmod>2025-11-25T15:28:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/PHP-Wrappers-and-Filters-in-LFI</loc>
     <lastmod>2025-10-26T07:38:00.000Z</lastmod>
   </url><url>
-    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/RCE/RCE-with-PHP-Wrappers</loc>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/RCE-with-PHP-Wrappers</loc>
     <lastmod>2025-10-26T07:55:00.000Z</lastmod>
+  </url><url>
+    <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Inclusion/Remote-File-Inclusion</loc>
+    <lastmod>2025-11-24T18:56:00.000Z</lastmod>
   </url><url>
     <loc>https://knowledgebase.prashantgiri360.com.np/HTB/CWES/File-Upload-Attack/Bypassing-Content-Type-Filters</loc>
     <lastmod>2025-11-03T23:29:00.000Z</lastmod>

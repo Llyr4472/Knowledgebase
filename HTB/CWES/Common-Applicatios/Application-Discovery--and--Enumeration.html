@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Application Discovery &amp; Enumeration</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Knowledgebase"/><meta property="og:title" content="Application Discovery &amp; Enumeration"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Application Discovery &amp; Enumeration"/><meta name="twitter:description" content="Application Discovery &amp; Enumeration To effectively manage their network, an organization should maintain (and continuously update) an asset inventory that includes all network-connected devices (servers, workstations, network appliances, etc.), installed software, and applications in use across ..."/><meta property="og:description" content="Application Discovery &amp; Enumeration To effectively manage their network, an organization should maintain (and continuously update) an asset inventory that includes all network-connected devices (servers, workstations, network appliances, etc.), installed software, and applications in use across ..."/><meta property="og:image:alt" content="Application Discovery &amp; Enumeration To effectively manage their network, an organization should maintain (and continuously update) an asset inventory that includes all network-connected devices (servers, workstations, network appliances, etc.), installed software, and applications in use across ..."/><meta property="og:image" content="https://knowledgebase.prashantgiri360.com.np/static/og-image.png"/><meta property="og:image:url" content="https://knowledgebase.prashantgiri360.com.np/static/og-image.png"/><meta name="twitter:image" content="https://knowledgebase.prashantgiri360.com.np/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="knowledgebase.prashantgiri360.com.np"/><meta property="og:url" content="https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Common-Applicatios/Application-Discovery--and--Enumeration"/><meta property="twitter:url" content="https://knowledgebase.prashantgiri360.com.np/HTB/CWES/Common-Applicatios/Application-Discovery--and--Enumeration"/><link rel="icon" href="../../../static/icon.png"/><meta name="description" content="Application Discovery &amp; Enumeration To effectively manage their network, an organization should maintain (and continuously update) an asset inventory that includes all network-connected devices (servers, workstations, network appliances, etc.), installed software, and applications in use across ..."/><meta name="generator" content="Quartz"/><link href="../../../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  padding: 2rem;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvcXVhcnR6L3F1YXJ0ei9xdWFydHovY29tcG9uZW50cy9zdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7RUFDQTs7QUFHRjtFQUNFO0VBQ0E7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7O0FBSUY7RUFDRTtFQUNBO0VBQ0EiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhwYW5kLWJ1dHRvbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBwYWRkaW5nOiAwLjRyZW07XG4gIG1hcmdpbjogMC4zcmVtO1xuICByaWdodDogMDsgLy8gTk9URTogcmlnaHQgd2lsbCBiZSBzZXQgaW4gbWVybWFpZC5pbmxpbmUudHNcbiAgY29sb3I6IHZhcigtLWdyYXkpO1xuICBib3JkZXItY29sb3I6IHZhcigtLWRhcmspO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gIGJvcmRlcjogMXB4IHNvbGlkO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG4gIG9wYWNpdHk6IDA7XG4gIHRyYW5zaXRpb246IDAuMnM7XG5cbiAgJiA+IHN2ZyB7XG4gICAgZmlsbDogdmFyKC0tbGlnaHQpO1xuICAgIGZpbHRlcjogY29udHJhc3QoMC4zKTtcbiAgfVxuXG4gICY6aG92ZXIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBib3JkZXItY29sb3I6IHZhcigtLXNlY29uZGFyeSk7XG4gIH1cblxuICAmOmZvY3VzIHtcbiAgICBvdXRsaW5lOiAwO1xuICB9XG59XG5cbnByZSB7XG4gICY6aG92ZXIgPiAuZXhwYW5kLWJ1dHRvbiB7XG4gICAgb3BhY2l0eTogMTtcbiAgICB0cmFuc2l0aW9uOiAwLjJzO1xuICB9XG59XG5cbiNtZXJtYWlkLWNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgY29udGFpbjogbGF5b3V0O1xuICB6LWluZGV4OiA5OTk7XG4gIGxlZnQ6IDA7XG4gIHRvcDogMDtcbiAgd2lkdGg6IDEwMHZ3O1xuICBoZWlnaHQ6IDEwMHZoO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBub25lO1xuICBiYWNrZHJvcC1maWx0ZXI6IGJsdXIoNHB4KTtcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjUpO1xuXG4gICYuYWN0aXZlIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIH1cblxuICAmID4gI21lcm1haWQtc3BhY2Uge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgdG9wOiA1MCU7XG4gICAgbGVmdDogNTAlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xuICAgIGhlaWdodDogODB2aDtcbiAgICB3aWR0aDogODB2dztcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuXG4gICAgJiA+IC5tZXJtYWlkLWNvbnRlbnQge1xuICAgICAgcGFkZGluZzogMnJlbTtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://knowledgebase.prashantgiri360.com.np/index.xml"/></head><body data-slug="HTB/CWES/Common-Applicatios/Application-Discovery--and--Enumeration"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../../..">Knowledgebase</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-content"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="explorer-content" aria-expanded="false"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../HTB/">HTB</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../HTB/CWES/">CWES</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../HTB/CWES/Common-Applicatios/">Common Applicatios</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Application Discovery &amp; Enumeration</a></div></nav><h1 class="article-title">Application Discovery &amp; Enumeration</h1><p show-comma="true" class="content-meta"><time datetime="2025-11-25T22:07:00.000Z">Nov 25, 2025</time><span>21 min read</span></p></div></div><article class="popover-hint"><h1 id="application-discovery--enumeration">Application Discovery &amp; Enumeration<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#application-discovery--enumeration" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<hr/>
+<p>To effectively manage their network, an organization should maintain (and continuously update) an asset inventory that includes all network-connected devices (servers, workstations, network appliances, etc.), installed software, and applications in use across the environment. If an organization is unsure what is present on its network, how will it know what to protect and what potential holes exist? The organization should know if applications are installed locally or hosted by a third party, their current patch level, if they are at or nearing end-of-life, be able to detect any rogue applications in the network (or “shadow IT”), and have enough visibility into each application to ensure that they are adequately secured with strong (non-default) passwords, and ideally, multi-factor authentication is enabled. Certain applications have administrative portals that can be restricted to only being accessible from specific IP addresses or the host itself (localhost).</p>
+<p>The reality is that many organizations do not know everything on their network, and some organizations have very little visibility, and we can help them with this. The enumeration that we perform can be highly beneficial to our clients to help them enhance or start building an asset inventory. We may very likely identify applications that have been forgotten, demo versions of software that perhaps have had their trial license expired and converted to a version that does not require authentication (in the case of Splunk), applications with default/weak credentials, unauthorized/misconfigured applications, and applications that suffer from public vulnerabilities. We can provide this data to our clients as a combination of the findings in our reports (i.e., an application with default credentials <code>admin:admin</code>, as appendices such as a list of identified services mapped to hosts, or supplemental scan data). We can even take it a step further and educate our clients on some of the tools that we use daily so they can begin to perform periodic and proactive recon of their networks and find gaps before penetration testers, or worse, attackers, find them first.</p>
+<p>As penetration testers, we need to have strong enumeration skills and be able to get the “lay of the land” on any network starting with very little to no information (black box discovery or just a set of CIDR ranges). Typically, when we connect to a network, we’ll start with a ping sweep to identify “live hosts.” From there, we will usually begin targeted port scanning and, eventually, deeper port scanning to identify running services. In a network with hundreds or thousands of hosts, this enumeration data can become unwieldy. Let’s say we perform an Nmap port scan to identify common web services such as:</p>
+<h4 id="nmap---web-discovery">Nmap - Web Discovery<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#nmap---web-discovery" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h4>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scope_list</span></span></code></pre></figure>
+<p>We may find an enormous amount of hosts with services running on ports 80 and 443 alone. What do we do with this data? Sifting through the enumeration data by hand in a large environment would be far too time-consuming, especially since most assessments are under strict time constraints. Browsing to each IP/hostname + port would also be highly inefficient.</p>
+<p>Lucky for us, several great tools exist that can greatly assist in this process. Two phenomenal tools that every tester should have in their arsenal are <a href="https://github.com/FortyNorthSecurity/EyeWitness" class="external">EyeWitness<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> and <a href="https://github.com/michenriksen/aquatone" class="external">Aquatone<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. Both of these tools can be fed raw Nmap XML scan output (Aquatone can also take Masscan XML; EyeWitness can take Nessus XML output) and be used to quickly inspect all hosts running web applications and take screenshots of each. The screenshots are then assembled into a report that we can work through in the web browser to assess the web attack surface.</p>
+<p>These screenshots can help us narrow down potentially 100s of hosts and build a more targeted list of applications that we should spend more time enumerating and attacking. These tools are available for both Windows and Linux, so we can utilize them on whatever we choose for our attack box in a given environment. Let’s walk through some examples of each to create an inventory of applications present in the target <code>INLANEFREIGHT.LOCAL</code> domain.</p>
+<hr/>
+<h2 id="getting-organized">Getting Organized<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#getting-organized" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Though we will cover notetaking, reporting, and documentation in a separate module, it is worth taking the opportunity to select a notetaking application if we haven’t done so and begin setting it up to best record the data we are gathering in this phase. The module <a href="https://academy.hackthebox.com/course/preview/getting-started" class="external">Getting Started<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> discusses several notetaking applications. If you have not chosen one at this point, it would be an excellent time to start. Tools like OneNote, Evernote, Notion, Cherrytree, etc., are all good options, and it comes down to personal preference. Regardless of the tool you choose, we should be working on our notetaking methodology at this point and be creating templates that we can use in our tool of choice set up for every assessment type.</p>
+<p>For this section, I would break down the <code>Enumeration &amp; Discovery</code> section of my notebook into a separate <code>Application Discovery</code> section. Here I would create subsections for the scope, scans (Nmap, Nessus, Masscan, etc.), application screenshotting, and interesting/notable hosts to dig more into later. It is important to time and date stamp every scan that we perform and save all output and the exact scan syntax that was performed and the targeted hosts. This can be useful later on if the client has any questions about the activity they saw during the assessment. Being organized from the start and keeping detailed logs and notes will help us greatly with the final report. I typically set up the skeleton of the report at the beginning of the assessment along with my notebook so I can begin filling in certain sections of the report while waiting for a scan to finish. All of this will save time at the end of the engagement, leave us more time for the fun stuff (testing misconfigurations and exploits!), and ensure that we are as thorough as possible.</p>
+<p>An example OneNote (also applicable to other tools) structure may look like the following for the discovery phase:</p>
+<p><code>External Penetration Test - &lt;Client Name></code></p>
+<ul>
+<li>
+<p><code>Scope</code> (including in-scope IP addresses/ranges, URLs, any fragile hosts, testing timeframes, and any limitations or other relative information we need handy)</p>
+</li>
+<li>
+<p><code>Client Points of Contact</code></p>
+</li>
+<li>
+<p><code>Credentials</code></p>
+</li>
+<li>
+<p><code>Discovery/Enumeration</code></p>
+<ul>
+<li>
+<p><code>Scans</code></p>
+</li>
+<li>
+<p><code>Live hosts</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Application Discovery</code></p>
+<ul>
+<li><code>Scans</code></li>
+<li><code>Interesting/Notable Hosts</code></li>
+</ul>
+</li>
+<li>
+<p><code>Exploitation</code></p>
+<ul>
+<li>
+<p><code>&lt;Hostname or IP></code></p>
+</li>
+<li>
+<p><code>&lt;Hostname or IP></code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Post-Exploitation</code></p>
+<ul>
+<li>
+<p><code>&lt;Hostname or IP></code></p>
+</li>
+<li>
+<p><code>&lt;Hostname or IP></code></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>We will refer back to this structure throughout the module, so it would be a very beneficial exercise to replicate this and record all of our work on this module as if we were working through an actual engagement. This will help us refine our documentation methodology, an essential skill for a successful penetration tester. Having notes to refer back to from each section will be helpful when we get to the three skills assessments at the end of the module and will be extremely helpful as we progress in the <code>Penetration Tester</code> path.</p>
+<hr/>
+<h2 id="initial-enumeration">Initial Enumeration<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#initial-enumeration" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Let’s assume our client provided us with the following scope:</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ cat scope_list </span></span>
+<span data-line> </span>
+<span data-line><span>app.inlanefreight.local</span></span>
+<span data-line><span>dev.inlanefreight.local</span></span>
+<span data-line><span>drupal-dev.inlanefreight.local</span></span>
+<span data-line><span>drupal-qa.inlanefreight.local</span></span>
+<span data-line><span>drupal-acc.inlanefreight.local</span></span>
+<span data-line><span>drupal.inlanefreight.local</span></span>
+<span data-line><span>blog-dev.inlanefreight.local</span></span>
+<span data-line><span>blog.inlanefreight.local</span></span>
+<span data-line><span>app-dev.inlanefreight.local</span></span>
+<span data-line><span>jenkins-dev.inlanefreight.local</span></span>
+<span data-line><span>jenkins.inlanefreight.local</span></span>
+<span data-line><span>web01.inlanefreight.local</span></span>
+<span data-line><span>gitlab-dev.inlanefreight.local</span></span>
+<span data-line><span>gitlab.inlanefreight.local</span></span>
+<span data-line><span>support-dev.inlanefreight.local</span></span>
+<span data-line><span>support.inlanefreight.local</span></span>
+<span data-line><span>inlanefreight.local</span></span>
+<span data-line><span>10.129.201.50</span></span></code></pre></figure>
+<p>We can start with an Nmap scan of common web ports. I’ll typically do an initial scan with ports <code>80,443,8000,8080,8180,8888,10000</code> and then run either EyeWitness or Aquatone (or both depending on the results of the first) against this initial scan. While reviewing the screenshot report of the most common ports, I may run a more thorough Nmap scan against the top 10,000 ports or all TCP ports, depending on the size of the scope. Since enumeration is an iterative process, we will run a web screenshotting tool against any subsequent Nmap scans we perform to ensure maximum coverage.</p>
+<p>On a non-evasive full scope penetration test, I will usually run a Nessus scan too to give the client the most bang for their buck, but we must be able to perform assessments without relying on scanning tools. Even though most assessments are time-limited (and often not scoped appropriately for the size of the environment), we can provide our clients maximum value by establishing a repeatable and thorough enumeration methodology that can be applied to all environments we cover. We need to be efficient during the information gathering/discovery stage while not taking shortcuts that could leave critical flaws undiscovered. Everyone’s methodology and preferred tools will vary a bit, and we should strive to create one that works well for us while still arriving at the same end goal.</p>
+<p>All scans we perform during a non-evasive engagement are to gather data as inputs to our manual validation and manual testing process. We should not rely solely on scanners as the human element in penetration testing is essential. We often find the most unique and severe vulnerabilities and misconfigurations only through thorough manual testing.</p>
+<p>Let’s dig into the scope list mentioned above with an Nmap scan that will typically discover most web applications in an environment. We will, of course, perform deeper scans later on, but this will give us a good starting point.</p>
+<p>Note: Not all hosts in the scope list above will be accessible when spawning the target below. There will be separate, similar, exercises at the end of this section in order to reproduce much of what is shown here.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ sudo  nmap -p 80,443,8000,8080,8180,8888,10000 --open -oA web_discovery -iL scope_list </span></span>
+<span data-line> </span>
+<span data-line><span>Starting Nmap 7.80 ( https://nmap.org ) at 2021-09-07 21:49 EDT</span></span>
+<span data-line><span>Stats: 0:00:07 elapsed; 1 hosts completed (4 up), 4 undergoing SYN Stealth Scan</span></span>
+<span data-line><span>SYN Stealth Scan Timing: About 81.24% done; ETC: 21:49 (0:00:01 remaining)</span></span>
+<span data-line> </span>
+<span data-line><span>Nmap scan report for app.inlanefreight.local (10.129.42.195)</span></span>
+<span data-line><span>Host is up (0.12s latency).</span></span>
+<span data-line><span>Not shown: 998 closed ports</span></span>
+<span data-line><span>PORT   STATE SERVICE</span></span>
+<span data-line><span>22/tcp open  ssh</span></span>
+<span data-line><span>80/tcp open  http</span></span>
+<span data-line> </span>
+<span data-line><span>Nmap scan report for app-dev.inlanefreight.local (10.129.201.58)</span></span>
+<span data-line><span>Host is up (0.12s latency).</span></span>
+<span data-line><span>Not shown: 993 closed ports</span></span>
+<span data-line><span>PORT     STATE SERVICE</span></span>
+<span data-line><span>22/tcp   open  ssh</span></span>
+<span data-line><span>80/tcp   open  http</span></span>
+<span data-line><span>8000/tcp open  http-alt</span></span>
+<span data-line><span>8009/tcp open  ajp13</span></span>
+<span data-line><span>8080/tcp open  http-proxy</span></span>
+<span data-line><span>8180/tcp open  unknown</span></span>
+<span data-line><span>8888/tcp open  sun-answerbook</span></span>
+<span data-line> </span>
+<span data-line><span>Nmap scan report for gitlab-dev.inlanefreight.local (10.129.201.88)</span></span>
+<span data-line><span>Host is up (0.12s latency).</span></span>
+<span data-line><span>Not shown: 997 closed ports</span></span>
+<span data-line><span>PORT     STATE SERVICE</span></span>
+<span data-line><span>22/tcp   open  ssh</span></span>
+<span data-line><span>80/tcp   open  http</span></span>
+<span data-line><span>8081/tcp open  blackice-icecap</span></span>
+<span data-line> </span>
+<span data-line><span>Nmap scan report for 10.129.201.50</span></span>
+<span data-line><span>Host is up (0.13s latency).</span></span>
+<span data-line><span>Not shown: 991 closed ports</span></span>
+<span data-line><span>PORT     STATE SERVICE</span></span>
+<span data-line><span>80/tcp   open  http</span></span>
+<span data-line><span>135/tcp  open  msrpc</span></span>
+<span data-line><span>139/tcp  open  netbios-ssn</span></span>
+<span data-line><span>445/tcp  open  microsoft-ds</span></span>
+<span data-line><span>3389/tcp open  ms-wbt-server</span></span>
+<span data-line><span>5357/tcp open  wsdapi</span></span>
+<span data-line><span>8000/tcp open  http-alt</span></span>
+<span data-line><span>8080/tcp open  http-proxy</span></span>
+<span data-line><span>8089/tcp open  unknown</span></span>
+<span data-line> </span>
+<span data-line><span>&lt;SNIP></span></span></code></pre></figure>
+<p>As we can see, we identified several hosts running web servers on various ports. From the results, we can infer that one of the hosts is Windows and the remainder are Linux (but cannot be 100% certain at this stage). Pay particularly close attention to the hostnames as well. In this lab, we are utilizing Vhosts to simulate the subdomains of a company. Hosts with <code>dev</code> as part of the FQDN are worth noting down as they may be running untested features or have things like debug mode enabled. Sometimes the hostnames won’t tell us too much, such as <code>app.inlanefreight.local</code>. We can infer that it is an application server but would need to perform further enumeration to identify which application(s) are running on it.</p>
+<p>We would also want to add <code>gitlab-dev.inlanefreight.local</code> to our “interesting hosts” list to dig into once we complete the discovery phase. We may be able to access public Git repos that could contain sensitive information such as credentials or clues that may lead us to other subdomains/Vhosts. It is not uncommon to find Gitlab instances that allow us to register a user without requiring admin approval to activate the account. We may find additional repos after logging in. It would also be worth checking previous commits for data such as credentials which we will cover more in detail later in this module when we dig deeper into Gitlab.</p>
+<p>Enumerating one of the hosts further using an Nmap service scan (<code>-sV</code>) against the default top 1,000 ports can tell us more about what is running on the webserver.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ sudo nmap --open -sV 10.129.201.50</span></span>
+<span data-line> </span>
+<span data-line><span>Starting Nmap 7.80 ( https://nmap.org ) at 2021-09-07 21:58 EDT</span></span>
+<span data-line><span>Nmap scan report for 10.129.201.50</span></span>
+<span data-line><span>Host is up (0.13s latency).</span></span>
+<span data-line><span>Not shown: 991 closed ports</span></span>
+<span data-line><span>PORT     STATE SERVICE       VERSION</span></span>
+<span data-line><span>80/tcp   open  http          Microsoft IIS httpd 10.0</span></span>
+<span data-line><span>135/tcp  open  msrpc         Microsoft Windows RPC</span></span>
+<span data-line><span>139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn</span></span>
+<span data-line><span>445/tcp  open  microsoft-ds?</span></span>
+<span data-line><span>3389/tcp open  ms-wbt-server Microsoft Terminal Services</span></span>
+<span data-line><span>5357/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)</span></span>
+<span data-line><span>8000/tcp open  http          Splunkd httpd</span></span>
+<span data-line><span>8080/tcp open  http          Indy httpd 17.3.33.2830 (Paessler PRTG bandwidth monitor)</span></span>
+<span data-line><span>8089/tcp open  ssl/http      Splunkd httpd (free license; remote login disabled)</span></span>
+<span data-line><span>Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows</span></span>
+<span data-line> </span>
+<span data-line><span>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span></span>
+<span data-line><span>Nmap done: 1 IP address (1 host up) scanned in 38.63 seconds</span></span></code></pre></figure>
+<p>From the output above, we can see that an IIS web server is running on the default port 80, and it appears that <code>Splunk</code> is running on port 8000/8089, while <code>PRTG Network Monitor</code> is present on port 8080. If we were in a medium to large-sized environment, this type of enumeration would be inefficient. It could result in us missing a web application that may prove critical to the engagement’s success.</p>
+<hr/>
+<h2 id="using-eyewitness">Using EyeWitness<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#using-eyewitness" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>First up is EyeWitness. As mentioned before, EyeWitness can take the XML output from both Nmap and Nessus and create a report with screenshots of each web application present on the various ports using Selenium. It will also take things a step further and categorize the applications where possible, fingerprint them, and suggest default credentials based on the application. It can also be given a list of IP addresses and URLs and be told to pre-pend <code>http://</code> and <code>https://</code> to the front of each. It will perform DNS resolution for IPs and can be given a specific set of ports to attempt to connect to and screenshot.</p>
+<p>We can install EyeWitness via apt:</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ sudo apt install eyewitness</span></span></code></pre></figure>
+<p>or clone the <a href="https://github.com/FortyNorthSecurity/EyeWitness" class="external">repository<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, navigate to the <code>Python/setup</code> directory and run the <code>setup.sh</code> installer script. EyeWitness can also be run from a Docker container, and a Windows version is available, which can be compiled using Visual Studio.</p>
+<p>Running <code>eyewitness -h</code> will show us the options available to us:</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ eyewitness -h</span></span>
+<span data-line> </span>
+<span data-line><span>usage: EyeWitness.py [--web] [-f Filename] [-x Filename.xml]</span></span>
+<span data-line><span>                     [--single Single URL] [--no-dns] [--timeout Timeout]</span></span>
+<span data-line><span>                     [--jitter # of Seconds] [--delay # of Seconds]</span></span>
+<span data-line><span>                     [--threads # of Threads]</span></span>
+<span data-line><span>                     [--max-retries Max retries on a timeout]</span></span>
+<span data-line><span>                     [-d Directory Name] [--results Hosts Per Page]</span></span>
+<span data-line><span>                     [--no-prompt] [--user-agent User Agent]</span></span>
+<span data-line><span>                     [--difference Difference Threshold]</span></span>
+<span data-line><span>                     [--proxy-ip 127.0.0.1] [--proxy-port 8080]</span></span>
+<span data-line><span>                     [--proxy-type socks5] [--show-selenium] [--resolve]</span></span>
+<span data-line><span>                     [--add-http-ports ADD_HTTP_PORTS]</span></span>
+<span data-line><span>                     [--add-https-ports ADD_HTTPS_PORTS]</span></span>
+<span data-line><span>                     [--only-ports ONLY_PORTS] [--prepend-https]</span></span>
+<span data-line><span>                     [--selenium-log-path SELENIUM_LOG_PATH] [--resume ew.db]</span></span>
+<span data-line><span>                     [--ocr]</span></span>
+<span data-line> </span>
+<span data-line><span>EyeWitness is a tool used to capture screenshots from a list of URLs</span></span>
+<span data-line> </span>
+<span data-line><span>Protocols:</span></span>
+<span data-line><span>  --web                 HTTP Screenshot using Selenium</span></span>
+<span data-line> </span>
+<span data-line><span>Input Options:</span></span>
+<span data-line><span>  -f Filename           Line-separated file containing URLs to capture</span></span>
+<span data-line><span>  -x Filename.xml       Nmap XML or .Nessus file</span></span>
+<span data-line><span>  --single Single URL   Single URL/Host to capture</span></span>
+<span data-line><span>  --no-dns              Skip DNS resolution when connecting to websites</span></span>
+<span data-line> </span>
+<span data-line><span>Timing Options:</span></span>
+<span data-line><span>  --timeout Timeout     Maximum number of seconds to wait while requesting a</span></span>
+<span data-line><span>                        web page (Default: 7)</span></span>
+<span data-line><span>  --jitter # of Seconds</span></span>
+<span data-line><span>                        Randomize URLs and add a random delay between requests</span></span>
+<span data-line><span>  --delay # of Seconds  Delay between the opening of the navigator and taking</span></span>
+<span data-line><span>                        the screenshot</span></span>
+<span data-line><span>  --threads # of Threads</span></span>
+<span data-line><span>                        Number of threads to use while using file based input</span></span>
+<span data-line><span>  --max-retries Max retries on a timeout</span></span>
+<span data-line><span>                        Max retries on timeouts</span></span>
+<span data-line> </span>
+<span data-line><span>&lt;SNIP></span></span></code></pre></figure>
+<p>Let’s run the default <code>--web</code> option to take screenshots using the Nmap XML output from the discovery scan as input.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ eyewitness --web -x web_discovery.xml -d inlanefreight_eyewitness</span></span>
+<span data-line> </span>
+<span data-line><span>################################################################################</span></span>
+<span data-line><span>#                                  EyeWitness                                  #</span></span>
+<span data-line><span>################################################################################</span></span>
+<span data-line><span>#           FortyNorth Security - https://www.fortynorthsecurity.com           #</span></span>
+<span data-line><span>################################################################################</span></span>
+<span data-line> </span>
+<span data-line><span>Starting Web Requests (26 Hosts)</span></span>
+<span data-line><span>Attempting to screenshot http://app.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://app-dev.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://app-dev.inlanefreight.local:8000</span></span>
+<span data-line><span>Attempting to screenshot http://app-dev.inlanefreight.local:8080</span></span>
+<span data-line><span>Attempting to screenshot http://gitlab-dev.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://10.129.201.50</span></span>
+<span data-line><span>Attempting to screenshot http://10.129.201.50:8000</span></span>
+<span data-line><span>Attempting to screenshot http://10.129.201.50:8080</span></span>
+<span data-line><span>Attempting to screenshot http://dev.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins-dev.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins-dev.inlanefreight.local:8000</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins-dev.inlanefreight.local:8080</span></span>
+<span data-line><span>Attempting to screenshot http://support-dev.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://drupal-dev.inlanefreight.local</span></span>
+<span data-line><span>[*] Hit timeout limit when connecting to http://10.129.201.50:8000, retrying</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins.inlanefreight.local:8000</span></span>
+<span data-line><span>Attempting to screenshot http://jenkins.inlanefreight.local:8080</span></span>
+<span data-line><span>Attempting to screenshot http://support.inlanefreight.local</span></span>
+<span data-line><span>[*] Completed 15 out of 26 services</span></span>
+<span data-line><span>Attempting to screenshot http://drupal-qa.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://web01.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://web01.inlanefreight.local:8000</span></span>
+<span data-line><span>Attempting to screenshot http://web01.inlanefreight.local:8080</span></span>
+<span data-line><span>Attempting to screenshot http://inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://drupal-acc.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://drupal.inlanefreight.local</span></span>
+<span data-line><span>Attempting to screenshot http://blog-dev.inlanefreight.local</span></span>
+<span data-line><span>Finished in 57.859838008880615 seconds</span></span>
+<span data-line> </span>
+<span data-line><span>[*] Done! Report written in the /home/mrb3n/Projects/inlanfreight/inlanefreight_eyewitness folder!</span></span>
+<span data-line><span>Would you like to open the report now? [Y/n]</span></span></code></pre></figure>
+<hr/>
+<h2 id="using-aquatone">Using Aquatone<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#using-aquatone" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><a href="https://github.com/michenriksen/aquatone" class="external">Aquatone<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, as mentioned before, is similar to EyeWitness and can take screenshots when provided a <code>.txt</code> file of hosts or an Nmap <code>.xml</code> file with the <code>-nmap</code> flag. We can compile Aquatone on our own or download a precompiled binary. After downloading the binary, we just need to extract it, and we are ready to go.</p>
+<p>Note: <code>Aquatone</code> is currently under active development in a new <a href="https://github.com/shelld3v/aquatone" class="external">fork<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, focusing on improvements and feature enhancements. Refer to the installation guide provided in the repository.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ wget https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip</span></span></code></pre></figure>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ unzip aquatone_linux_amd64_1.7.0.zip </span></span>
+<span data-line> </span>
+<span data-line><span>Archive:  aquatone_linux_amd64_1.7.0.zip</span></span>
+<span data-line><span>  inflating: aquatone                </span></span>
+<span data-line><span>  inflating: README.md               </span></span>
+<span data-line><span>  inflating: LICENSE.txt </span></span></code></pre></figure>
+<p>We can move it to a location in our <code>$PATH</code> such as <code>/usr/local/bin</code> to be able to call the tool from anywhere or just drop the binary in our working (say, scans) directory. It’s personal preference but typically most efficient to build our attack VMs with most tools available to use without having to constantly change directories or call them from other directories.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ echo $PATH</span></span>
+<span data-line> </span>
+<span data-line><span>/home/mrb3n/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</span></span></code></pre></figure>
+<p>In this example, we provide the tool the same <code>web_discovery.xml</code> Nmap output specifying the <code>-nmap</code> flag, and we’re off to the races.</p>
+<p>Application Discovery &amp; Enumeration</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="shell-session" data-theme="github-light github-dark"><code data-language="shell-session" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>Llyr4472@htb[/htb]$ cat web_discovery.xml | ./aquatone -nmap</span></span>
+<span data-line> </span>
+<span data-line><span>aquatone v1.7.0 started at 2021-09-07T22:31:03-04:00</span></span>
+<span data-line> </span>
+<span data-line><span>Targets    : 65</span></span>
+<span data-line><span>Threads    : 6</span></span>
+<span data-line><span>Ports      : 80, 443, 8000, 8080, 8443</span></span>
+<span data-line><span>Output dir : .</span></span>
+<span data-line> </span>
+<span data-line><span>http://web01.inlanefreight.local:8000/: 403 Forbidden</span></span>
+<span data-line><span>http://app.inlanefreight.local/: 200 OK</span></span>
+<span data-line><span>http://jenkins.inlanefreight.local/: 403 Forbidden</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local/: 200 </span></span>
+<span data-line><span>http://app-dev.inlanefreight.local/: 200 </span></span>
+<span data-line><span>http://app-dev.inlanefreight.local:8000/: 403 Forbidden</span></span>
+<span data-line><span>http://jenkins.inlanefreight.local:8000/: 403 Forbidden</span></span>
+<span data-line><span>http://web01.inlanefreight.local:8080/: 200 </span></span>
+<span data-line><span>http://app-dev.inlanefreight.local:8000/: 403 Forbidden</span></span>
+<span data-line><span>http://10.129.201.50:8000/: 200 OK</span></span>
+<span data-line> </span>
+<span data-line><span>&lt;SNIP></span></span>
+<span data-line> </span>
+<span data-line><span>http://web01.inlanefreight.local:8000/: screenshot successful</span></span>
+<span data-line><span>http://app.inlanefreight.local/: screenshot successful</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local/: screenshot successful</span></span>
+<span data-line><span>http://jenkins.inlanefreight.local/: screenshot successful</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local/: screenshot successful</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local:8000/: screenshot successful</span></span>
+<span data-line><span>http://jenkins.inlanefreight.local:8000/: screenshot successful</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local:8000/: screenshot successful</span></span>
+<span data-line><span>http://app-dev.inlanefreight.local:8080/: screenshot successful</span></span>
+<span data-line><span>http://app.inlanefreight.local/: screenshot successful</span></span>
+<span data-line> </span>
+<span data-line><span>&lt;SNIP></span></span>
+<span data-line> </span>
+<span data-line><span>Calculating page structures... done</span></span>
+<span data-line><span>Clustering similar pages... done</span></span>
+<span data-line><span>Generating HTML report... done</span></span>
+<span data-line> </span>
+<span data-line><span>Writing session file...Time:</span></span>
+<span data-line><span> - Started at  : 2021-09-07T22:31:03-04:00</span></span>
+<span data-line><span> - Finished at : 2021-09-07T22:31:36-04:00</span></span>
+<span data-line><span> - Duration    : 33s</span></span>
+<span data-line> </span>
+<span data-line><span>Requests:</span></span>
+<span data-line><span> - Successful : 65</span></span>
+<span data-line><span> - Failed     : 0</span></span>
+<span data-line> </span>
+<span data-line><span> - 2xx : 47</span></span>
+<span data-line><span> - 3xx : 0</span></span>
+<span data-line><span> - 4xx : 18</span></span>
+<span data-line><span> - 5xx : 0</span></span>
+<span data-line> </span>
+<span data-line><span>Screenshots:</span></span>
+<span data-line><span> - Successful : 65</span></span>
+<span data-line><span> - Failed     : 0</span></span>
+<span data-line> </span>
+<span data-line><span>Wrote HTML report to: aquatone_report.html</span></span></code></pre></figure>
+<hr/>
+<h2 id="interpreting-the-results">Interpreting the Results<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#interpreting-the-results" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Even with the 26 hosts above, this report will save us time. Now imagine an environment with 500 or 5,000 hosts! After opening the report, we see that the report is organized into categories, with <code>High Value Targets</code> being first and typically the most “juicy” hosts to go after. I have run EyeWitness in very large environments and generated reports with hundreds of pages that take hours to go through. Often, the very large reports will have interesting hosts buried deep within them, so it is worth reviewing the entire thing and poking at/researching any applications we are unfamiliar with. I found the <code>ManageEngine OpManager</code> application mentioned in the introduction section buried deep into a very large report during an external penetration test. This instance was left configured with the default credentials <code>admin:admin</code> and left wide open to the internet. I was able to log in and achieve code execution by running a PowerShell script. The OpManager application was running in the context of a Domain Admin account which led to full compromise of the internal network.</p>
+<p>In the below report, I would be immediately excited to see Tomcat on any assessment (but especially during an External Penetration Test) and would try default credentials on the <code>/manager</code> and <code>/host-manager</code> endpoints. If we can access either, we can upload a malicious WAR file and achieve remote code execution on the underlying host using <a href="https://en.wikipedia.org/wiki/Jakarta_Server_Pages" class="external">JSP code<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. More on this later in the module.</p>
+<p><img src="../../../Assets/8c7980424dde8321bbbd4b67ae0a7f14_MD5.png" alt="The image shows a report with a table of contents listing categories like High Value Targets, Uncategorized, Content Management System (CMS), 401/403 Unauthorized, and Splash Pages. It includes a section titled &quot;High Value Targets&quot; with web request info and a screenshot of an Apache Tomcat page. The report was generated on 09/07/2021."/></p>
+<p>Continuing through the report, it looks like the main <code>http://inlanefreight.local</code> website is next. Custom web applications are always worth testing as they may contain a wide variety of vulnerabilities. Here I would also be interested to see if the website was running a popular CMS such as WordPress, Joomla, or Drupal. The next application, <code>http://support-dev.inlanefreight.local</code>, is interesting because it appears to be running <a href="https://osticket.com/" class="external">osTicket<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>, which has suffered from various severe vulnerabilities over the years. Support ticketing systems are of particular interest because we may be able to log in and gain access to sensitive information. If social engineering is in scope, we may be able to interact with customer support personnel or even manipulate the system to register a valid email address for the company’s domain which we may be able to leverage to gain access to other services.</p>
+<p>This last piece was demonstrated in the HTB weekly release box <a href="https://0xdf.gitlab.io/2021/05/22/htb-delivery.html" class="external">Delivery<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a> by <a href="https://www.youtube.com/watch?v=gbs43E71mFM" class="external">IppSec<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a>. This particular box is worth studying as it shows what is possible by exploring the built-in functionality of certain common applications. We will cover osTicket more in-depth later in this module.</p>
+<p><img src="../../../Assets/6d42c141c8c289e3b2827926ff5c619b_MD5.png" alt="Web report showing Inlanefreight homepage and helpdesk info, including server details and response codes."/></p>
+<p>During an assessment, I would continue reviewing the report, noting down interesting hosts, including the URL and application name/version for later. It is important at this point to remember that we are still in the information gathering phase, and every little detail could make or break our assessment. We should not get careless and begin attacking hosts right away, as we may end up down a rabbit hole and miss something crucial later in the report. During an External Penetration Test, I would expect to see a mix of custom applications, some CMS, perhaps applications such as Tomcat, Jenkins, and Splunk, remote access portals such as Remote Desktop Services (RDS), SSL VPN endpoints, Outlook Web Access (OWA), O365, perhaps some sort of edge network device login page, etc.</p>
+<p>Your mileage may vary, and sometimes we will come across applications that absolutely should not be exposed, such as a single page with a file upload button I encountered once with a message that stated, “Please only upload .zip and .tar.gz files”. I, of course, did not heed this warning (as this was in-scope during a client-sanctioned penetration test) and proceeded to upload a test <code>.aspx</code> file. To my surprise, there was no sort of client-side or back-end validation, and the file appeared to upload. Doing some quick directory brute-forcing, I was able to locate a <code>/files</code> directory that had directory listing enabled, and my <code>test.aspx</code> file was there. From here, I proceeded to upload a <code>.aspx</code> web shell and gained a foothold into the internal environment. This example shows that we should leave no stone unturned and that there can be an absolute treasure trove of data for us in our application discovery data.</p>
+<p>During an Internal Penetration Test, we will see much of the same but often also see many printer login pages (which we can sometimes leverage to obtain cleartext LDAP credentials), ESXi and vCenter login portals, iLO and iDRAC login pages, a plethora of network devices, IoT devices, IP phones, internal code repositories, SharePoint and custom intranet portals, security appliances, and much more.</p>
+<hr/>
+<h2 id="moving-on">Moving On<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#moving-on" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Now that we’ve worked through our application discovery methodology and set up our notetaking structure let’s deep dive into some of the most common applications that we will encounter time and time again. Please note that this module cannot possibly cover every single application that we will face. Rather, we aim to cover very prevalent ones and learn about common vulnerabilities, misconfigurations, and abusing their built-in functionality.</p>
+<p>I can guarantee that you will face at least a few, if not all, of these applications during your career as a penetration tester. The methodology and mindset of exploring these applications are even more important, which we will develop and enhance throughout this module and test out during the skills assessments at the end. Many testers have great technical skills but soft skills such as a sound, and repeatable, methodology along with organization, attention to detail, strong communication, and thorough notetaking/documentation and reporting can set us apart and help to build confidence in our skillsets from both our employers as well as our clients.</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="toc-content overflow" id="list-1"><li class="depth-0"><a href="#application-discovery--enumeration" data-for="application-discovery--enumeration">Application Discovery &amp; Enumeration</a></li><li class="depth-1"><a href="#getting-organized" data-for="getting-organized">Getting Organized</a></li><li class="depth-1"><a href="#initial-enumeration" data-for="initial-enumeration">Initial Enumeration</a></li><li class="depth-1"><a href="#using-eyewitness" data-for="using-eyewitness">Using EyeWitness</a></li><li class="depth-1"><a href="#using-aquatone" data-for="using-aquatone">Using Aquatone</a></li><li class="depth-1"><a href="#interpreting-the-results" data-for="interpreting-the-results">Interpreting the Results</a></li><li class="depth-1"><a href="#moving-on" data-for="moving-on">Moving On</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.1</a> © 2025</p><ul><li><a href="https://socials.prashantgiri360.com.np/github">GitHub</a></li><li><a href="https://socials.prashantgiri360.com.np/linkedin">LinkedIn</a></li><li><a href="https://socials.prashantgiri360.com.np/discord">Discord</a></li></ul></footer></div></div></body><script type="application/javascript">var m=Object.create;var f=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var S=Object.getOwnPropertyNames;var y=Object.getPrototypeOf,b=Object.prototype.hasOwnProperty;var R=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports);var j=(t,e,n,E)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of S(e))!b.call(t,i)&&i!==n&&f(t,i,{get:()=>e[i],enumerable:!(E=x(e,i))||E.enumerable});return t};var w=(t,e,n)=>(n=t!=null?m(y(t)):{},j(e||!t||!t.__esModule?f(n,"default",{value:t,enumerable:!0}):n,t));var p=R((I,g)=>{"use strict";g.exports=L;function B(t){return t instanceof Buffer?Buffer.from(t):new t.constructor(t.buffer.slice(),t.byteOffset,t.length)}function L(t){if(t=t||{},t.circles)return v(t);let e=new Map;if(e.set(Date,F=>new Date(F)),e.set(Map,(F,l)=>new Map(E(Array.from(F),l))),e.set(Set,(F,l)=>new Set(E(Array.from(F),l))),t.constructorHandlers)for(let F of t.constructorHandlers)e.set(F[0],F[1]);let n=null;return t.proto?o:i;function E(F,l){let u=Object.keys(F),D=new Array(u.length);for(let s=0;s<u.length;s++){let r=u[s],A=F[r];typeof A!="object"||A===null?D[r]=A:A.constructor!==Object&&(n=e.get(A.constructor))?D[r]=n(A,l):ArrayBuffer.isView(A)?D[r]=B(A):D[r]=l(A)}return D}function i(F){if(typeof F!="object"||F===null)return F;if(Array.isArray(F))return E(F,i);if(F.constructor!==Object&&(n=e.get(F.constructor)))return n(F,i);let l={};for(let u in F){if(Object.hasOwnProperty.call(F,u)===!1)continue;let D=F[u];typeof D!="object"||D===null?l[u]=D:D.constructor!==Object&&(n=e.get(D.constructor))?l[u]=n(D,i):ArrayBuffer.isView(D)?l[u]=B(D):l[u]=i(D)}return l}function o(F){if(typeof F!="object"||F===null)return F;if(Array.isArray(F))return E(F,o);if(F.constructor!==Object&&(n=e.get(F.constructor)))return n(F,o);let l={};for(let u in F){let D=F[u];typeof D!="object"||D===null?l[u]=D:D.constructor!==Object&&(n=e.get(D.constructor))?l[u]=n(D,o):ArrayBuffer.isView(D)?l[u]=B(D):l[u]=o(D)}return l}}function v(t){let e=[],n=[],E=new Map;if(E.set(Date,u=>new Date(u)),E.set(Map,(u,D)=>new Map(o(Array.from(u),D))),E.set(Set,(u,D)=>new Set(o(Array.from(u),D))),t.constructorHandlers)for(let u of t.constructorHandlers)E.set(u[0],u[1]);let i=null;return t.proto?l:F;function o(u,D){let s=Object.keys(u),r=new Array(s.length);for(let A=0;A<s.length;A++){let c=s[A],C=u[c];if(typeof C!="object"||C===null)r[c]=C;else if(C.constructor!==Object&&(i=E.get(C.constructor)))r[c]=i(C,D);else if(ArrayBuffer.isView(C))r[c]=B(C);else{let a=e.indexOf(C);a!==-1?r[c]=n[a]:r[c]=D(C)}}return r}function F(u){if(typeof u!="object"||u===null)return u;if(Array.isArray(u))return o(u,F);if(u.constructor!==Object&&(i=E.get(u.constructor)))return i(u,F);let D={};e.push(u),n.push(D);for(let s in u){if(Object.hasOwnProperty.call(u,s)===!1)continue;let r=u[s];if(typeof r!="object"||r===null)D[s]=r;else if(r.constructor!==Object&&(i=E.get(r.constructor)))D[s]=i(r,F);else if(ArrayBuffer.isView(r))D[s]=B(r);else{let A=e.indexOf(r);A!==-1?D[s]=n[A]:D[s]=F(r)}}return e.pop(),n.pop(),D}function l(u){if(typeof u!="object"||u===null)return u;if(Array.isArray(u))return o(u,l);if(u.constructor!==Object&&(i=E.get(u.constructor)))return i(u,l);let D={};e.push(u),n.push(D);for(let s in u){let r=u[s];if(typeof r!="object"||r===null)D[s]=r;else if(r.constructor!==Object&&(i=E.get(r.constructor)))D[s]=i(r,l);else if(ArrayBuffer.isView(r))D[s]=B(r);else{let A=e.indexOf(r);A!==-1?D[s]=n[A]:D[s]=l(r)}}return e.pop(),n.pop(),D}}});var T=Object.hasOwnProperty;var h=w(p(),1),O=(0,h.default)();function d(t){return t.document.body.dataset.slug}var k=t=>`${d(window)}-checkbox-${t}`;document.addEventListener("nav",()=>{document.querySelectorAll("input.checkbox-toggle").forEach((e,n)=>{let E=k(n),i=o=>{let F=o.target?.checked?"true":"false";localStorage.setItem(E,F)};e.addEventListener("change",i),window.addCleanup(()=>e.removeEventListener("change",i)),localStorage.getItem(E)==="true"&&(e.checked=!0)})});
+</script><script type="application/javascript">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module">function f(i,e){if(!i)return;function r(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function t(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}i?.addEventListener("click",r),window.addCleanup(()=>i?.removeEventListener("click",r)),document.addEventListener("keydown",t),window.addCleanup(()=>document.removeEventListener("keydown",t))}function y(i){for(;i.firstChild;)i.removeChild(i.firstChild)}var h=class{constructor(e,r){this.container=e;this.content=r;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),r=this.onMouseMove.bind(this),t=this.onMouseUp.bind(this),o=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",r),document.addEventListener("mouseup",t),window.addEventListener("resize",o),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",r),()=>document.removeEventListener("mouseup",t),()=>window.removeEventListener("resize",o))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let r=this.createButton("+",()=>this.zoom(.1)),t=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(t),e.appendChild(o),e.appendChild(r),this.container.appendChild(e)}createButton(e,r){let t=document.createElement("button");return t.textContent=e,t.className="mermaid-control-button",t.addEventListener("click",r),window.addCleanup(()=>t.removeEventListener("click",r)),t}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}zoom(e){let r=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),t=this.content.getBoundingClientRect(),o=t.width/2,n=t.height/2,c=r-this.scale;this.currentPan.x-=o*c,this.currentPan.y-=n*c,this.scale=r,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){this.scale=1;let e=this.content.querySelector("svg");this.currentPan={x:e.getBoundingClientRect().width/2,y:e.getBoundingClientRect().height/2},this.updateTransform()}},C=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],E;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;E||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let r=E.default,t=new WeakMap;for(let n of e)t.set(n,n.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let a=t.get(s);a&&(s.innerHTML=a)}let n=C.reduce((s,a)=>(s[a]=window.getComputedStyle(document.documentElement).getPropertyValue(a),s),{}),c=document.documentElement.getAttribute("saved-theme")==="dark";r.initialize({startOnLoad:!1,securityLevel:"loose",theme:c?"dark":"base",themeVariables:{fontFamily:n["--codeFont"],primaryColor:n["--light"],primaryTextColor:n["--darkgray"],primaryBorderColor:n["--tertiary"],lineColor:n["--darkgray"],secondaryColor:n["--secondary"],tertiaryColor:n["--tertiary"],clusterBkg:n["--light"],edgeLabelBackground:n["--highlight"]}}),await r.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let n=0;n<e.length;n++){let v=function(){let g=l.querySelector("#mermaid-space"),m=l.querySelector(".mermaid-content");if(!m)return;y(m);let w=c.querySelector("svg").cloneNode(!0);m.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new h(g,m)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},c=e[n],s=c.parentElement,a=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(a),L=a.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),f(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script src="../../../postscript.js" type="module"></script></html>

